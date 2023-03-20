@@ -8,7 +8,12 @@ public class Bon
     public Bon()
     {
         Regels = new List<Regel>();
-        
+    }
+
+    public decimal TotaalPrijs
+    {
+        get { return this._totaalPrijs; }
+        set {  }
     }
 
     public void Scan(Regel regel)
