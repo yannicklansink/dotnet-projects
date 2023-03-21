@@ -18,9 +18,14 @@ public class Bon
 
     public void Scan(Regel regel)
     {
-        // if (regel.Prijs >= 0.0 && regel.Prijs < Math.Max(decimal)) ;
-        this.Regels.Add(regel);
-        
+        if (regel.Prijs >= 0.0m && regel.Prijs < Decimal.MaxValue)
+        {
+            this.Regels.Add(regel);
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(regel), "De prijs is niet juist");
+        }
     }
 
     public void ScanAll(params Regel[] regel)

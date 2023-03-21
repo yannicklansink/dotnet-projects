@@ -13,8 +13,7 @@ class Program
         Bon bon = new Bon();
         bon.ScanAll(broodje, broodje2, melk);
         bon.ToString();
-        
-        
+
     }
 }
 
