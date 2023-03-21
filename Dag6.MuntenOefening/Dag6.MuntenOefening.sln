@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag6.MuntenOefening", "Dag6.MuntenOefening\Dag6.MuntenOefening.csproj", "{B3AC40D2-C0FA-4D13-B412-064F07E40FD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag6.MuntenTesten", "Dag6.MuntenTesten\Dag6.MuntenTesten.csproj", "{EED916FC-6ABA-4796-AFCE-B8F413D7A9F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B3AC40D2-C0FA-4D13-B412-064F07E40FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3AC40D2-C0FA-4D13-B412-064F07E40FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3AC40D2-C0FA-4D13-B412-064F07E40FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED916FC-6ABA-4796-AFCE-B8F413D7A9F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED916FC-6ABA-4796-AFCE-B8F413D7A9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED916FC-6ABA-4796-AFCE-B8F413D7A9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED916FC-6ABA-4796-AFCE-B8F413D7A9F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

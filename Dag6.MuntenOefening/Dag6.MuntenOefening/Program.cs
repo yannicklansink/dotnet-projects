@@ -1,8 +1,11 @@
-﻿namespace Dag6.MuntenOefening;
+﻿using System.Globalization;
+
+namespace Dag6.MuntenOefening;
 class Program
 {
     static void Main(string[] args)
     {
+        CultureInfo.CurrentCulture = new CultureInfo("nl-BE");
         PrintGeldigheidMuntsoort(Muntsoort.Euro);
         PrintGeldigheidMuntsoort(Muntsoort.Dukaat);
 
@@ -10,8 +13,16 @@ class Program
         Console.WriteLine($"De code van muntsoort euro is: {CodeMuntsoortEuro}");
 
         Console.WriteLine("----------");
-        string CodeMuntSoortFout = "EURROOO";
-        Console.WriteLine($"De code {CodeMuntSoortFout} is {ExtensionMuntsoortFunctions.ToMuntSoort(CodeMuntSoortFout)}");
+        // string CodeMuntSoortFout = "EURROOO";
+        // Console.WriteLine($"De code {CodeMuntSoortFout} is {ExtensionMuntsoortFunctions.ToMuntSoort(CodeMuntSoortFout)}");
+
+        Valuta valuta = new Valuta(4.00m, Muntsoort.Gulden);
+        decimal bedragNieuw = valuta.ConvertTo(Muntsoort.Euro);
+        Console.WriteLine(bedragNieuw);
+
+        Valuta valuta2 = new Valuta(10.00m, Muntsoort.Dukaat);
+        decimal bedragNieuw2 = valuta2.ConvertTo(Muntsoort.Gulden);
+        Console.WriteLine($"Van {valuta2.Bedrag} dukaat naar gulden converten: {bedragNieuw2:n2}");
 
     }
 
