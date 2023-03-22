@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Betaalkaart VIPBetaalkaart = new VIPKaarten("Marcooooo", 1000000m, 12.5m);
+            Console.WriteLine(VIPBetaalkaart);   
         }
     }
 }

@@ -11,10 +11,9 @@ namespace Dag6.OefeningInheritance
         public GewoneBetaalkaart(string naam, decimal saldo) : base(naam, saldo)
         {
 
-
         }
 
-        public void Betaal(decimal bedrag)
+        public override void Betaal(decimal bedrag)
         {
             //  Bij gewone betaalkaarten mag je nooit méér betalen dat dat er nog aan Saldo aanwezig is
             if ((Saldo - bedrag) > 0.00m) // saldo = 10.00 bedrag = 11.00

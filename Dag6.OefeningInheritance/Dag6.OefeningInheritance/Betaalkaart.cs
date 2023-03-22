@@ -10,8 +10,7 @@ namespace Dag6.OefeningInheritance
     {
 
         protected string Naam;
-        protected decimal Saldo;
-        //  Dat Saldo kan vervolgens alleen nog maar afnemen (minder worden). Het Saldo van een kaart moet kunnen worden opgevraagd.
+        protected decimal Saldo; //  Dat Saldo kan vervolgens alleen nog maar afnemen (minder worden). Het Saldo van een kaart moet kunnen worden opgevraagd.
 
         public Betaalkaart(string naam, decimal saldo)
         {
@@ -19,7 +18,12 @@ namespace Dag6.OefeningInheritance
             Saldo = saldo;
         }
 
-        
+        public abstract void Betaal(decimal bedrag);
+
+        public override string ToString()
+        {
+            return $"Het saldo van {Naam} is: {Saldo}";
+        }
 
 
     }
