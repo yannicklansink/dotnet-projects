@@ -6,6 +6,7 @@ class Program
     static void Main(string[] args)
     {
         CultureInfo.CurrentCulture = new CultureInfo("nl-BE");
+
         PrintGeldigheidMuntsoort(Muntsoort.Euro);
         PrintGeldigheidMuntsoort(Muntsoort.Dukaat);
 
@@ -19,6 +20,8 @@ class Program
         Valuta valuta = new Valuta(4.00m, Muntsoort.Gulden);
         decimal bedragNieuw = valuta.ConvertTo(Muntsoort.Euro);
         Console.WriteLine(bedragNieuw);
+
+        Console.WriteLine("----------");
 
         Valuta valuta2 = new Valuta(10.00m, Muntsoort.Dukaat);
         decimal bedragNieuw2 = valuta2.ConvertTo(Muntsoort.Gulden);
