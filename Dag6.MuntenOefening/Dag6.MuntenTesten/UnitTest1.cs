@@ -10,8 +10,16 @@ public class UnitTest1
     {
         Valuta valuta = new Valuta(10.00m, Muntsoort.Dukaat);
         
-        decimal bedragNieuw2 = valuta2.ConvertTo(Muntsoort.Gulden);
+        decimal bedragNieuw2 = valuta.ConvertTo(Muntsoort.Gulden);
         
         
     }
+
+    [DataTestMethod]
+    [DataRow()]
+    public void MethodName()
+    {
+        
+    }
+    
 }

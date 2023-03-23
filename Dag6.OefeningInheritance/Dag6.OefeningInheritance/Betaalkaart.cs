@@ -10,15 +10,34 @@ namespace Dag6.OefeningInheritance
     {
 
         protected string Naam;
-        protected decimal Saldo; //  Dat Saldo kan vervolgens alleen nog maar afnemen (minder worden). Het Saldo van een kaart moet kunnen worden opgevraagd.
+
+        private decimal _saldo;
+        //  Dat Saldo kan vervolgens alleen nog maar afnemen (minder worden). Het Saldo van een kaart moet kunnen worden opgevraagd.
 
         public Betaalkaart(string naam, decimal saldo)
         {
             Naam = naam;
-            Saldo = saldo;
+            _saldo = saldo;
         }
 
         public abstract void Betaal(decimal bedrag);
+
+        public decimal Saldo
+        {
+            get => _saldo;
+            set
+            { 
+                if (_saldo > value)
+                {
+                    // geldig
+                    _saldo = value;
+                }
+                else
+                {
+                    throw new SaldoOntoereikendException("Je mag geen saldo toevoegen.");
+                }
+            } 
+        }
 
         public override string ToString()
         {
