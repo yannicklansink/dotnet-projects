@@ -2,14 +2,14 @@ using System.Collections;
 
 namespace Dag9.IntList;
 
-public class IntList : IEnumerable
+public class List<T> : IEnumerable
 {
-    private int[] _items;
+    private T[] _items;
     private int _count;
 
-    public IntList(int listSize = 4)
+    public List(int listSize = 4)
     {
-        _items = new int[listSize];
+        _items = new T[listSize];
         _count = 0;
     }
 
@@ -18,7 +18,7 @@ public class IntList : IEnumerable
         return _items.Length;
     }
 
-    public void Add(int item)
+    public void Add(T item)
     { //       4              3
         if (_items.Length > _count)
         {
@@ -35,7 +35,7 @@ public class IntList : IEnumerable
 
     private void ResizeList()
     {
-        int[] newItemsList = new int[_items.Length * 2];
+        T[] newItemsList = new T[_items.Length * 2];
         for (int i = 0; i < _items.Length; i++)
         {
             newItemsList[i] = _items[i];
@@ -45,7 +45,7 @@ public class IntList : IEnumerable
         Console.WriteLine("new length of _items: " + _items.Length);
     }
     
-    public int this[int i]
+    public T this[int i]
     {
         get
         {

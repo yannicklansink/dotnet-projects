@@ -3,11 +3,20 @@ namespace Dag9.IntList.Test;
 [TestClass]
 public class ListTest
 {
+
+    // private List<int> list;
+    //
+    // [TestInitialize]
+    // public ListTest()
+    // {
+    //     list = new List<int>();
+    // }
+    
     [TestMethod]
     public void Create_ListWithSize2()
     {
         // arrange
-        IntList list = new IntList(2);
+        List<int> list = new List<int>(2);
 
         // act
         int listSize = list.GetListSize();
@@ -20,7 +29,7 @@ public class ListTest
     public void Add_ItemToList()
     {
         // arrange
-        IntList list = new IntList();
+        List<int> list = new List<int>();
 
         // act
         list.Add(2);
@@ -33,7 +42,7 @@ public class ListTest
     public void Get_Index_OutOfRange()
     {
         // arrange
-        IntList list = new IntList();
+        List<int> list = new List<int>();
         list.Add(2);
         
         // act
