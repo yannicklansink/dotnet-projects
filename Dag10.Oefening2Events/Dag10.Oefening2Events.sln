@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag10.Oefening2Events", "Dag10.Oefening2Events\Dag10.Oefening2Events.csproj", "{18E1CF46-3877-43B2-8925-51B00C508C24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag10.Oefening2Events.Test", "Dag10.Oefening2Events.Test\Dag10.Oefening2Events.Test.csproj", "{B9373B68-FE2D-44A0-BFB9-BDC112E3D078}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18E1CF46-3877-43B2-8925-51B00C508C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E1CF46-3877-43B2-8925-51B00C508C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E1CF46-3877-43B2-8925-51B00C508C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E1CF46-3877-43B2-8925-51B00C508C24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9373B68-FE2D-44A0-BFB9-BDC112E3D078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9373B68-FE2D-44A0-BFB9-BDC112E3D078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9373B68-FE2D-44A0-BFB9-BDC112E3D078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9373B68-FE2D-44A0-BFB9-BDC112E3D078}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF2210F7-1D16-4492-92E4-03C5D63D2B59}
+	EndGlobalSection
+EndGlobal
