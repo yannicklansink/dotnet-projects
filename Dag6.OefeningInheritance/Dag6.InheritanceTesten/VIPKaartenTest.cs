@@ -29,6 +29,8 @@ public class VIPKaartenTest
     {
         decimal kortingpercentage = 12.5m;
         
+        
+        
     }
     
 }
