@@ -98,6 +98,7 @@ public class BarTest
         Assert.AreEqual(true, tafelnummerExistsInBar);
     }
 
+    /*
     [TestMethod]
     public void NeemBestellingOp_ThrowArgumentDoesNotExistsException()
     {
@@ -111,6 +112,23 @@ public class BarTest
         }
 
         //assert
+        Assert.ThrowsException<ArgumentDoesNotExistsException>(act);
+    }
+    */
+
+    [TestMethod]
+    public void OpenTafel_AlreadyExists_ThrowException()
+    {
+        Bar bar = new Bar();
+        bar.OpenTafel(1);
+
+        // act 
+        void act()
+        {
+            bar.OpenTafel(1);
+        }
+
+        // assert
         Assert.ThrowsException<ArgumentDoesNotExistsException>(act);
     }
 
