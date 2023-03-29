@@ -1,4 +1,5 @@
 using Dag11.PutItAllToghether.Exceptions;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace Dag11.PutItAllToghether;
@@ -60,25 +61,19 @@ public class Bar
 
     public string VraagRekening(int tafelnummer)
     {
-
-        // geeft een rekening terug (in string vorm?)
-        // - met een lijst met drankjes dat besteld is en
-        //      hoevaak elk drankje besteld is (elk drankje komt hooguit 1 keer voor op de rekening)
-        // - met een totaalbedrag
         if (TafelnummerExists(tafelnummer))
         {
             Tafel tafel = GetTafelFromTafelnummer(tafelnummer);
-            Console.WriteLine("tafel test: " + tafel.GetFirstValueInDictionary());
             string totaalBedrag = tafel.GetTotaalBedrag();
 
             StringBuilder sb = new StringBuilder(); 
-            foreach (int drink in tafel.LopendeRekening.Keys)
+            foreach (var drink in tafel.LopendeRekening)
             {
                 // (value / 100).ToString("0.00")
-                Console.WriteLine("Het totaal bedrag van de drink is: " + drink);
-                string drinkValue = ((int)drink / 100m).ToString("0.00");
-                sb.Append($"{drink} : {drinkValue}\n");
+                string drinkValue = ((int)drink.Value / 100m).ToString("0.00");
+                sb.Append($"{drink.Key} : {drinkValue}\n");
             }
+            sb.Append("---------------------------\n");
             sb.Append($"Totaalbedrag: {totaalBedrag}");
             return sb.ToString();
 
@@ -88,8 +83,40 @@ public class Bar
         }
     }
 
+    public void BetaalRekening(decimal bedragEnFooi, int tafelnummer)
+    {
+        if (TafelnummerExists(tafelnummer))
+        {
+            Tafel tafel = GetTafelFromTafelnummer(tafelnummer);
+            if (tafel.GetTotaalBedragDecimal() > bedragEnFooi)
+            {
+                throw new BetalingOnvoldoendeException("Het bedrag dat je wilt betalen is minder dan he totaal bedrag");
+            } else if (tafel.GetTotaalBedragDecimal() == bedragEnFooi)
+            {
+                // hoef niks te doen.
+            } else
+            {
+                decimal fooiHoeveelheid = bedragEnFooi - tafel.GetTotaalBedragDecimal();
+                Console.WriteLine("fooihoeveelheid: " + fooiHoeveelheid);
+                decimal fooiHoeveelheidPerOber = fooiHoeveelheid / tafel.Obers.Count;
+                Console.WriteLine("fooihoeveelheid per ober: " + fooiHoeveelheidPerOber);
+                foreach (Ober ober in tafel.Obers)
+                {
+                    ober.Fooienpot += fooiHoeveelheidPerOber;
+                }
+            }
+            // lopende rekening stoppen
+            tafel.RekeningBetaald = true;
+        }
+        else
+        {
+            throw new ArgumentDoesNotExistsException("De tafel waar je wilt betalen bestaat niet");
+        }
+    }
+
     public bool OberExistsOnTable(Ober o, Tafel tafel)
     {
+        AddOberToBar(o);
         foreach (Ober ober in tafel.Obers)
         {
             if (ober == o)
@@ -99,6 +126,19 @@ public class Bar
             }
         }
         return false;
+    }
+
+    public void AddOberToBar(Ober o)
+    {
+        foreach (Ober ober in Obers)
+        {
+            if (ober == o)
+            {
+                // ober is al toegevoegd aan de tafel
+                return;
+            }
+        }
+        Obers.Add(o);
     }
 
     public Tafel GetTafelFromTafelnummer(int tafelnummer)

@@ -14,11 +14,15 @@ public class Tafel
     public List<Ober> Obers { get; set; }
     public int Tafelnummer { get; set; }
 
+    public bool RekeningBetaald = false;
+
+    public int AantalBestellingen { get; set; }
+
     public Tafel(int tafelnummer)
     {
         Tafelnummer = tafelnummer;
         Obers = new List<Ober>();
-
+        AantalBestellingen = 0;
         LopendeRekening = new Dictionary<Drink, int>();
     }
 
@@ -31,50 +35,35 @@ public class Tafel
                 // er zit al een drink key in de dictionary
                 // update bedrag in dictionary
                 LopendeRekening[drink] += (int)drink;
-                Console.WriteLine("nieuw drink: " + LopendeRekening[drink]);
             } else
             {
                 // drink zit nog niet in de dictionary
                 LopendeRekening.Add(drink, (int)drink);
-                Console.WriteLine("nieuw drink: " + LopendeRekening[drink]);
             }
         }
+        AantalBestellingen++;
     }
 
     public string GetTotaalBedrag()
     {
         int totaalBedrag = 0;
-        foreach (var b in LopendeRekening.Keys)
+        foreach (var b in LopendeRekening)
         {
-            totaalBedrag += (int)b;
+            totaalBedrag += b.Value;
         }
         return (totaalBedrag / 100).ToString("0.00");
     }
 
-    /*
-    public string GetLijstMetAlleBestellingenGroupedByName()
+    public decimal GetTotaalBedragDecimal()
     {
-        foreach (Bestelling bestelling in LopendeRekening)
+        int totaalBedrag = 0;
+        foreach (var b in LopendeRekening)
         {
-            var query = bestelling.DrankenLijst.GroupBy(drankje => drankje.DrankNaam)
-           .Select(drankje => new
-           {
-               Count = drankje.Count(),
-               Name = drankje.Key,
-           })
-           .OrderByDescending(drankje => drankje.Count);
+            totaalBedrag += b.Value;
         }
-
-       
-        StringBuilder sb = new StringBuilder();
-        foreach (var x in query)
-        {
-            sb.Append("Count: " + x.Count + " Name: " + x.Name);
-        }
-        return sb.ToString();
-
+        string totaalBedragString = (totaalBedrag / 100).ToString("0.00");
+        return decimal.Parse(totaalBedragString);
     }
-    */
 }
 
 
