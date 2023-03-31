@@ -12,17 +12,6 @@ namespace Dag14.Oefening2AdventOfCode
             string filePath = @"..\..\..\input-advent-of-code.txt";
             int highestScore = 0;
 
-            /*
-            using (var stream = new FileParser(filePath))
-            {
-                // doe hier wat je wilt.
-                stream.GetHighestNumberFromFile();
-
-
-            } // hier word .Dispose() aangeroepen
-            */
-
-            // other code
             using (FileStream fileStream = File.OpenRead(filePath))
             {
                 using (StreamReader streamReader = new StreamReader(fileStream))
@@ -30,8 +19,6 @@ namespace Dag14.Oefening2AdventOfCode
                     int currentScore = 0;
                     while (!streamReader.EndOfStream)
                     {
-                        
-
                         string stringLine = streamReader.ReadLine();
                         if (string.IsNullOrWhiteSpace(stringLine))
                         {
@@ -42,6 +29,8 @@ namespace Dag14.Oefening2AdventOfCode
                             }
                             currentScore = 0;
                             continue;
+                            //comment
+                            //comment
                         }
 
                         int line = int.Parse(stringLine);
