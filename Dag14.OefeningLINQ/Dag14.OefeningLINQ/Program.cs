@@ -1,4 +1,6 @@
-﻿namespace Dag14.OefeningLINQ
+﻿using System.Linq.Expressions;
+
+namespace Dag14.OefeningLINQ
 {
     internal class Program
     {
@@ -44,10 +46,59 @@
             // 4 Schrijf een query die de som van de lengtes van de namen oplevert van alle namen waar een y in zit.
             var somLengteNamenMetY = Namen.Where(name => name.Contains("y") || name.Contains("Y")).Sum(name => name.Length);
             Console.WriteLine($"De som van de lengtes van de namen met een y zijn: {somLengteNamenMetY}");
-            //foreach (var naam in somLengteNamenMetY)
-            //{
-            //    Console.WriteLine($"Aantal namen met a order by descending: {naam}");
-            //}
+            Console.WriteLine();
+
+
+            // stof na de pauze (vrijdag)
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream("Naam", FileMode.Open);
+
+            } finally
+            {
+                // Klaar - Garbage collector.
+                // ? : checked of het niet null is. Als het null is dan word dispose niet uitgevoerd. 
+                stream?.Dispose(); // ruim unmanaged resources op
+            }
+
+            // betere syntax. DOE DIT ALTIJD, ANDERS WORDT JE IN HET MEER GEGOOID MET BAKSTENEN AAN JE VOETEN!!!
+            using(var stream2 = new FileStream("Naam", FileMode.Open))
+            {
+
+            } // hier word .Dipose() aangeroepen
+
+            // using is ook wel een try{} block
+            // Je moet IDisposable gebruiken voor een using.
+            using(var stream3 = new FileParser("Naam"))
+            {
+                // doe hier wat je wilt.
+                stream3.ReadLine();
+                
+
+            } // hier word .Dispose() aangeroepen
+            
+            
+
+        }
+    }
+
+    public class FileParser : IDisposable
+    {
+        private FileStream stream;
+
+        public FileParser(string filename)
+        {
+            stream = new FileStream("Naam", FileMode.Open);
+        }
+
+        public string ReadLine()
+        {
+            return stream.ReadByte().ToString();
+        }
+        public void Dispose()
+        {
+            stream?.Dispose();
         }
     }
 }

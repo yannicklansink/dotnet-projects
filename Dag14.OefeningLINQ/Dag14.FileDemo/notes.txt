@@ -1,0 +1,7 @@
+Dit is een notes folder om tekst in te zetten.									   linux : \n
+
+nog een regel. \r is carriage return. Oude typemachines naar het begin. 		   windows: \r \n
+
+
+
+
