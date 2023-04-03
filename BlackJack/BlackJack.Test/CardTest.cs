@@ -11,7 +11,6 @@ namespace BlackJack.Test
             int value = card.Value;
 
             Assert.AreEqual(9, value);
-
         }
     }
 }

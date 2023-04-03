@@ -10,7 +10,8 @@ namespace BlackJack
     {
 
         // 1 game has 6 decks. 1 deck has 52 cards
-        List<Deck> DeckList;
+        public List<Deck> DeckList;
+        private const int NumberOfDecks = 6;
 
         public Game()
         {
