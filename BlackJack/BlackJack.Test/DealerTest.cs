@@ -17,6 +17,8 @@ namespace BlackJack.Test
         [TestMethod]
         public void IsBust_DealerHasValueOver21()
         {
+            // this test sometimes fails?
+            // why does it sometimes return false? 
             Game game = new Game();
             game.StartGame(1m);
 
@@ -24,9 +26,7 @@ namespace BlackJack.Test
             {
                 game.Dealer.Hit();
             }
-            
-            int value = game.Dealer.Hand.GetTotalValue();
-            
+
             Assert.AreEqual(true, game.Dealer.IsBust());
         }
 

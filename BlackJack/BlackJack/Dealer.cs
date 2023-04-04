@@ -32,6 +32,7 @@ namespace BlackJack
 
             }
             // stop playing
+            Game.EndRound();
         }
 
     }

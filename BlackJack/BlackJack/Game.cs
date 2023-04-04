@@ -20,9 +20,9 @@ namespace BlackJack
             
         }
 
-        public void StartGame()
+        public void StartGame(decimal bet) // check if bet isnt higher then player balance
         {
-            Player = new Player(this);
+            Player = new Player(this, bet);
             Dealer = new Dealer(this);
             DealCards();
         }
@@ -40,16 +40,34 @@ namespace BlackJack
         {
             // check who won or if a draw
             // do I print it here? or seperate printing to controller layer?
+            // change players _saldo with _bet amount.
+            Console.WriteLine("Round ended");
+            if (IsPlayerWinner())
+            {
+                // player won
+                Player.Balance = Player.Balance + (Player.Bet * 2);
+            }
+            else if (IsDraw())
+            {
+                // draw
+                Player.Balance = Player.Balance + Player.Bet;
+            } else
+            {
+                // Dealer won
+                Console.WriteLine("Dealer won");
+            }
+
+
         }
 
         public bool IsPlayerWinner()
         {
-            return Player.Hand.GetTotalValue() > Dealer.Hand.GetTotalValue();
+            return Player.Hand.GetTotalValue() > Dealer.Hand.GetTotalValue() && !Player.IsBust() || !Player.IsBust() && Dealer.IsBust();
         }
 
         public bool IsDraw()
         {
-            return Player.Hand.GetTotalValue() == Dealer.Hand.GetTotalValue();
+            return Player.Hand.GetTotalValue() == Dealer.Hand.GetTotalValue() && !Player.IsBust() && !Dealer.IsBust();
         }
 
     }
