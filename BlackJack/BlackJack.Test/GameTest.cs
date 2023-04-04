@@ -8,7 +8,7 @@ namespace BlackJack.Test
         {
             Game game  = new Game();
 
-            Assert.AreEqual(6, game.DeckList.Count());
+            Assert.IsNotNull(game.Deck);
         }
     }
 }

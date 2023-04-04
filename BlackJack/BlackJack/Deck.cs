@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlackJack.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace BlackJack
         public List<Card> CardList { get; set; }
         public const int DeckSize = 312; // put it on 312 no 52? (52*6=312). Puts all 6 decks inside one list.
 
-
         public Deck()
         {
             CardList = new List<Card>();
@@ -22,8 +22,7 @@ namespace BlackJack
 
         private void GenerateDeck()
         {
-            // 13 ranks
-            // 4 suits
+            // 13 ranks // 4 suits
             for (int i = 0; i < DeckSize; i++)
             {
                 Rank rank = (Rank)(i % 13);
@@ -34,25 +33,26 @@ namespace BlackJack
 
         public void Shuffle()
         {
-            Random rand = new Random();
-            var shuffled = CardList.OrderBy(x => rand.Next()).ToList();
-            CardList.Clear();
-            CardList.AddRange(shuffled);
+            Random random = new Random();
+            var shuffled = CardList.OrderBy(x => random.Next()).ToList();
+            //CardList.Clear();
+            //CardList.AddRange(shuffled);
+            CardList = shuffled;
         }
 
-        // draw last card in list. Better for performance?   
         public Card Draw()
         {
-            // Check if CardList is empthy? 
-            return 
+            IsCardListEmpty();
+            Card card = CardList.Last();
+            CardList.RemoveAt(CardList.Count - 1);
+            return card;
         }
 
-        public bool IsCardListEmpthy()
+        private bool IsCardListEmpty()
         {
-            //return CardList.Count == 0 ? true : false; 
-            // this is not correct, throw an exception when card list is empthy and tell user.
-
+            return CardList.Count == 0 ? throw new CardListEmptyException("The card list is empty. You have played to much.") : false;
         }
+
 
 
     }

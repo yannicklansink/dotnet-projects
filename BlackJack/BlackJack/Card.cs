@@ -10,8 +10,8 @@ namespace BlackJack
     public class Card
     {
 
-        public Rank Rank { get; set; }
-        public Suit Suit { get; set; }
+        private Rank Rank { get; }
+        private Suit Suit { get; }
 
         public int Value
         {
@@ -68,7 +68,7 @@ namespace BlackJack
 
         public override string ToString()
         {
-            return Value.ToString();
+            return $"{Rank} of {Suit}";
         }
 
         

@@ -8,7 +8,7 @@ namespace BlackJack.Test
         {
             Deck deck = new Deck();
 
-            Assert.AreEqual(52, deck.CardList.Count());
+            Assert.AreEqual(312, deck.CardList.Count());
         }
 
 
@@ -17,13 +17,37 @@ namespace BlackJack.Test
         {
             //arrange
             Deck deck = new Deck();
+            bool value = true;
 
             //act
             deck.Shuffle();
+            if (
+                   deck.CardList[0].Value == 11 
+                && deck.CardList[1].Value == 10
+                && deck.CardList[2].Value == 11
+                && deck.CardList[5].Value == 9
+            )
+            {
+                // if  values of 4 places stay the same, then shuffle method did not work.
+                value = false;
+            }
 
-            // assert          
-            Assert.AreNotEqual(deck.CardList[0], 11);
-            Assert.AreEqual(52, deck.CardList.Count()); // it still need a size of 52
+            // assert  
+            Assert.AreEqual(true, value);
+            Assert.AreEqual(312, deck.CardList.Count());
+        }
+
+        [TestMethod]
+        public void Draw_ReturnAndRemoveLastCard()
+        {
+            //arrange
+            Deck deck = new Deck();
+
+            // act
+            Card card = deck.Draw();
+
+            //arrange
+            Assert.AreNotEqual(deck.CardList.Last(), card);
         }
 
     }
