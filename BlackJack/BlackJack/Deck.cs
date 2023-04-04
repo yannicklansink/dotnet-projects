@@ -11,7 +11,8 @@ namespace BlackJack
 
         // Deck has a list of 52 cards
         public List<Card> CardList { get; set; }
-        public const int DeckSize = 52;
+        public const int DeckSize = 312; // put it on 312 no 52? (52*6=312). Puts all 6 decks inside one list.
+
 
         public Deck()
         {
@@ -23,7 +24,7 @@ namespace BlackJack
         {
             // 13 ranks
             // 4 suits
-            for (int i = 0; i < 52; i++)
+            for (int i = 0; i < DeckSize; i++)
             {
                 Rank rank = (Rank)(i % 13);
                 Suit suit = (Suit)(i % 4);
@@ -31,6 +32,28 @@ namespace BlackJack
             }
         }
 
-       
+        public void Shuffle()
+        {
+            Random rand = new Random();
+            var shuffled = CardList.OrderBy(x => rand.Next()).ToList();
+            CardList.Clear();
+            CardList.AddRange(shuffled);
+        }
+
+        // draw last card in list. Better for performance?   
+        public Card Draw()
+        {
+            // Check if CardList is empthy? 
+            return 
+        }
+
+        public bool IsCardListEmpthy()
+        {
+            //return CardList.Count == 0 ? true : false; 
+            // this is not correct, throw an exception when card list is empthy and tell user.
+
+        }
+
+
     }
 }

@@ -4,8 +4,15 @@
     {
         static void Main(string[] args)
         {
-            Rank rank = (Rank)(0 % 13);
-            Console.WriteLine(rank);
+            Game game = new Game();
+            Console.WriteLine("Number of cards in the deck " + game.Deck.CardList.Count);
+            Console.WriteLine(game.Deck.CardList[5]); // print 9
+            game.Deck.CardList.RemoveAt(5);
+            Console.WriteLine(game.Deck.CardList[5]); // print 8
+
+
+
+
         }
     }
 }
