@@ -22,18 +22,28 @@ namespace BlackJack
 
         public void Play()
         {
-            // start when Player IsStand == true
-            // maybe make an eventlistener for Player IsStand field?
-            // Dealer player untill Hand total value is >= 17 or bust
             while (!IsBust() && Hand.GetTotalValue() < 17)
             {
-                // keep playing!
-                Hit(); // Hit() will already print a bust message.
-
+                Hit();
             }
-            // stop playing
             Game.EndRound();
         }
 
+        public override string ShowHand()
+        {
+            //return "Dealer hand: \n" + Hand.ToString();
+            string value = "Dealer hand:" + "\n";
+            for (int i = 0; i < Hand.CardList.Count; i++)
+            {
+                if (i == 0)
+                {
+                    value += "\t## Face Down ##\n";
+                    continue;
+                }
+                value += "\t" + Hand.CardList[i];
+            }
+
+            return value;
+        }
     }
 }

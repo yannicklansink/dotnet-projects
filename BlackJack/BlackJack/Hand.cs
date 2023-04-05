@@ -31,5 +31,15 @@ namespace BlackJack
             return value;
         }
 
+        public override string ToString()
+        {
+            string result = "";
+            foreach (Card card in CardList)
+            {
+                result += "\t" + card.ToString() + "\n";
+            }
+            return result;
+        }
+
     }
 }

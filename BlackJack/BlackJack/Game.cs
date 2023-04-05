@@ -10,6 +10,7 @@ namespace BlackJack
     {
 
         private const int NumberOfDecks = 6;
+        private int? RoundNumber;
         public Deck Deck;
         public Player Player { get; set; }
         public Dealer Dealer { get; set; }
@@ -17,13 +18,14 @@ namespace BlackJack
         public Game()
         {
             Deck = new Deck();
-            
+            Player = new Player(this);
+            Dealer = new Dealer(this);
         }
 
-        public void StartGame(decimal bet) // check if bet isnt higher then player balance
+        public void StartGame(decimal bet)
         {
-            Player = new Player(this, bet);
-            Dealer = new Dealer(this);
+            Player.Bet = bet;
+            RoundNumber = 1;
             DealCards();
         }
 
@@ -38,9 +40,7 @@ namespace BlackJack
 
         public void EndRound()
         {
-            // check who won or if a draw
             // do I print it here? or seperate printing to controller layer?
-            // change players _saldo with _bet amount.
             Console.WriteLine("Round ended");
             if (IsPlayerWinner())
             {
@@ -56,8 +56,15 @@ namespace BlackJack
                 // Dealer won
                 Console.WriteLine("Dealer won");
             }
+            if (Player.CanPlayAnotherRound())
+            {
+                AskIfPlayerWantsToPlayAnotherRound();
+            }
+        }
 
-
+        public void AskIfPlayerWantsToPlayAnotherRound()
+        {
+            
         }
 
         public bool IsPlayerWinner()

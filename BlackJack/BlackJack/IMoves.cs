@@ -20,6 +20,8 @@ namespace BlackJack
             Hand = new Hand();
         }
 
+        public abstract string ShowHand();
+
         public bool IsBust()
         {
             return Hand.GetTotalValue() > 21 ? true : false;

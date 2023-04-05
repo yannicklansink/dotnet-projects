@@ -19,6 +19,7 @@ namespace BlackJack.Test
         {
             // this test sometimes fails?
             // why does it sometimes return false? 
+            // why cant I debug a failed test? 
             Game game = new Game();
             game.StartGame(1m);
 

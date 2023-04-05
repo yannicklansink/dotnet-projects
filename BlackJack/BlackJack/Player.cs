@@ -15,10 +15,9 @@ namespace BlackJack
         public bool IsStand { get; set; }
         
 
-        public Player(Game game, decimal bet, string name = "Player", decimal saldo = 20m) : base(game, name)
+        public Player(Game game, string name = "Player", decimal saldo = 20m) : base(game, name)
         {
             _balance = saldo;
-            Bet = bet;
             IsStand = false;
 
         }
@@ -43,7 +42,7 @@ namespace BlackJack
         public decimal Balance
         {
             get { return _balance; }
-            set { _balance = value; } // do you want to be able to change saldo from other classes?
+            set { _balance = value; } // do you want to be able to change balance from other classes?
         }
 
         public void Stand()
@@ -59,6 +58,16 @@ namespace BlackJack
             return bet > Balance;
         }
 
+        public bool CanPlayAnotherRound()
+        {
+            return Balance > 0m;
+        }
 
+        public override string ShowHand()
+        {
+            // return a string of hand
+            //return "Player hand: \n" + Hand.ToString() + "\t(Hand value is)" + Hand.GetTotalValue() + "\n\t" + "(bet: ) " + Bet;
+            return $"Player hand: \n {Hand.ToString()} \t(Hand value is: {Hand.GetTotalValue()})\n\t(bet: {Bet})\n";
+        }
     }
 }
