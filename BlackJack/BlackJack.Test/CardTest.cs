@@ -12,5 +12,19 @@ namespace BlackJack.Test
 
             Assert.AreEqual(9, value);
         }
+
+        [TestMethod]
+        public void ToString_PrintRightFormat()
+        {
+            Card card = new Card(Rank.Ace, Suit.Spades);
+
+            string value = card.ToString();
+
+            Assert.AreEqual("Ace of Spades", value);
+        }
+
+        
+
+
     }
 }

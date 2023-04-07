@@ -17,19 +17,39 @@ namespace BlackJack
 
         public void AddCard(Card card)
         {
-            // Do I have to check if the score (value) is over 21? So BUST?????
             CardList.Add(card);
         }
 
         public int GetTotalValue()
         {
             int value = 0;
+            int numberOfAces = 0;
+
             foreach (Card card in CardList)
             {
                 value += card.Value;
+
+                if (card.Rank == Rank.Ace)
+                {
+                    numberOfAces++;
+                }
             }
+
+            while (value > 21 && numberOfAces > 0)
+            {
+                value -= 10;
+                numberOfAces--;
+            }
+
             return value;
         }
+
+        public int GetHandSize()
+        {
+            return CardList.Count;
+        }
+
+       
 
         public override string ToString()
         {

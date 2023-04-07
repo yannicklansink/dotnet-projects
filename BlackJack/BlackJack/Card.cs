@@ -10,8 +10,8 @@ namespace BlackJack
     public class Card
     {
 
-        private Rank Rank { get; }
-        private Suit Suit { get; }
+        public Rank Rank { get; }
+        public Suit Suit { get; }
 
         public int Value
         {

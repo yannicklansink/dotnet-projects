@@ -7,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    public class Player : IMoves
+    public class Player : Moves
     {
 
         private decimal _balance;
         private decimal _bet;
         public bool IsStand { get; set; }
-        
 
-        public Player(Game game, string name = "Player", decimal saldo = 20m) : base(game, name)
+        public Player(Game game, string name = "Player", decimal balance = 20m) : base(game, name)
         {
-            _balance = saldo;
+            _balance = balance;
             IsStand = false;
-
         }
 
         public decimal Bet
@@ -27,14 +25,14 @@ namespace BlackJack
             get { return _bet; }
             set
             {
-                if (!IsBetHigherThenBalance(value))
+                if (!IsBetHigherThenBalance(value) && !IsBetLessThen1(value))
                 {
                     Balance = Balance - value;
                     _bet = value;
                 }
                 else
                 {
-                    throw new BetIsHigherThenBalanceException($"Your bet of {value} is higher then your balance of {Balance}");
+                    throw new BetIsInvalidException($"Your bet of {value} is invalid. Your balance is: {Balance}");
                 }
             }
         }
@@ -47,26 +45,35 @@ namespace BlackJack
 
         public void Stand()
         {
-            // skip.
-            // dealer moet kaart omdraaien. -> dealer moet hit aanroepen totdat 
             IsStand = true;
             Game.Dealer.Play();
         }
+
 
         public bool IsBetHigherThenBalance(decimal bet)
         {
             return bet > Balance;
         }
 
+        public bool IsBetLessThen1(decimal bet)
+        {
+            return bet < 1m;
+        }
+
         public bool CanPlayAnotherRound()
         {
-            return Balance > 0m;
+            return Balance >= 1m;
+        }
+
+        public void NewRound()
+        {
+            IsStand = false;
+            _bet = 0m;
+            Hand = new Hand();
         }
 
         public override string ShowHand()
         {
-            // return a string of hand
-            //return "Player hand: \n" + Hand.ToString() + "\t(Hand value is)" + Hand.GetTotalValue() + "\n\t" + "(bet: ) " + Bet;
             return $"Player hand: \n {Hand.ToString()} \t(Hand value is: {Hand.GetTotalValue()})\n\t(bet: {Bet})\n";
         }
     }

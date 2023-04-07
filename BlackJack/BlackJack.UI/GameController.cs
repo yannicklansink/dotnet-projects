@@ -19,6 +19,7 @@ namespace BlackJack.UI
         // H, S             For player when cards.count > 2
 
         public Game Game { get; set; }
+        private string UserInput { get; set; }
 
         private string[] ValidateYandN = { "Y", "N" };
         private string[] ValidateHSDP = { "H", "S", "D", "P" };
@@ -27,18 +28,38 @@ namespace BlackJack.UI
         public GameController()
         {
             Game = new Game();
-
         }
 
         public void StartGame()
-        {
+        { 
             Console.WriteLine("Hello, user. Welcome to Blackjack!");
             AskPlayerPlayGame();
-            ShowDealerHand(); 
-            ShowPlayerHand();
 
+            ShowHandsDealerAndPlayer();
+            Move();
+            ShowWhoWon();
+            ShowPlayerNewBalance();
+            AskPlayerToKeepPlaying();
+            if (Game.StillPlaying)
+            {
+                StartNextRound();
+            }
 
-            AskPlayerHSDP(); // when players has only 2 cards. 
+            Console.WriteLine("----------------------------End of game----------------------------");
+        }
+
+        public void StartNextRound()
+        {
+            
+            while (Game.StillPlaying)
+            {
+                AskPlayerBetAmount();
+                ShowHandsDealerAndPlayer();
+                Move();
+                ShowWhoWon();
+                ShowPlayerNewBalance();
+                AskPlayerToKeepPlaying();
+            }
         }
 
         public void AskPlayerPlayGame()
@@ -48,7 +69,6 @@ namespace BlackJack.UI
             string? input = Console.ReadLine();
             CheckUserInputNullOrEmpty(input, AskPlayerPlayGame);
             ValidateUserInput(input.ToUpper(), ValidateYandN, AskPlayerPlayGame);
-
             if (input.ToUpper() == "Y") AskPlayerBetAmount();
             else if (input == "N") Console.WriteLine("Ok, maybe another time.");
         }
@@ -61,6 +81,40 @@ namespace BlackJack.UI
             ConvertUserInput(bet, AskPlayerBetAmount);
         }
 
+        public void AskPlayerToKeepPlaying()
+        {
+            bool CanPlayerPlay = Game.Player.CanPlayAnotherRound();
+            if (!CanPlayerPlay)
+            {
+                Console.WriteLine($"Your balance of {Game.Player.Balance} is to low to play.");
+                Game.StillPlaying = false;
+                return;
+            }
+
+            Console.Write("\nDo you want to keep playing (Y)es or (N)o? ");
+            string? input = Console.ReadLine();
+            CheckUserInputNullOrEmpty(input, AskPlayerToKeepPlaying);
+            ValidateUserInput(input.ToUpper(), ValidateYandN, AskPlayerToKeepPlaying);
+
+            if (input.ToUpper() == "N")
+            {
+                Game.StillPlaying = false;
+                Console.WriteLine($"Ok, you give up {Game.Player.Name}. I win, muahahahahah!");
+            }
+        }
+
+        public void ShowHandsDealerAndPlayer()
+        {
+            ShowDealerHand();
+            ShowPlayerHand();
+        }
+
+        public void ShowHandsAfterRound()
+        {
+            ShowDealerHandWithoutFaceDown();
+            ShowPlayerHand();
+        }
+
         public void ShowPlayerHand()
         {
             Console.WriteLine(Game.Player.ShowHand());
@@ -71,19 +125,108 @@ namespace BlackJack.UI
             Console.WriteLine(Game.Dealer.ShowHand());
         }
 
+        public void ShowDealerHandWithoutFaceDown()
+        {
+            Console.WriteLine(Game.Dealer.ShowHandWithoutFaceDown());
+        }
+
+        public void ShowWhoWon()
+        {
+            if (Game.IsDraw())
+            {
+                Console.WriteLine("The round is a draw");
+            } else if (Game.IsPlayerWinner())
+            {
+                Console.WriteLine("Player won the round");
+            } else
+            {
+                Console.WriteLine("Dealer won the round");
+            }
+            ShowHandsAfterRound();
+            Console.WriteLine($"Round {Game.RoundNumber} ended \n");
+        }
+
+        public void ShowPlayerNewBalance()
+        {
+            Console.WriteLine($"{Game.Player.Name}\n\t new balance: {Game.Player.Balance}");
+        }
+
+        public void ShowPlayerOrDealerBust()
+        {
+            if (Game.Player.IsBust())
+            {
+                Console.WriteLine($"{Game.Player} is busted with a score of {Game.Player.Hand.GetTotalValue()}");
+            } else if (Game.Dealer.IsBust())
+            {
+                Console.WriteLine($"Dealer is busted with a score of {Game.Dealer.Hand.GetTotalValue()}");
+            }
+        }
+
         public void AskPlayerHSDP()
         {
             Console.Write($"(H)it or (S)tand or (D)ouble Down or Split (P)airs? ");
             string? input = Console.ReadLine();
+            Console.WriteLine();
             CheckUserInputNullOrEmpty(input, AskPlayerHSDP);
             ValidateUserInput(input.ToUpper(), ValidateHSDP, AskPlayerHSDP);
+            UserInput = input.ToUpper();
+        }
 
+        public void AskPlayerHS()
+        {
+            Console.Write($"(H)it or (S)tand ");
+            string? input = Console.ReadLine();
+            Console.WriteLine();
+            CheckUserInputNullOrEmpty(input, AskPlayerHS);
+            ValidateUserInput(input.ToUpper(), ValidateHS, AskPlayerHS);
+            UserInput = input.ToUpper();
         }
 
         public void Move()
         {
-            // make move. if statements......
+            while (!Game.Player.IsStand && !Game.Player.IsBust())
+            {
+                if (Game.Player.Hand.GetHandSize() == 2)
+                {
+                    AskPlayerHSDP(); 
+                    if (UserInput == "H")
+                    {
+                        Game.Player.Hit();
+                    } else if (UserInput == "S")
+                    {
+                        Game.Player.Stand();
+                    } else if (UserInput == "D")
+                    {
+                        // implement method
+                    } else if (UserInput == "P")
+                    {
+                        // implement method
+                    } else
+                    {
+                        Console.WriteLine("Something went wrong...");
+                    }
+                } else
+                {
+                    AskPlayerHS();
+                    if (UserInput == "H")
+                    {
+                        Game.Player.Hit();
+                    }
+                    else if (UserInput == "S")
+                    {
+                        Game.Player.Stand();
+                    }
+                }
+                if (!Game.Player.IsStand && !Game.Player.IsBust())
+                {
+                    ShowHandsDealerAndPlayer();
+                }
+            }
+            Game.EndRound();
+
         }
+
+
 
 
 
@@ -99,7 +242,7 @@ namespace BlackJack.UI
                 if (parsedBet >= 1 && parsedBet <= Game.Player.Balance)
                 {
                     // valid bet
-                    Game.StartGame(parsedBet);
+                    Game.StartRound(parsedBet);
                     Console.WriteLine($"Your bet of {Game.Player.Bet} is placed. Your new balance is {Game.Player.Balance}");
                     return;
                 } else

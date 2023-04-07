@@ -34,9 +34,11 @@ namespace BlackJack
         public void Shuffle()
         {
             Random random = new Random();
+
+            // the lambda expression x => random.Next() generates
+            // a random number for each element in the list
+            // and sorts the list based on these random numbers. 
             var shuffled = CardList.OrderBy(x => random.Next()).ToList();
-            //CardList.Clear();
-            //CardList.AddRange(shuffled);
             CardList = shuffled;
         }
 

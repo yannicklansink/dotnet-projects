@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Exceptions
 {
-    public class BetIsHigherThenBalanceException : Exception
+    public class BetIsInvalidException : Exception
     {
-        public BetIsHigherThenBalanceException()
+        public BetIsInvalidException()
         {
         }
 
-        public BetIsHigherThenBalanceException(string message) : base(message)
+        public BetIsInvalidException(string message) : base(message)
         {
         }
     }

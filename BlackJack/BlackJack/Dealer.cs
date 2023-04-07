@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    public class Dealer : IMoves
+    public class Dealer : Moves
     {
+        public bool IsPlaying = false;
 
         public Dealer(Game game, string name = "Dealer") : base(game, name)
         {
@@ -22,11 +23,11 @@ namespace BlackJack
 
         public void Play()
         {
+            IsPlaying = true;
             while (!IsBust() && Hand.GetTotalValue() < 17)
             {
                 Hit();
             }
-            Game.EndRound();
         }
 
         public override string ShowHand()
@@ -45,5 +46,11 @@ namespace BlackJack
 
             return value;
         }
+
+        public string ShowHandWithoutFaceDown()
+        {
+            return $"Dealer hand: \n {Hand.ToString()} \t(Hand value is: {Hand.GetTotalValue()})\n";
+        }
+
     }
 }

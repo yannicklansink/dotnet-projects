@@ -9,39 +9,49 @@ namespace BlackJack
     public class Game
     {
 
-        private const int NumberOfDecks = 6;
-        private int? RoundNumber;
+        public int RoundNumber = 0;
+        public bool StillPlaying { get; set; }
+
         public Deck Deck;
         public Player Player { get; set; }
         public Dealer Dealer { get; set; }
 
         public Game()
         {
+            StillPlaying = true;
             Deck = new Deck();
+            ShuffleDeck();
             Player = new Player(this);
-            Dealer = new Dealer(this);
         }
 
-        public void StartGame(decimal bet)
+        public void StartRound(decimal bet)
         {
+            Dealer = new Dealer(this);
+            Player.NewRound();
             Player.Bet = bet;
-            RoundNumber = 1;
+            RoundNumber++;
+            StillPlaying = true;
             DealCards();
         }
 
-        private void DealCards()
+        public void DealCards()
+        {
+            Player.Hit();
+            Dealer.Hit();
+            Player.Hit();
+            Dealer.Hit();
+        }
+
+        // is dit mooi?
+        // je zou nu dit kunnen doen: game.ShuffleDeck();
+        // maar ook:                  game.Deck.Shuffle();
+        public void ShuffleDeck()
         {
             Deck.Shuffle();
-            Player.Hit();
-            Dealer.Hit();
-            Player.Hit();
-            Dealer.Hit();
         }
 
         public void EndRound()
         {
-            // do I print it here? or seperate printing to controller layer?
-            Console.WriteLine("Round ended");
             if (IsPlayerWinner())
             {
                 // player won
@@ -53,23 +63,13 @@ namespace BlackJack
                 Player.Balance = Player.Balance + Player.Bet;
             } else
             {
-                // Dealer won
-                Console.WriteLine("Dealer won");
+                // dealer won
             }
-            if (Player.CanPlayAnotherRound())
-            {
-                AskIfPlayerWantsToPlayAnotherRound();
-            }
-        }
-
-        public void AskIfPlayerWantsToPlayAnotherRound()
-        {
-            
         }
 
         public bool IsPlayerWinner()
         {
-            return Player.Hand.GetTotalValue() > Dealer.Hand.GetTotalValue() && !Player.IsBust() || !Player.IsBust() && Dealer.IsBust();
+            return (Player.Hand.GetTotalValue() > Dealer.Hand.GetTotalValue() && !Player.IsBust()) || (!Player.IsBust() && Dealer.IsBust());
         }
 
         public bool IsDraw()
@@ -77,5 +77,6 @@ namespace BlackJack
             return Player.Hand.GetTotalValue() == Dealer.Hand.GetTotalValue() && !Player.IsBust() && !Dealer.IsBust();
         }
 
+        
     }
 }

@@ -4,7 +4,7 @@ namespace BlackJack.Test
     public class DeckTest
     {
         [TestMethod]
-        public void GenerateDeck_With52Cards()
+        public void GenerateDeck_With312Cards()
         {
             Deck deck = new Deck();
 
@@ -48,6 +48,19 @@ namespace BlackJack.Test
 
             //arrange
             Assert.AreNotEqual(deck.CardList.Last(), card);
+        }
+
+        [TestMethod]
+        public void Draw_ReturnsDifferentSizeList()
+        {
+            //arrange
+            Deck deck = new Deck();
+
+            // act
+            Card card = deck.Draw();
+
+            //arrange
+            Assert.AreEqual(311, deck.CardList.Count);
         }
 
     }

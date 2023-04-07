@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    public abstract class IMoves
+    public abstract class Moves
     {
-        public Hand Hand { get; }
+        public Hand Hand { get; set; }
         public Game Game { get; }
 
         public string Name { get; set; }
 
-        public IMoves(Game game, string name)
+        public Moves(Game game, string name)
         {
             Game = game;
             Name = name;

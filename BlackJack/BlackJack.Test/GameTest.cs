@@ -15,7 +15,7 @@ namespace BlackJack.Test
         public void IsPlayerWinner_ReturnFalseWhenPlayerIsBust()
         {
             Game game = new Game();
-            game.StartGame(10);
+            game.StartRound(10);
 
             while (!game.Player.IsBust())
             {
@@ -31,7 +31,7 @@ namespace BlackJack.Test
         public void IsPlayerWinner_ReturnTrueWhenDealerIsBust()
         {
             Game game = new Game();
-            game.StartGame(10);
+            game.StartRound(10);
 
             while (!game.Dealer.IsBust())
             {
@@ -47,7 +47,7 @@ namespace BlackJack.Test
         public void IsDraw_ReturnFalseWhenDealerIsBust()
         {
             Game game = new Game();
-            game.StartGame(10);
+            game.StartRound(10);
 
             while (!game.Dealer.IsBust())
             {
@@ -58,6 +58,30 @@ namespace BlackJack.Test
 
             Assert.AreEqual(false, value);
         }
+
+        [TestMethod]
+        public void ShuffleDeck_PlayerAndDealer_Have2Cards()
+        {
+            Game game = new Game();
+            game.StartRound(20);
+            Assert.AreEqual(2, game.Player.Hand.CardList.Count);
+            Assert.AreEqual(2, game.Dealer.Hand.CardList.Count);
+        }
+
+        [TestMethod]
+        public void IsPlayerWinner_GivesFalseWhenBust()
+        {
+            Game game = new Game();
+            game.StartRound(5);
+            
+            while (!game.Player.IsBust())
+            {
+                game.Player.Hit();
+            }
+            Assert.AreEqual(false, game.IsPlayerWinner());
+        }
+
+
 
     }
 }
