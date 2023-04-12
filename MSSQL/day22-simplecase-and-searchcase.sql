@@ -48,3 +48,40 @@ select
 		when p.ListPrice > 1000								then 'expensive'
 	end
 from SalesLT.Product p
+
+
+-- samen opdracht
+select 
+	p.Name
+	, case 
+		when p.Size is null then 'niet beschikbaar'
+		else					  p.Size
+	end as grootte
+from SalesLT.Product as p
+
+-- dit is hetzelfde als de case hierboven.
+-- COALESCE: retourneerd de eerste niet null value van de parameters.
+select 
+	p.Name
+	, coalesce(p.Size, 'niet beschikbaar') as grootte
+from SalesLT.Product as p
+
+
+-- sql has 29 different data types. 
+select 
+	s.OrderQty
+	, s.UnitPrice
+	, s.OrderQty * s.UnitPrice as totaalprijs -- impliciet convert int value to decimal.
+from SalesLT.SalesOrderDetail as s
+
+select
+	DB_NAME() + SYSDATETIME() --  FOUT: convert van datetime2 to nvarchar kan niet. 
+							  --  want een datetime2 is hoger dan een nvarchar
+from SalesLT.Product as p
+where p.ProductCategoryID = 35
+
+-- CAST
+select
+	DB_NAME() + CAST(SYSDATETIME() as nvarchar) -- expliciet convert datetime2 to nvarchar kan wel
+from SalesLT.Product as p
+where p.ProductCategoryID = 35
