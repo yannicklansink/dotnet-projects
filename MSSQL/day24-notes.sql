@@ -102,3 +102,35 @@ from SalesLT.Product as p
 	- select subquery
 */
 
+select SYSDATETIME() -- datetime2
+select GETDATE() -- datetime
+select DATEPART(QUARTER, SYSDATETIME())
+
+select dateadd(QUARTER, 1, SYSDATETIME())
+
+select EOMONTH(SYSDATETIME(), 1)
+
+select a.PostalCode from SalesLT.Address as a where a.PostalCode like '_[89]%'
+/*
+	% = 0 of meer karakters
+	_ = exact 1 karakter
+	[ABab] = exact 1 karakter van A, B, a of b
+*/
+
+drop table if exists RaceAutos
+create table RaceAutos
+(
+	id int IDENTITY PRIMARY KEY,
+	naam nvarchar(15), 
+	maxSnelheid decimal(5,2) NULL,
+)
+go
+
+insert into RaceAutos
+(naam, maxSnelheid)
+values 
+('rb18', 340.00),
+('aeg12', 670)
+go
+
+
