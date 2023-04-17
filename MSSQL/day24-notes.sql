@@ -60,7 +60,7 @@ inner join SalesLT.Address as a on a.AddressID = ca.AddressID
 where a.City = N'london'
 -- where c.LastName = N'logan' -- de N maakt het sneller. Dit kan alleen als je te maken hebt met nvarchar()
 
--- subquery met meer rijen
+-- subquery met meer rijen. self-contained subquery.
 select
 	ca.CustomerID
 	, ca.AddressType
@@ -86,4 +86,19 @@ where EXISTS
 	where a.City = N'London'
 	and a.AddressID = ca.AddressID
 )
+
+-- subquery in select
+select
+	p.ProductNumber
+	, p.ListPrice
+	, p.ListPrice / (select sum(ListPrice) from SalesLT.Product) * 100 as totaalprijs
+from SalesLT.Product as p
+
+/*
+4 typen subqueries:
+	- single valued subquery: returned 1 record
+	- multi valued qubquery: returned meerdere records
+	- correlated subquery (EXISTS)
+	- select subquery
+*/
 
