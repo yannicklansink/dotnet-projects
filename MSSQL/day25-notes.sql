@@ -141,3 +141,11 @@ select * from categorien_en_prijsinformatie as cep
 where cep.aantalproducten > 25
 and cep.lowestprice > 200;
 
+-- ------------------------------------------------------------------------
+-- Union
+-- Om gegevens uit 2 tabellen aan elkaar vast te knopen.
+-- UNION = eerst sorteren en daarna ontdubbelen
+-- union all = wel de dubbelen gebruiken.
+
+
+
