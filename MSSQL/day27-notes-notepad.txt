@@ -1,0 +1,88 @@
+-- notes day 28
+
+-- Ik ken een DB niet. Hoe kom ik te weten welke tabellen welke data staat?
+1. Zoek iemand met kennis van zaken (SME)
+2. Zoek je (up-to-date) informatie (documentatie -> ER-diagram)
+3. Zelf een diagram van DB maken
+4. Bekijk Stored Procedures die gebouwd zijn.
+
+-- stored procedure
+-- als je meer resultset wilt ophalen. 
+
+CREATE OR ALTER PROCEDURE SalesLT.AddressesInCity 
+	@city AS nvarchar(30) = 'Default Value'
+AS
+BEGIN
+	SELECT
+		ca.CustomerID
+		, a.City	
+		, a.StateProvince
+	FROM SalesLT.Address AS a
+	INNER JOIN SalesLT.CustomerAddress AS ca
+	ON a.AddressID = ca.AddressID
+	WHERE a.City = @city;
+
+	SELECT * FROM SalesLT.Product;
+END;
+GO
+
+-- Execute stored procedure
+EXEC SalesLT.AddressesCity @city='Toronto';
+
+-- voeg 2de argument toe. 
+CREATE OR ALTER PROCEDURE SalesLT.AddressesInCity 
+	@city 				AS nvarchar(30) = 'Default Value'
+	, @aantal 			AS int
+	, @aantalZwarteProducten 	AS int OUTPUT
+AS
+BEGIN
+	IF (LEN(@city) < 3)
+	BEGIN
+		-- altijd boven de 50.000. (message nr, message, state) 
+		THROW 50001, N'Probleem met argument', 1
+	END
+	SELECT TOP @aantal
+		ca.CustomerID
+		, a.City	
+		, a.StateProvince
+	FROM SalesLT.Address AS a
+	INNER JOIN SalesLT.CustomerAddress AS ca
+	ON a.AddressID = ca.AddressID
+	WHERE a.City = @city;
+
+	SELECT * FROM SalesLT.Product;
+
+	SELECT @aantalZwarteProducten = COUNT(*) FROM SalesLT.Product AS p WHERE p.Color = 'Black'
+
+	PRINT 'We zijn klaar met de stored procedure'
+END;
+GO
+
+-- Execute stored procedure
+EXEC SalesLT.AddressesCity 'Toronto', 3; -- Positionele argument.
+
+DECLARE @zwarteProducten AS int;
+EXEC SalesLT.AddressesCity 'Toronto', 3, @aantalZwarteProducten=@zwarteProducten OUTPUT; 
+
+-- Throw & Handle error
+BEGIN TRY
+	EXEC SalesLT.AddressesCity 'Toronto', 5;
+END TRY
+
+BEGIN CATCH
+	PRINT CONCAT(ERROR_NUMBER(), ' ', ERROR_MESSAGE(), ' ', ERROR_LINE())
+END CATCH
+
+-- Window functions | Core elements:
+	-- OVER () = je wilt alle rijen
+		-- ORDER BY
+		-- LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE()
+	-- PARTITION BY = groeperen
+	-- ROWS BETWEEN
+
+
+
+
+
+
+
