@@ -12,4 +12,8 @@
 
 -- datetime2(0) van 8 naar 6 bits, en geen zorgen meer met nanoseconden
 
+-- om 2 tabellen te kunnen joinen hoef je niet 2 primaire keys te gebruiken. Je kan ook op een achternaam met een andere achternaam joinen.
+
+
+
 
