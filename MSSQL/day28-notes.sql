@@ -25,6 +25,7 @@ select char(@poulenaam)
 	(NEWID(), 'Urk')
 */
 SELECT NEWID(); -- get an uniqueidentifier
+-- Ook is het veiliger en niet te voorspellen.
 
 -- PERSISTED: snelle SELECT, trage UPDATE
 -- geen PERSISTED: snelle UPDATE, trage SELECT
