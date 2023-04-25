@@ -40,6 +40,13 @@ VALUES
 -- Super snel, maar gevaarlijk want er komt geen LOG file voor DBA'er
 TRUNCATE TABLE Leveranciers
 
+-- Is het mogelijk om een database diagram, zoals adventureworks 
+-- te reverse engineeren zodat er naar de sql statements kan worden gekeken?
+---
+
+
+--dd
+
 
 
 
