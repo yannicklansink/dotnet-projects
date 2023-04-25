@@ -1,14 +1,10 @@
 -- day 28 | Maandag 24-4-23
 
 
-/*
-	Constraints:
-		De juiste Relaties tussen de tabellen
-		Elk team en plaats behoort tot een poule (UNIQUE constraint)
-
-
-
-*/
+Computed colums:
+	Velden worden berekend op het moment dat je ze opvraagt.
+	PERSISTED -> Dan worden ze ook opgeslagen en op het moment dat data wijzigt opnieuw berekend.
+	
 
 
 -- CHECK(Punten <= 100)
@@ -60,7 +56,10 @@ CREATE TABLE Engineers
 		Je kan maar 1 clustured index hebben per tabel
 	Non-clustured index
 		Alleen een opzoek structuur
-
+		Hier staat een secondary key van de table met een primary key. 
+		Om efficient op te zoeken. 
+		2 keer opzoeken. Eerst met non-clustered index, dan met de id in de clustured index
+		Max 5 non-clustered index, ivm tragere inserts/updates/deletes			
 */
 
 CREATE NONCLUSTERED INDEX
