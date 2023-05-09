@@ -1,0 +1,14 @@
+install libraries with nugget:
+- entity framework core
+- entity framework core design
+- entity framework core sqlserver
+
+Scaffolding
+
+eager loading
+precise loading
+lazy loading
+explicit lodaing
+
+Microservices. 
+Je breekt grotere stukken code op in kleine onafhankelijke projectjes, die een eigen database hebben.
