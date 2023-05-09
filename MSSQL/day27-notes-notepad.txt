@@ -80,7 +80,33 @@ END CATCH
 	-- PARTITION BY = groeperen
 	-- ROWS BETWEEN
 
+-- PIVOT
+	- Share data between systems
+	- Often used in analytics
 
+SELECT
+	*
+FROM SalesLT.CategoryQtyYear as cqy
+PIVOT
+(
+	SUM(Qty)
+	FOR OrderYear IN ([2021], [2022], [2023])
+) AS pivot_alias;
+
+-- ---------------------------------------------
+-- WHILE
+
+DECLARE @counter AS int = 0;
+
+WHILE @counter < 10
+BEGIN
+	PRINT @counter
+	INSERT INTO SalesLT.Customer 
+	(id, fname)
+	VALUES
+	(@counter, 'Harry')
+	SET @counter += 1;
+END
 
 
 
