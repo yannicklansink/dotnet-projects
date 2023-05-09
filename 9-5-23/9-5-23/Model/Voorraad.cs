@@ -12,7 +12,7 @@ namespace _9_5_23.Model
     public class Voorraad
     {
         public long Id { get; set; }
-        [MaxLength(100)]
+        // [MaxLength(100)]
         public string Artikel { get; set; }
         public int Aantal { get; set; }
     }

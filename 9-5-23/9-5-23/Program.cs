@@ -11,7 +11,7 @@ namespace _9_5_23
 
             using (var context = new MagazijnDbContext())
             {
-                context.Database.EnsureDeleted();
+                // kan dit????? context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
             Console.WriteLine("Your database has been created");
