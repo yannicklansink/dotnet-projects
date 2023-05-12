@@ -57,5 +57,8 @@ namespace cases.reisdocumenten.Model
 
         public virtual Burger Burger { get; set; }
 
+        public virtual Medewerker Medewerker { get; set; }
+
+
     }
 }
