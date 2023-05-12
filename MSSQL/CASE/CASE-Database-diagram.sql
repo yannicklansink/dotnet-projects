@@ -17,7 +17,7 @@ GO
 --GO
 
 -- ----------------------------------------------------------------------------
--- DDL Statements
+-- BLAUWE PISTE | DDL Statements
 -- ----------------------------------------------------------------------------
 DROP TABLE IF EXISTS Burgers;
 GO
@@ -26,7 +26,7 @@ CREATE TABLE Burgers (
 	id									INT IDENTITY 
 										CONSTRAINT PK_burgers_ID
 										PRIMARY KEY
-	, BSN									INT NOT NULL
+	, BSN								INT NOT NULL
 	, voornaam							VARCHAR(65) NOT NULL
 	, achternaam						VARCHAR(50) NOT NULL
 	, tussenvoegsel						VARCHAR(20)
@@ -49,9 +49,10 @@ CREATE TABLE Soorten (
 				CONSTRAINT PK_soorten_ID 
 				PRIMARY KEY
 	, soort		VARCHAR(20) NOT NULL
+	, prijs		DECIMAL(6, 2) NOT NULL
 );
 GO
-INSERT INTO Soorten (soort) VALUES ('paspoort'), ('id-kaart'), ('visum');
+INSERT INTO Soorten (soort, prijs) VALUES ('paspoort', 100.00), ('id-kaart', 55.25), ('visum', 400.50);
 
 DROP TABLE IF EXISTS Reisdocumenten;
 GO
@@ -78,6 +79,17 @@ CREATE TABLE Reisdocumenten (
 								FOREIGN KEY REFERENCES Burgers(id)
 );
 GO
+
+-- ----------------------------------------------------------------------------
+-- RODE PISTE | Prijs toevoegen en prijs aanpassen.
+-- ----------------------------------------------------------------------------
+--ALTER TABLE Soorten
+--ADD prijs DECIMAL(6, 2);
+--GO
+
+--UPDATE Soorten
+--SET prijs = 50.00
+--WHERE soort = 'paspoort';
 
 
 
