@@ -108,7 +108,8 @@ GO
 INSERT 
 	INTO Soorten (soort, prijs) 
 VALUES 
-	('paspoort', 100.00), ('id-kaart', 55.25), ('visum', 400.50);
+	('paspoort', 100.00), ('id-kaart', 55.25), ('visum', 400.50), ('paspoort', 120.00), ('visum', 450.50);
+
 
 -- Source: CHATGPT
 INSERT INTO Burgers 
@@ -135,12 +136,12 @@ VALUES
 INSERT INTO Reisdocumenten 
 	(documentnr, soort_id, aanvraagdatum, afgifteplaats, afgiftedatum, verloopdatum, [status], opgehaald, burger_id, medewerker_id)
 VALUES
-    (123456, 1, '2023-03-20 12:30:00', 'Hamelen', '2023-04-25', '2023-07-25', 'Actief', 1, 1, 4),
-    (234567, 1, '2023-04-22 09:45:00', 'Den Haag', '2023-04-27', '2024-04-27', 'verlopen', 0, 2, 2),
+    (123456, 1, '2024-03-20 12:30:00', 'Hamelen', '2024-04-25', '2023-07-25', 'Actief', 1, 1, 4),
+    (234567, 5, '2023-04-22 09:45:00', 'Den Haag', '2023-04-27', '2024-04-27', 'verlopen', 0, 2, 2),
     (345678, 2, '2023-04-24 11:15:00', 'Rotterdam', '2023-04-29', '2024-04-29', 'Actief', 1, 3, 3),
-    (456789, 2, '2023-04-26 15:00:00', 'Utrecht', '2023-05-01', '2023-05-01', 'Actief', 0, 4, 4),
+    (456789, 5, '2024-04-26 15:00:00', 'Utrecht', '2024-05-01', '2023-05-01', 'Actief', 0, 4, 4),
     (567890, 3, '2023-04-28 13:30:00', 'Amsterdam', '2023-05-03', '2023-06-03', 'Actief', 1, 5, 5),
-    (678901, 3, '2023-04-30 10:00:00', 'Den Haag', '2023-05-05', '2024-05-05', 'ingeleverd', 0, NULL, 6);
+    (678901, 4, '2024-04-30 10:00:00', 'Den Haag', '2024-05-05', '2024-05-05', 'ingeleverd', 0, NULL, 6);
 
 -- ----------------------------------------------------------------------------
 -- Opdracht 2: Queries, data analyseren 
@@ -261,7 +262,37 @@ ON med.ManagerId = man.Id
 
 -- 1. Per jaar per documenttype het totaalbedrag dat werkelijk betaald is 
 --    (de prijs van toen) en het totaalbedrag op basis van de huidige prijs (een fictief totaal)
+-- Niet helemaal goed. Hier pak ik de hoogste prijs, maar moet de laatste prijs verandering zijn.
+SELECT 
+	s.soort
+	, YEAR(r.afgiftedatum)		AS afgiftedatum_per_jaar
+	, SUM(s.prijs)				AS totaal_bedrag
+	, MAX(s.prijs) * COUNT(*)	AS fictief_totaal_max_prijs
+FROM Reisdocumenten AS r
+INNER JOIN Soorten AS s 
+	ON s.id = r.soort_id
+GROUP BY 
+	YEAR(r.afgiftedatum)
+	, s.soort
+
 
 -- 2. Per maand de procentuele toe- of afname van opgehaalde reisdocumenten.
+-- WITH Statement
+GO
+WITH cte_previous_month
+AS
+(
+	SELECT	
+		MONTH(afgiftedatum)					as aantal_per_maand
+		, SUM(IIF(opgehaald = 1, 1, 0))		as sum_opgehaald
+	FROM Reisdocumenten AS r
+	WHERE MONTH(afgiftedatum) >= 4 AND MONTH(afgiftedatum) < 5
+	GROUP BY 
+		MONTH(afgiftedatum)
+)
+SELECT 
+*
+	--100.0*(sum_opgehaald - prev.Val)/ prev.Val As PercentDiff
+FROM cte_previous_month
 
 -- 3. Challenge: Per week de eerste 3 opgehaalde reisdocumenten
