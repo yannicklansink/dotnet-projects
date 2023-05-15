@@ -1,4 +1,5 @@
-﻿using _9_5_23.Model;
+﻿using _9_5_23.DAL;
+using _9_5_23.Model;
 
 namespace _9_5_23
 {
@@ -7,8 +8,8 @@ namespace _9_5_23
         static void Main(string[] args)
         {
 
-
-            EnsureDatabase();
+            Console.WriteLine("Begin");
+            EnsureDatabaseCreated();
             FillDBWithData();
 
             // get all nummers
@@ -66,11 +67,11 @@ namespace _9_5_23
             }
         }
 
-        private static void EnsureDatabase()
+        private static void EnsureDatabaseCreated()
         {
             using (var context = new MuziekDbContext())
             {
-                context.Database.EnsureDeleted();
+                //context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
             }
             Console.WriteLine("Your database has been created");
