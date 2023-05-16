@@ -49,6 +49,7 @@ CREATE TABLE Soorten (
 				CONSTRAINT PK_soorten_ID 
 				PRIMARY KEY
 	, soort		VARCHAR(20) NOT NULL
+	-- Hier een datum of iets aan toevoegen?
 	, prijs		DECIMAL(6, 2) NOT NULL
 );
 GO
@@ -79,6 +80,7 @@ CREATE TABLE Reisdocumenten (
 								CONSTRAINT PK_reisdocumenten_ID
 								PRIMARY KEY
     , documentnr				INT
+								UNIQUE
     , soort_id					INT NOT NULL,
 								CONSTRAINT FK_reisdocumenten_soorten 
 								FOREIGN KEY (soort_id) 
@@ -263,6 +265,43 @@ ON med.ManagerId = man.Id
 -- 1. Per jaar per documenttype het totaalbedrag dat werkelijk betaald is 
 --    (de prijs van toen) en het totaalbedrag op basis van de huidige prijs (een fictief totaal)
 -- Niet helemaal goed. Hier pak ik de hoogste prijs, maar moet de laatste prijs verandering zijn.
+
+-- Misschien een prijs column toevoegen aan Reisdocumenten, zodat je altijd de actuale, betaalde prijs weet. 
+-- en dan heeft Soorten de laatste prijs?
+SELECT 
+    YEAR(aanvraagdatum) as Jaar,
+    rd.soort, 
+    SUM(prijs) as Totaal_Werkelijk_Betaald, 
+    SUM(prijs * s1.prijs) as Totaal_Op_Basis_Van_Huidige_Prijs
+FROM 
+    Reisdocumenten rd
+    JOIN Soorten s ON rd.soort_id = s.id
+    JOIN (
+        SELECT soort, prijs
+        FROM Soorten
+        WHERE id IN (
+            SELECT MAX(id)
+            FROM Soorten
+            GROUP BY soort
+        )
+    ) s1 ON rd.soort = s1.soort
+GROUP BY 
+    YEAR(aanvraagdatum), rd.soort;
+
+---
+
+SELECT YEAR(r.aanvraagdatum) AS Jaar, 
+       s.soort, 
+       SUM(r.prijs) AS Totaalbedrag_berekend, 
+       SUM(s.prijs) AS Fictief_totaalbedrag
+FROM Reisdocumenten r 
+INNER JOIN Soorten s ON r.soort_id = s.id
+GROUP BY YEAR(r.aanvraagdatum), s.soort;
+
+
+
+--- 
+
 SELECT 
 	s.soort
 	, YEAR(r.afgiftedatum)		AS afgiftedatum_per_jaar
