@@ -324,15 +324,20 @@ AS
 (
 	SELECT	
 		MONTH(afgiftedatum)					as aantal_per_maand
-		, SUM(IIF(opgehaald = 1, 1, 0))		as sum_opgehaald
+		-- , SUM(IIF(opgehaald = 1, 1, 0))		as sum_opgehaald
+		-- , COUNT(SUM(IIF(opgehaald = 1, 1, 0)))		as sum_opgehaald
+		, COUNT(*)	as sum_opgehaald
 	FROM Reisdocumenten AS r
 	WHERE MONTH(afgiftedatum) >= 4 AND MONTH(afgiftedatum) < 5
 	GROUP BY 
 		MONTH(afgiftedatum)
 )
 SELECT 
-*
+
 	--100.0*(sum_opgehaald - prev.Val)/ prev.Val As PercentDiff
+	aantal_per_maand
+	, LAG(sum_opgehaald, 1) OVER (ORDER BY aantal_per_maand asc)
+	, LAG(sum_opgehaald, 1) OVER (ORDER BY aantal_per_maand * 1.0 / sum_opgehaald)
 FROM cte_previous_month
 
 -- 3. Challenge: Per week de eerste 3 opgehaalde reisdocumenten
