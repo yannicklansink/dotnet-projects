@@ -90,7 +90,8 @@ CREATE TABLE Reisdocumenten (
 								DEFAULT 'Hamelen' NOT NULL
     , afgiftedatum				DATE
     , verloopdatum				DATE
-    , [status]					VARCHAR(20) NOT NULL --actief, verlopen, verloren, gestolen, ingeleverd
+    , [status]					VARCHAR(20) NOT NULL 
+								-- CHECK of het: actief, verlopen, verloren, gestolen, ingeleverd
     , opgehaald					BIT NOT NULL
 								DEFAULT 0
     , burger_id					INT 
