@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,7 @@ namespace cases.reisdocumenten.DAL
 
                 entity.Property(e => e.Tussenvoegsel)
                     .HasColumnName("tussenvoegsel")
+                    .IsRequired(false)
                     .HasMaxLength(20);
 
                 entity.Property(e => e.OorspronkelijkeNaam)
@@ -64,6 +66,7 @@ namespace cases.reisdocumenten.DAL
 
                 entity.Property(e => e.AchtervoegselHuisnummer)
                     .HasColumnName("achtervoegsel_huisnummer")
+                    .IsRequired(false)
                     .HasMaxLength(5);
 
                 entity.Property(e => e.Postcode)
@@ -128,6 +131,7 @@ namespace cases.reisdocumenten.DAL
                 entity.HasOne(e => e.Burger)
                     .WithMany(b => b.Reisdocumenten)
                     .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired(false)
                     .HasConstraintName("FK_Reisdocumenten_Burgers");
 
 
@@ -161,6 +165,14 @@ namespace cases.reisdocumenten.DAL
 
 
             });
+
+
+            // Create dummy data
+            
+
+
+
+
         }
     }
 }
