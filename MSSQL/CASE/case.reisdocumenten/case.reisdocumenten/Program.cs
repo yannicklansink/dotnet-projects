@@ -83,6 +83,7 @@ internal class Program
 
         using (var context = new ReisdocumentenDbContext(options))
         {
+            context.Burgers.Add(burgers.ElementAt(5));
             context.Reisdocumenten.AddRange(reisdocumenten);
             context.SaveChanges();
         }

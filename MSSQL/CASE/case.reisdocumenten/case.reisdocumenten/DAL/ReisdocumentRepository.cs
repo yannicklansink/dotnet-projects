@@ -34,6 +34,7 @@ namespace cases.reisdocumenten.DAL
             var query = from r in _context.Reisdocumenten
                         join s in _context.Soorten on r.Soort.Id equals s.Id
                         join b in _context.Burgers on r.Burger.Id equals b.Id
+                        where r.Status == "Actief"
                         select new LopendeAanvragen
                             (
                                 r.DocumentNr,
@@ -45,9 +46,9 @@ namespace cases.reisdocumenten.DAL
             return query.ToList();
         }
 
-
-
-
-
+        public Reisdocument GetReisdocumentByDocumentNr(string documentNr)
+        {
+            return _context.Reisdocumenten.SingleOrDefault(d => d.DocumentNr == int.Parse(documentNr));
+        }
     }
 }

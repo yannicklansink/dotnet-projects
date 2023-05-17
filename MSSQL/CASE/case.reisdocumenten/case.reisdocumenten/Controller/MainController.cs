@@ -13,6 +13,7 @@ namespace cases.reisdocumenten.Controller
     {
 
         private DbContextOptions<ReisdocumentenDbContext> _options;
+        private bool _isActive;
 
         public MainController(DbContextOptions<ReisdocumentenDbContext> options)
         {
@@ -22,25 +23,40 @@ namespace cases.reisdocumenten.Controller
         public void StartApp()
         {
             Console.WriteLine("App started");
-            char gebruikersKeuze = MaakKeuze();
-            if (gebruikersKeuze == 'A')
+            _isActive = true;
+            while (true)
             {
-                // show lijst met alle lopende aanvragen
-                ReisdocumentController rc = new ReisdocumentController(_options);
-                rc.GetLijstMetLopendeAanvragen();
-            } else if (gebruikersKeuze == 'H') 
-            {
-                // Handle aanvraag af
-                ReisdocumentController rc = new ReisdocumentController(_options);
-                
+                char gebruikersKeuze = ShowHoofdMenu();
+                if (gebruikersKeuze == 'A')
+                {
+                    // show lijst met alle lopende aanvragen
+                    ReisdocumentController rc = new ReisdocumentController(_options);
+                    rc.ShowLijstMetLopendeAanvragen();
+                }
+                else if (gebruikersKeuze == 'H')
+                {
+                    // Handle aanvraag af
+                    ReisdocumentController rc = new ReisdocumentController(_options);
+                    rc.AanvraagAfhandelen();
+                }
             }
+            
 
         }
 
-        public char MaakKeuze()
+        public char ShowHoofdMenu()
         {
             Console.WriteLine("Maak een keuze:");
             Console.Write("(A)lle lopende aanvragen\r\n(H)andel aanvraag af: ");
+
+            var key = Console.ReadKey(intercept: true);
+            if (key.Key == ConsoleKey.Escape) 
+            {
+                _isActive = false;
+                Console.WriteLine("\nShutting down...");
+                Environment.Exit(0); 
+            }
+
             string? input = Console.ReadLine();
             while (string.IsNullOrEmpty(input) || 
                   (input != "A" && input != "a" && input != "H" && input != "h"))

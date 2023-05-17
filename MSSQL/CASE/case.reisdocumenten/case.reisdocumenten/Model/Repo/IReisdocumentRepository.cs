@@ -13,7 +13,9 @@ namespace cases.reisdocumenten.Model.Repo
 
         IEnumerable<LopendeAanvragen> GetLijstMetLopendeAanvragen();
 
-        IEnumerable<Reisdocument> AanvraagAfhandelen
+        Reisdocument GetReisdocumentByDocumentNr(string documentNr);
+
+        //IEnumerable<Reisdocument> AanvraagAfhandelen();
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cases.reisdocumenten.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,11 @@ namespace cases.reisdocumenten.Model.Repo
     {
 
         Burger GetBurgerById(long id);
+
+        Burger GetBurgerByNaam(string voornaam, string? tussenvoegsel, string achternaam);
+
+        IEnumerable<BurgerGegevens> GetBurgerGegevens(Burger burger);
+
+        void UpdateBurgerReisdocumentStatus(string documentNr);
     }
 }

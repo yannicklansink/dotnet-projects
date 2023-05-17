@@ -2,6 +2,7 @@
 using cases.reisdocumenten.Model;
 using cases.reisdocumenten.Model.Repo;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace cases.reisdocumenten.Controller
             _options = options;
         }
 
-        public void GetAllReisdocumenten()
+        public void ShowAllReisdocumenten()
         {
             using (var context = new ReisdocumentenDbContext(_options))
             {
@@ -36,7 +37,7 @@ namespace cases.reisdocumenten.Controller
             }
         }
 
-        public void GetLijstMetLopendeAanvragen()
+        public void ShowLijstMetLopendeAanvragen()
         {
             using (var context = new ReisdocumentenDbContext(_options))
             {
@@ -61,5 +62,56 @@ namespace cases.reisdocumenten.Controller
                 
             }
         }
+
+        public void AanvraagAfhandelen()
+        {
+            using (var context = new ReisdocumentenDbContext(_options))
+            {
+                BurgerController bc = new BurgerController(_options);
+
+                Console.Clear();
+
+                string naam;
+                Burger burger = null;
+
+                do
+                {
+                    Console.WriteLine("Vul de naam van de burger in:");
+
+                    var key = Console.ReadKey(intercept: true);
+                    if (key.Key == ConsoleKey.Escape) { return; }
+
+                    naam = Console.ReadLine();
+                    while (!IsNameValid(naam))
+                    {
+                        Console.WriteLine("Ongeldige naam. Probeer het opnieuw:");
+                        naam = Console.ReadLine();
+                    }
+
+                    burger = bc.GetBurgerByNaam(naam);
+
+                    if (burger == null) { Console.WriteLine($"De Burger met de naam {naam} is niet gevonden in de database. Probeer het opnieuw."); }
+                } while (burger == null);
+
+                bc.ShowBurgerGegevens(burger);
+            }
+
+        }
+
+        private bool IsNameValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return false;
+
+            foreach (char c in name)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                    return false;
+            }
+
+            return true;
+        }
+
+
     }
 }
