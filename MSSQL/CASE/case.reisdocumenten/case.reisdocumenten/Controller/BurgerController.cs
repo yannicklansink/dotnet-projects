@@ -55,9 +55,9 @@ namespace cases.reisdocumenten.Controller
         }
 
         // returns a tuple with 3 or 2 strings
-        public (string voornaam, string tussenvoegsel, string achternaam) SplitNaam(string input)
+        public (string voornaam, string tussenvoegsel, string achternaam) SplitNaam(string naam)
         {
-            string[] naamParts = input.Split(' ');
+            string[] naamParts = naam.Split(' ');
 
             if (naamParts.Length == 3)
             {
@@ -69,7 +69,8 @@ namespace cases.reisdocumenten.Controller
             }
             else
             {
-                return (string.Empty, string.Empty, string.Empty);
+                //return (string.Empty, string.Empty, string.Empty);
+                throw new NameNotValidException();
             }
         }
 
@@ -78,6 +79,7 @@ namespace cases.reisdocumenten.Controller
             Console.Clear();
             string tussenvoegsel = burger.Tussenvoegsel != null ? burger.Tussenvoegsel + " " : "";
             Console.WriteLine($"Naam burger: {burger.Voornaam} {tussenvoegsel}{burger.Achternaam} ");
+
             if (burger.OorspronkelijkeNaam != null) 
             { 
                 Console.WriteLine($"Oorsponkelijke naam: {burger.OorspronkelijkeNaam}"); 
@@ -105,36 +107,44 @@ namespace cases.reisdocumenten.Controller
             }
         }
 
+
         private void AanvragenAfhandelen(IEnumerable<BurgerGegevens> burgerGegevens)
         {
             string aanvraagNrs = GetAanvraagNrs(burgerGegevens);
-            string[] splittedAanvraagNrs = aanvraagNrs.Split(null); // split on whitespaces
 
-            Console.Write($"\nOm te administreren dat het reisdocument is uitgegeven, typ hierna het aanvraagnr ({aanvraagNrs}): ");
+            string input = ValidateInput(aanvraagNrs);
 
-            string? aanvraagNr = Console.ReadLine();
-            while (aanvraagNr is not null && !splittedAanvraagNrs.Contains(aanvraagNr))
-            {
-                Console.Write($"Ongeldige input. Probeer het opnieuw. Kies uit ({aanvraagNrs}): ");
-                aanvraagNr = Console.ReadLine();
-            }
-
-            if (aanvraagNr is null)
+            if (string.IsNullOrEmpty(input))
             {
                 Console.WriteLine("Aanvraag geannuleerd");
                 return;
             }
             else
             {
-                UpdateBurgerReisdocumentStatus(aanvraagNr);
+                UpdateBurgerReisdocumentStatus(input);
             }
+        }
+
+
+        private string ValidateInput(string aanvraagNrs)
+        {
+            Console.Write($"\nOm te administreren dat het reisdocument is uitgegeven, typ hierna het aanvraagnr ( {aanvraagNrs}): ");
+            string input = Console.ReadLine();
+
+            string[] splittedAanvraagNrs = aanvraagNrs.Split(null); // split on whitespaces
+            while (string.IsNullOrEmpty(input) || !splittedAanvraagNrs.Contains(input))
+            {
+                Console.WriteLine($"Ongeldige input. Probeer het opnieuw. Kies uit ({string.Join(", ", splittedAanvraagNrs)}): ");
+                input = Console.ReadLine();
+            }
+
+            return input;
         }
 
         private void UpdateBurgerReisdocumentStatus(string aanvraagNr)
         {
             using (var context = new ReisdocumentenDbContext(_options))
             {
-                IBurgerRepository burgerRepo = new BurgerRepository(context);
                 IReisdocumentRepository reisRepo = new ReisdocumentRepository(context);
 
                 var reisdocument = reisRepo.GetReisdocumentByDocumentNr(aanvraagNr);

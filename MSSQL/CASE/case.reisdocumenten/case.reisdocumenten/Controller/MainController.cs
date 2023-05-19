@@ -37,7 +37,7 @@ namespace cases.reisdocumenten.Controller
                 {
                     // Handle aanvraag af
                     ReisdocumentController rc = new ReisdocumentController(_options);
-                    rc.AanvraagAfhandelen();
+                    rc.ReisdocumentAanvraagAfhandelen();
                 }
             }
             
@@ -58,14 +58,19 @@ namespace cases.reisdocumenten.Controller
             }
 
             string? input = Console.ReadLine();
-            while (string.IsNullOrEmpty(input) || 
-                  (input != "A" && input != "a" && input != "H" && input != "h"))
+            while (!IsValidInput(input))
             {
                 Console.WriteLine("Probeer het nog eens. ");
                 Console.Write("(A)lle lopende aanvragen\r\n(H)andel aanvraag af: ");
                 input = Console.ReadLine();
             }
+
             return char.Parse(input.ToUpper());
+        }
+
+        private bool IsValidInput(string? input)
+        {
+            return !string.IsNullOrEmpty(input) && (input == "A" || input == "a" || input == "H" || input == "h");
         }
     }
 }

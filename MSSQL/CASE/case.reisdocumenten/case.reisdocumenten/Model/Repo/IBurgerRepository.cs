@@ -16,6 +16,6 @@ namespace cases.reisdocumenten.Model.Repo
 
         IEnumerable<BurgerGegevens> GetBurgerGegevens(Burger burger);
 
-        void UpdateBurgerReisdocumentStatus(string documentNr);
+        //void UpdateBurgerReisdocumentStatus(string documentNr);
     }
 }

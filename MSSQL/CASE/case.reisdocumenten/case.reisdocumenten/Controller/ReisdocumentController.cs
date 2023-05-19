@@ -1,4 +1,5 @@
 ﻿using cases.reisdocumenten.DAL;
+using cases.reisdocumenten.Exceptions;
 using cases.reisdocumenten.Model;
 using cases.reisdocumenten.Model.Repo;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +64,7 @@ namespace cases.reisdocumenten.Controller
             }
         }
 
-        public void AanvraagAfhandelen()
+        public void ReisdocumentAanvraagAfhandelen()
         {
             using (var context = new ReisdocumentenDbContext(_options))
             {
@@ -71,7 +72,7 @@ namespace cases.reisdocumenten.Controller
 
                 Console.Clear();
 
-                string naam;
+                string burgerNaam;
                 Burger burger = null;
 
                 do
@@ -81,16 +82,24 @@ namespace cases.reisdocumenten.Controller
                     var key = Console.ReadKey(intercept: true);
                     if (key.Key == ConsoleKey.Escape) { return; }
 
-                    naam = Console.ReadLine();
-                    while (!IsNameValid(naam))
+                    burgerNaam = Console.ReadLine();
+                    while (!IsValidBurgerName(burgerNaam))
                     {
                         Console.WriteLine("Ongeldige naam. Probeer het opnieuw:");
-                        naam = Console.ReadLine();
+                        burgerNaam = Console.ReadLine();
+                    }
+                    try
+                    {
+                        burger = bc.GetBurgerByNaam(burgerNaam);
+
+                    } catch (NameNotValidException ex) 
+                    { 
+                        Console.WriteLine(ex.Message);
                     }
 
-                    burger = bc.GetBurgerByNaam(naam);
+                    burger = bc.GetBurgerByNaam(burgerNaam);
 
-                    if (burger == null) { Console.WriteLine($"De Burger met de naam {naam} is niet gevonden in de database. Probeer het opnieuw."); }
+                    if (burger == null) { Console.WriteLine($"De Burger met de naam {burgerNaam} is niet gevonden in de database. Probeer het opnieuw."); }
                 } while (burger == null);
 
                 bc.ShowBurgerGegevens(burger);
@@ -98,10 +107,12 @@ namespace cases.reisdocumenten.Controller
 
         }
 
-        private bool IsNameValid(string name)
+        private bool IsValidBurgerName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
+            {
                 return false;
+            }
 
             foreach (char c in name)
             {

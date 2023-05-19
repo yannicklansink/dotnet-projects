@@ -56,9 +56,6 @@ namespace cases.reisdocumenten.DAL
             return query.ToList();
         }
 
-        public void UpdateBurgerReisdocumentStatus(string documentNr)
-        {
-
-        }
+        
     }
 }
