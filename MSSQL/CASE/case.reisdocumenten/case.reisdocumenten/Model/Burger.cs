@@ -9,27 +9,6 @@ namespace cases.reisdocumenten.Model
 {
     public class Burger
     {
-
-        /*
-         * CREATE TABLE Burgers (
-	                id									INT IDENTITY 
-										                CONSTRAINT PK_burgers_ID
-										                PRIMARY KEY
-	                , BSN								INT NOT NULL
-	                , voornaam							VARCHAR(65) NOT NULL
-	                , achternaam						VARCHAR(50) NOT NULL
-	                , tussenvoegsel						VARCHAR(20)
-	                , oorspronkelijke_naam				NVARCHAR(65) NOT NULL
-	                , straat							VARCHAR(50) NOT NULL
-	                , huisnummer						INT NOT NULL
-	                , achtervoegsel_huisnummer			VARCHAR(5)
-	                , postcode							CHAR(5) NOT NULL -- fixed length
-	                , plaats							VARCHAR(58) NOT NULL -- Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
-	                , geboorteplaats					VARCHAR(58) NOT NULL 
-	                , geboorteland						VARCHAR(3) NOT NULL -- landcode
-            );
-            GO
-        */
         public int Id { get; set; }
 
     
