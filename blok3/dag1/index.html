@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Cat World!</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#form">Contact Us</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="section1">
+            <h2>Cat types</h2>
+            <ul>
+                <li>cat1</li>
+                <li>cat23</li>
+                <li>cat2352</li>
+            </ul>
+        </section>
+        <section id="section2">
+            <h2>Gallery</h2>
+            <img class="responsive-image" src="images\603c454b0dd6bf1c58072c6e_Untitled-21.png" alt="A beautiful Siamese cat">
+        </section>
+    </main>
+    <!-- action: ./succes-page.asp -->
+    <form id="form" action="#" method="GET">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <input id="toonMelding" onClick="ClickedFunction()" type="submit" value="Submit">
+    </form>
+
+    <section>
+        <table class="excel-table">
+            <thead>
+                <tr>
+                    <th>Team X</th>
+                    <th>Team Y</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">Team X Wins!</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="script.js"></script>
+
+</body>
+</html>
+

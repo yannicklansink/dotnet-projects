@@ -1,0 +1,106 @@
+/* .mytitle {
+    color: blue;
+    font-size: 30px;
+    text-align: center;
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+   */
+
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+}
+
+nav ul {
+    background-color: #343a40;
+    color: white;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul a:hover {
+    color: #ffc107;
+}
+
+section {
+    margin: 20px;
+}
+
+.responsive-image {
+    max-width: 100%;
+    height: auto;
+}
+
+form {
+    margin: 20px;
+}
+
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+}
+
+
+
+
+
+/* Opdracht 1 */
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.excel-table th, .excel-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+.excel-table th, .excel-table tfoot {
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: bold;
+}
+
+
+

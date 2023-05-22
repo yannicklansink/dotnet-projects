@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My trips</title>
+    <link rel="stylesheet" href="default.css">
+</head>
+<body>
+    <heading>
+        <h1>My Trips</h1>
+    </heading>
+    <div>
+
+        <template id="trip-template">
+            <li class="trip">
+              <div class="city"></div>
+              <div class="date"></div>
+              <div class="review"></div>
+              <div class="rating"></div>
+            </li>
+        </template>
+        <ul id="trips"></ul>
+        <button onclick="addTrip();" id="btn-add-trip">Add trip</button>
+
+        <!-- <template id="trip-template"> -->
+            <!-- <ul id="trips">        -->
+                <!-- <li class="trip">
+                    <time datetime="2005-05-12" class="date">12th May 2005</time>
+                    <h2 class="city">Rome</h2>
+                    <p class="review">Had a great time, good food and splendid weather</p>
+                    <p class="rating">9</p>
+                </li>
+                <li class="trip">
+                    <time datetime="2003-05-05" class="date">5th May 2003</time>
+                    <h2 class="city">London</h2>
+                    <p class="review">Had a great time, bad food and bad weather</p>
+                    <p class="rating">10d</p>
+                </li>
+                <li class="trip">
+                    <time datetime="2002-05-12" class="date">12th May 2002</time>
+                    <h2 class="city">Amsterdam</h2>
+                    <p class="review">Had a bad time</p>
+                    <p class="rating">3</p>
+                </li> -->
+                
+            <!-- </ul> -->
+        <!-- </template> -->
+        <!-- <button onclick="addTrip();" id="btn-add-trip">Add trip</button> -->
+                
+    </div>
+    
+    <footer>
+        Waldo &copy; <span id="currentYear"></span>
+    </footer>
+
+    <!-- defer: JS code will be executed after html file is fully loaded -->
+    <script src="script.js" defer></script>
+</body>
+</html>

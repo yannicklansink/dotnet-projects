@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+      font-family: 'Trebuchet MS', sans-serif;
+      background: black;
+      color: silver;
+  }
+
+  h1 {
+	font-weight: bold;
+	font-size: x-large;
+	text-align: left;
+	padding: 40px 10px 0;
+	margin: 0 0 5px 0;
+	color: white;
+}
+
+footer {
+	background-color: #2676EA;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	text-align: right;
+	padding: 40px 10px 0 0;
+	margin: 5px 0 0 0;
+}
+
+.trip {
+	background: #D34927;
+	color: white;
+	padding: 5px;
+	margin: 5px;
+}
+
+.city {
+	font-weight: bold;
+	margin: 0 5px 0 0;
+}
+
+.date {
+	float: right;
+}
+
+.review {
+	padding: 0 5px 0 5px;
+}
+
+.rating {
+	text-align: right;
+}
+
+#trips {
+	list-style-type: none;
+	margin: 0;
+	padding: 10px;
+}
