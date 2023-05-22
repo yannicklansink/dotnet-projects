@@ -1,0 +1,86 @@
+Dag 39 (HTML/CSS)
+HTML
+accessibility
+basis elementen: <header>, <nav>, <section>, ..., afbeeldingen, links, tabellen, (un)ordered lists
+inline vs block elementen
+formulieren: attributen, input fields en (ingebouwde) validatie
+CSS
+CSS koppelen aan HTML
+CSS selectors en specificity
+Positioning
+absolute en relative
+floating elements
+Layouts
+fixed vs responsive
+media queries
+Dag 40 (HTML/CSS)
+Layouts (vervolg)
+
+flexbox
+DOM
+
+JavaScript koppelen (+ async en defer)
+querySelector() en querySelectorAll()
+innerText, innerHTML en value
+css class plaatsen
+events afhandelen
+Web APIs
+
+local en session storage
+JSON stringify() en parse()
+(fetch API)
+Indien tijd
+
+Intro Sass
+Intro Bootstrap
+Dag 41 (JavaScript)
+Dag 42
+zelfstudie
+Week 12 (30 mei - 2 juni)
+Dag 43 (JavaScript)
+Dag 44
+Zelfstdie
+Dag 45 (JavaScript)
+Dag 46 (JavaScript)
+Week 13 (5 juni - 9 juni)
+Dag 47 (JavaScript)
+ASP.NET
+Voorkennis:
+C#, .NET Core
+LINQ
+Entity Framework Core (H7)
+Unit testen (MSTest)
+HTML, CSS, JavaScript (meeste van H8)
+Inhoud
+ASP.NET MVC web application
+H1, H3-H6 , Testen verweven in de stof
+H7: alleen injecteren van DbContext
+H8: gedeeltelijk
+H11: alleen nog logging
+H12: Authentication
+ASP.NET Web API (H10)
+API calls
+DTO's (Data Transfer Object)
+Flurl om client te bouwen
+REST, indien tijd over
+NIET: Design (H2)
+NIET: Entity Framework (H7)
+NIET: Blazor (H9)
+NIET: Security (H12), (komt later nog in blok 6)
+NIET: Performance and Communication (H13), tenzij tijd over,
+NIET: Hosting and Deployment (H14), komt later in blok 4 en blok 6
+MoQ basics
+Dag 48 (ASP.NET)
+Dag 49 (ASP.NET)
+Dag 50 (ASP.NET)
+Week 14 (12 juni - 16 juni)
+Dag 51 (ASP.NET)
+Dag 52 (ASP.NET)
+Dag 53-54
+zelfstudie
+voorbereiden op de "Individuele Case"
+Dag 51 (Individuele Case)
+Individuele Case
+Week 15 (19 juni - 23 juni)
+Dag 52-55
+Individuele Case
