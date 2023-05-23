@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .row {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form >
+        <div class="row">
+            <label for="bsn">BSN:</label>
+            <input type="text" id="bsn" pattern="[0-9]{8,9}" placeholder="123456789" name="bsn">
+        </div>
+
+        <div class="row">
+            <label for="identificatie">Identificatie via:</label>
+            <input type="text" id="identificatie" list="identificaties" required>
+        </div>
+
+        <datalist id="identificaties">
+            <option>Paspoort</option>
+            <option>Id-Kaart</option>
+            <option>Visum</option>
+        </datalist>
+
+        <button>Verstuur</button>
+        
+    </form>
+    <button id="wisBrowser">Wis browser Storage</button>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
