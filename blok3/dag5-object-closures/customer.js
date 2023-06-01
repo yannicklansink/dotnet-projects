@@ -17,8 +17,8 @@ function createCustomer(id, name, city, nrOfUnpaidBills = 0) {
         toString() {
             return `id: ${this.id}\nname: ${this.name}\ncity: ${this.city}`;
         },
-        badPlayer(number) {
-            if (nrOfUnpaidBills >= number) {
+        badPlayer(numberObject) {
+            if (nrOfUnpaidBills >= numberObject.number) {
                 return true;
             }
             return false;
@@ -31,4 +31,7 @@ customer.buyStuff();
 customer.buyStuff();
 console.log("customers number of unpaid bills " + customer.nrOfUnpaidBills());
 console.log("customers details: \n" + customer);
-console.log("is the customers bad? " + customer.badPlayer(2))
+console.log("is the customers bad? " + customer.badPlayer({number: 2}))
+
+
+
