@@ -12,21 +12,27 @@ class Phone {
 
 class AppDrawer {
 
-    addressBook; // other class
-    calculator; // other class
     apps = [];
 
     constructor(addressBook, calculator) {
-        this.addressBook = addressBook;
-        this.calculator = calculator;
+        this.addApps(addressBook, calculator);
     }
 
     addApp(app) {
-        // this.apps.push(app);
-        if (app instanceof AddressBook || app instanceof Calculator) {
+        if (app instanceof App) {
             this.apps.push(app);
         } else {
+            console.log(typeof app)
             console.log('Only AddressBook and Calculator apps can be added.');
+        }
+    }
+
+    addApps(...multipleApps) {
+        for (const app of multipleApps) {
+            if (app == undefined) {
+                break;
+            }
+            this.addApp(app);
         }
     }
 
@@ -39,6 +45,9 @@ class App {
     name;
 
     constructor(name) {
+        if (this.constructor == App) {
+            throw new Error("Abstract classes can't be instantiated.");
+        }
         this.name = name;
     }
 
@@ -62,6 +71,11 @@ class Calculator extends App {
     }
 
     divide(a, b) {
+        if (a == undefined || b == undefined) {
+            // throw new Error('Error: You must provide 2 numbers');
+            console.log('Error: Division by zero is not allowed');
+            return null;
+        }
         if(b === 0) {
             console.log('Error: Division by zero is not allowed');
             return null;
@@ -95,6 +109,10 @@ class AddressBook extends App {
         return this.contacts;
     }
 
+    where(filterFunction) {
+        return this.contacts.filter(filterFunction);
+    }
+
 }
 
 class Contact {
@@ -114,7 +132,7 @@ class Contact {
 let contact1 = new Contact("John", "Doe", "123-456-7890");
 console.log("details contact 1: " + contact1);
 
-let contact2 = new Contact("Jane", "Smith", "098-765-4321");
+let contact2 = new Contact("Jane", "Smith", "06-765-4321");
 console.log("details contact 2: " + contact2);
 
 let addressBook = new AddressBook("My Address Book");
@@ -134,20 +152,27 @@ console.log(calculator.subtract(5, 3)); // should print 2
 console.log(calculator.multiply(5, 3)); // should print 15
 console.log(calculator.divide(5, 3)); // should print 1.6666666666666667
 console.log(calculator.divide(5, 0)); // should print error
+console.log(calculator.divide(5)); // should print error
 console.log("");
 
-// TODO: verander de addApp methode, zodat er alleen een AddressBook en Calculator object kunnen worden toegevoegd
-let appDrawer = new AppDrawer(addressBook, calculator);
-let app1 = new App("App 1");
-let app2 = new App("App 2");
-// appDrawer.addApp(app1);
-// appDrawer.addApp(app2);
+
+let appDrawer = new AppDrawer(addressBook);
+// let app1 = new App("App 1");     // can't instantiate a abstract class
+appDrawer.addApp(calculator);
 
 let appList = appDrawer.getApps();
 for (const app of appList) {
-    console.log("app in app list: " + app.name);
+    console.log("App in app list: " + app.name);
 }
 
 
 // let phone = new Phone("Brand", "Type", appDrawer);
 // console.log(phone);
+
+
+// challenge:
+console.log("")
+for (const c of addressBook.where(c => c.phoneNumber.includes('06'))) {
+    console.log(c);
+}
+
