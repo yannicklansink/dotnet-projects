@@ -1,0 +1,88 @@
+/* #template{
+    background-color: rgb(71, 133, 186);
+
+}
+
+h1 {
+    margin-left: 40px;
+}
+
+#userlist li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blanchedalmond;
+    padding: 20px;
+}
+
+#userlist li img {
+    flex-grow: 1;
+}
+
+#userlist li h2 {
+    flex-grow: 1;
+}
+
+#userlist li>* {
+    
+} */
+
+
+body {
+    background-color: #f3f3f3;
+    font-family: Arial, sans-serif;
+}
+h1 {
+    background-color: #131921;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1.5em;
+}
+#userlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+#films {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+#films li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#films .title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+#films .image {
+    max-width: 100%;
+    height: auto;
+}
+@media (min-width: 768px) {
+    #films {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    #films li {
+        flex: 0 0 45%;  /* The items will take up about 45% of the row (excluding margin), so we'll get 2 items per row. */
+        margin-bottom: 20px;
+    }
+}
