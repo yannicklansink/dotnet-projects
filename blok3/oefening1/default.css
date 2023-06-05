@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 20px;
       font-family: 'Trebuchet MS', sans-serif;
       background: black;
       color: silver;
@@ -52,4 +52,13 @@ footer {
 	list-style-type: none;
 	margin: 0;
 	padding: 10px;
+}
+
+#grootinputeveld {
+    float: left;
+    margin-right: 20px;
+}
+
+.form-elements {
+    margin: 20px 20px 20px;
 }
