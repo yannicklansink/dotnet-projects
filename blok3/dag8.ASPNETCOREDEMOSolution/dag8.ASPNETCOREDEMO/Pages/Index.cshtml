@@ -1,0 +1,45 @@
+﻿@page
+@model dag8.ASPNETCOREDEMO.Pages.IndexModel // logica en code
+
+
+<html>
+    <body>
+    Razor Engine - template parser
+
+    <h1>Hello again, world!</h1>
+
+    Naam: @Model.Naam
+
+    @if (Model.Naam.Length > 5)
+    {
+        <p>Whoa, dat is een lange naam</p>
+    }
+    else
+    {
+        <p>Een mooie, korte naam</p>
+    }
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titel</th>
+                <th>Poster</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.Movies)
+            {
+                <tr>
+                    <td>@movie.Id</td>
+                    <td>@movie.Title</td>
+                    <td><img src="@movie.PosterUrl"></td>
+                    <td>@movie.Rating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </body>
+</html>
