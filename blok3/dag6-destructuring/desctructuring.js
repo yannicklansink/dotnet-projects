@@ -94,3 +94,12 @@ console.log(title)
 console.log(trainer)
 console.log(date)
 console.log(city)
+console.log(" ")
+
+// notes
+function chat() {
+    console.log('chatten')
+    console.log(this) // <- global
+}
+chat();
+

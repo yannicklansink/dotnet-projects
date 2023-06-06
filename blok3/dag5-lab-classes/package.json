@@ -1,0 +1,16 @@
+{
+  "name": "lab-classes",
+  "version": "1.0.0",
+  "description": "yannick lansink",
+  "type": "module",
+  "main": "one-big-file.js",
+  "scripts": {
+    "start": "node one-big-file.js",
+    "test": "jasmine"
+  },
+  "author": "yannick lansink",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^5.0.0"
+  }
+}
