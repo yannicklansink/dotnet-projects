@@ -8,7 +8,7 @@ namespace Dag8.oefening1.Repo
 
         private readonly TodoContext _context;
 
-        public TodoRepository(TodoContext context) // Dependency injection dus?
+        public TodoRepository(TodoContext context) 
         {
             _context = context;
         }

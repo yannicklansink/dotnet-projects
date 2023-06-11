@@ -5,7 +5,6 @@ namespace Dag8.oefening1.Models
     public static class ModelBuilderExtensions
     {
 
-        // Waarm werkt dit niet :(
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Todo>().HasData(new Todo

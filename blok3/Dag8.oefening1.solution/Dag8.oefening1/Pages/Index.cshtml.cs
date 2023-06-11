@@ -50,32 +50,6 @@ namespace Dag8.oefening1.Pages
         [BindProperty]
         public Todo NewTodo { get; set; }
 
-        //public void OnGet(string action, int? id)
-        //{
-        //    if (id.HasValue)
-        //    {
-        //        var todo = Todoos.SingleOrDefault(x => x.Id == id);
-        //        if (todo != null)
-        //        {
-        //            Todoos.Remove(todo);
-        //        }
-               
-        //    }
-        //}
-
-        //public IActionResult OnPost()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-
-        //    Todoos.Add(NewTodo);
-        //    return RedirectToPage(); // redirect naar GET-endpoint zodat F5 niet die stomme POST-melding toont
-        //}
-
-
-
         public void OnGet(string? action, int? id)
         {
             TodoList = _todoRepository.GetAll().ToList();
@@ -95,12 +69,14 @@ namespace Dag8.oefening1.Pages
         {
             if (!ModelState.IsValid)
             {
+                TodoList = _todoRepository.GetAll().ToList();
                 return Page();
             }
 
-            TodoList.Add(NewTodo);
+            _todoRepository.Add(NewTodo);
             return RedirectToPage(); // redirect naar GET-endpoint 
         }
+
 
         public void OnPostAdd()
         {

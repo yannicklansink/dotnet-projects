@@ -14,13 +14,14 @@ builder.Services
         o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
     });
 
-builder.Services.AddDbContext<TodoContext>();
-builder.Services.AddTransient<ITodoRepository, TodoRepository>();  // <-  registers a service in the application's dependency injection (DI) container.
-builder.Services.AddSingleton<MyExceptionLoggingMiddleware>();
+builder.Services.AddDbContext<TodoContext>(); // <- This is a method that registers the DbContext service in the DI container. 
+builder.Services.AddTransient<ITodoRepository, TodoRepository>();  // <-  registers a service in the application's DI container.
+builder.Services.AddSingleton<MyExceptionLoggingMiddleware>(); 
 
 
 var app = builder.Build();
 
+// all app commands are middlewares application pipeline.
 app.UseDeveloperExceptionPage();
 app.UseMyExceptionLogger();
 

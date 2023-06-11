@@ -21,7 +21,7 @@ namespace Dag8.oefening1.Dal
             var connectionString = "Server=localhost,1433;Database=dotnet7todoappdb;User=sa;Password=kpHm4Cfc@;TrustServerCertificate=True";
 
             //var envVariableName = _config.GetValue<string>("EnvKeys:TodoDbConn");
-            //var connectionString = Environment.GetEnvironmentVariable(envVariableName);
+            //var connectionString = Environment.GetEnvironmentVariable(envVariableName); // <- werkt niet :(
             optionsBuilder.UseSqlServer(connectionString);
 
 
