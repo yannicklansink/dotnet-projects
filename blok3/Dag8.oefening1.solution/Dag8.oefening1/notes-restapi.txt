@@ -1,0 +1,12 @@
+REST APIs
+
+REST: REpresentational State Transfer 
+- REST maakt de context duidelijk afhankelijk van URL
+
+	/api/users
+	/api/users/12
+
+- Stateless (geen state)
+- Representational
+	- HTTP-request 
+		- headers

@@ -1,0 +1,18 @@
+﻿@model IndexModel
+
+
+<form method="post">
+    <label>Titel: </label>
+    <input asp-for="NewTodo.Title" />
+    <span asp-validation-for="NewTodo.Title"></span>
+
+    <label>Todo description: </label>
+    <input asp-for="NewTodo.Description" />
+    <span asp-validation-for="NewTodo.Description"></span>
+
+    <label>Datum compleet: </label>
+    <input asp-for="NewTodo.UitersteDatum" type="date" />
+    <span asp-validation-for="NewTodo.UitersteDatum"></span>
+
+    <button>Voeg todo toe</button>
+</form>

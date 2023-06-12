@@ -14,21 +14,28 @@ namespace Dag8.oefening1.Dal
             _config = config;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseInMemoryDatabase(databaseName: "dotnet7inmemory");
 
-            var connectionString = "Server=localhost,1433;Database=dotnet7todoappdb;User=sa;Password=kpHm4Cfc@;TrustServerCertificate=True";
+        //}
 
-            //var envVariableName = _config.GetValue<string>("EnvKeys:TodoDbConn");
-            //var connectionString = Environment.GetEnvironmentVariable(envVariableName); // <- werkt niet :(
-            optionsBuilder.UseSqlServer(connectionString);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+            
+
+        //    //var connectionString = "Server=(localdb);Database=dotnet7todoappdb;User=sa;Password=kpHm4Cfc@;TrustServerCertificate=True";
+        //    var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=dotnet7todoappdb;TrustServerCertificate=True; Integrated Security=true";
+        //    //var envVariableName = _config.GetValue<string>("EnvKeys:TodoDbConn");
+        //    //var connectionString = Environment.GetEnvironmentVariable(envVariableName); // <- werkt niet :(
+        //    optionsBuilder.UseSqlServer(connectionString);
 
 
-        }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Seed();
         }
 

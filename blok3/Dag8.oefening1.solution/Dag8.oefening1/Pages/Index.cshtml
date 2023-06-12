@@ -1,57 +1,35 @@
 ﻿@page "/{action?}/{id:int?}" 
-@model Dag8.oefening1.Pages.IndexModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-
-<html>
-    <head>
-        <link href="/styles/default.css" rel="stylesheet"/>
-    </head>
-<body>
-    <h1>Todo App</h1>
+@model IndexModel
 
 
-    <form method="post">
-        <label>Titel: </label>
-        <input asp-for="NewTodo.Title" />
-        <span asp-validation-for="NewTodo.Title"></span>
+<h2>Todo App</h2>
 
-        <label>Todo description: </label>
-        <input asp-for="NewTodo.Description"/>
-        <span asp-validation-for="NewTodo.Description"></span>
+<partial name="_PartialForm" />
 
-        <label>Datum compleet: </label>
-        <input asp-for="NewTodo.UitersteDatum" type="date"/>
-        <span asp-validation-for="NewTodo.UitersteDatum"></span>
-        
-        <button>Voeg todo toe</button>
-    </form>
-
-    <table>
-        <thead>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>UitersteDatum</th>
+            <th>Description</th>
+            <th>Mark finished</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in Model.TodoList)
+        {
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>UitersteDatum</th>
-                <th>Description</th>
-                <th>Mark finished</th>
+                <td>@todo.Id</td>
+                <td>@todo.Title</td>
+                <td>@todo.UitersteDatum</td>
+                <td>@todo.Description</td>
+                <td><a href="/todoVoltooid/@todo.Id">finished</a></td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var todo in Model.TodoList)
-            {
-                <tr>
-                    <td>@todo.Id</td>
-                    <td>@todo.Title</td>
-                    <td>@todo.UitersteDatum</td>
-                    <td>@todo.Description</td>
-                    <td><a href="/todoVoltooid/@todo.Id">finished</a></td>
-                </tr>
 
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
     
 
-    
-</body>
-</html>
+

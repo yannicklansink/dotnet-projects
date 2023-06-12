@@ -16,37 +16,6 @@ namespace Dag8.oefening1.Pages
             _todoRepository = todoRepository;
         }
 
-
-
-
-        //public static List<Todo> Todoos { get; set; } = new List<Todo>()
-        //{
-        //    new Todo
-        //    {
-        //        Id = 4,
-        //        Title = "afwas",
-        //        UitersteDatum = new DateTime(2008, 5, 1, 8, 30, 52),
-        //        Description = "Doe de afwas",
-        //        IsDone = false,
-        //    },
-        //    new Todo
-        //    {
-        //        Id = 6,
-        //        Title = "afwas",
-        //        UitersteDatum = new DateTime(2008, 5, 1, 8, 30, 52),
-        //        Description = "Doe de afwas2",
-        //        IsDone = false,
-        //    },
-        //    new Todo
-        //    {
-        //        Id = 8,
-        //        Title = "afwas",
-        //        UitersteDatum = new DateTime(2008, 5, 1, 8, 30, 52),
-        //        Description = "Doe de afwas3",
-        //        IsDone = false,
-        //    },
-        //};
-
         [BindProperty]
         public Todo NewTodo { get; set; }
 
