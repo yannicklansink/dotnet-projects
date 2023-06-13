@@ -1,0 +1,16 @@
+﻿@page
+@model Dag8.oefening1.Pages.AuthModel
+
+<h1>Auth</h1>
+
+Status: @Model.Status
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Ingelogd als: @User?.Identity?.Name</p>
+}
+
+<a asp-page-handler="Register">Register</a>
+<a asp-page-handler="LogIn">Log In</a>
+<a asp-page-handler="LogOut">Log Out</a>

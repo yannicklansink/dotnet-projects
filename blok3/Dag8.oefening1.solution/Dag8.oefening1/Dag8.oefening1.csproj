@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,6 +26,10 @@
 
   <ItemGroup>
     <None Include="wwwroot\Images\Logo_Belastingdienst.svg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dag8.oefening1.Shared\Dag8.oefening1.Shared.csproj" />
   </ItemGroup>
 
 </Project>

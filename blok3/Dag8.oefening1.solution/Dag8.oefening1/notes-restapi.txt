@@ -10,3 +10,36 @@ REST: REpresentational State Transfer
 - Representational
 	- HTTP-request 
 		- headers
+
+--------------------------------------------------------
+
+Identificatie: wie ben jij?
+Authenticatie: ben jij wie jij zegt dat jij bent
+Authorisatie:  wat mage jij
+
+cookie  -> daar zit een token in
+		   Data van cookie zit in browser
+session -> zo lang jouw browser op staat. Automatisch uitloggen
+		   Data van session zit in server
+
+hasing algo (MD5, SHA1) om user/pass in DB op te slaan
+
+login server (identity provider): Server om in te loggen
+								  Geeft een token terug aan browser
+								  Wordt gestuurd naar de andere server
+
+OAuth: Flow van authenticatie
+
+
+---------------------------------------------------------
+
+Deployment mogelijkheden:
+- handmatig (foutgevoelig, liever CI/CD)
+- wizard
+- docker (best?)
+	- Ontwikkel-Test-Acceptatie-Productie (OTAP)
+- azure
+
+
+
+

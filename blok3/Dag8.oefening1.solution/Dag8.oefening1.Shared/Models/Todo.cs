@@ -1,4 +1,4 @@
-﻿namespace Dag8.oefening1.Models
+﻿namespace Dag8.oefening1.Shared.Models
 {
     public class Todo
     {
@@ -8,7 +8,7 @@
 
         public DateTime UitersteDatum { get; set; }
 
-        
+
         public string Description { get; set; }
 
         public bool IsDone { get; set; }

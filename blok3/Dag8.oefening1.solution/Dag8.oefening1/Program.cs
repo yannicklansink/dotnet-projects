@@ -1,11 +1,15 @@
 using Dag8.oefening1.Dal;
 using Dag8.oefening1.Middleware;
+using Dag8.oefening1.Models;
 using Dag8.oefening1.Repo;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddIdentity<Gebruiker, IdentityRole>().AddEntityFrameworkStores<TodoContext>();
 
 builder.Services
     .AddRazorPages() // registreet functinoaliteit
@@ -44,9 +48,8 @@ context.Database.EnsureCreated();
 app.UseDeveloperExceptionPage();
 //app.UseMyExceptionLogger();
 
-
-
 app.UseStaticFiles(); // wwwroot beschikbaar stellen
+
 
 app.MapControllers(); // controllers beschikbaar stellen
 

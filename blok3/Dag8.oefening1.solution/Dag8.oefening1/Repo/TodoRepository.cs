@@ -1,5 +1,5 @@
 ﻿using Dag8.oefening1.Dal;
-using Dag8.oefening1.Models;
+using Dag8.oefening1.Shared.Models;
 
 namespace Dag8.oefening1.Repo
 {
@@ -17,7 +17,7 @@ namespace Dag8.oefening1.Repo
         {
             _context.Todos.Add(todo);
             _context.SaveChanges(); // genereert Id
-            return todo; // why return?
+            return todo; 
         }
 
         public Todo? Get(int id)
@@ -29,5 +29,38 @@ namespace Dag8.oefening1.Repo
         {
             return _context.Todos.ToList();
         }
+
+        public void Delete(int id)
+        {
+            var todo = _context.Todos.SingleOrDefault(x => x.Id == id);
+
+            if (todo != null)
+            {
+                _context.Todos.Remove(todo);
+                _context.SaveChanges();
+            }
+        }
+
+        public Todo Update(Todo todoToUpdate)
+        {
+            var existingTodo = _context.Todos.SingleOrDefault(x => x.Id == todoToUpdate.Id);
+
+            if (existingTodo != null)
+            {
+                existingTodo.Title = todoToUpdate.Title;
+                existingTodo.UitersteDatum = todoToUpdate.UitersteDatum;
+                existingTodo.Description = todoToUpdate.Description;
+                existingTodo.IsDone = todoToUpdate.IsDone;
+
+                _context.SaveChanges();
+
+                return existingTodo;
+            }
+
+            return null;
+        }
+
+
+
     }
 }

@@ -1,10 +1,12 @@
 ﻿using Dag8.oefening1.Models;
+using Dag8.oefening1.Shared.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
 namespace Dag8.oefening1.Dal
 {
-    public class TodoContext : DbContext
+    public class TodoContext : IdentityDbContext<Gebruiker>
     {
         private readonly IConfiguration _config;
         public DbSet<Todo> Todos { get; set; }
@@ -22,7 +24,7 @@ namespace Dag8.oefening1.Dal
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-            
+
 
         //    //var connectionString = "Server=(localdb);Database=dotnet7todoappdb;User=sa;Password=kpHm4Cfc@;TrustServerCertificate=True";
         //    var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=dotnet7todoappdb;TrustServerCertificate=True; Integrated Security=true";
@@ -33,9 +35,10 @@ namespace Dag8.oefening1.Dal
 
         //}
 
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            base.OnModelCreating(modelBuilder); // keys of Identity tables are mapped in OnModelCreating
             modelBuilder.Seed();
         }
 

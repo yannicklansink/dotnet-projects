@@ -1,4 +1,4 @@
-using Dag8.oefening1.Models;
+using Dag8.oefening1.Shared.Models;
 using Dag8.oefening1.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -19,19 +19,24 @@ namespace Dag8.oefening1.Pages
         [BindProperty]
         public Todo NewTodo { get; set; }
 
-        public void OnGet(string? action, int? id)
+        //public void OnGet(string? action, int? id)
+        //{
+        //    TodoList = _todoRepository.GetAll().ToList();
+
+        //    if (id.HasValue)
+        //    {
+        //        var todo = TodoList.SingleOrDefault(x => x.Id == id);
+        //        if (todo != null)
+        //        {
+        //            TodoList.Remove(todo);
+        //        }
+
+        //    }
+        //}
+
+        public void OnGet()
         {
             TodoList = _todoRepository.GetAll().ToList();
-
-            if (id.HasValue)
-            {
-                var todo = TodoList.SingleOrDefault(x => x.Id == id);
-                if (todo != null)
-                {
-                    TodoList.Remove(todo);
-                }
-
-            }
         }
 
         public IActionResult OnPost()
@@ -46,10 +51,10 @@ namespace Dag8.oefening1.Pages
             return RedirectToPage(); // redirect naar GET-endpoint 
         }
 
-
-        public void OnPostAdd()
+        public IActionResult OnPostDelete(int id)
         {
-            Console.WriteLine("Methode OnPostAdd() uitgevoerd");
+            _todoRepository.Delete(id);
+            return RedirectToPage();
         }
 
     }

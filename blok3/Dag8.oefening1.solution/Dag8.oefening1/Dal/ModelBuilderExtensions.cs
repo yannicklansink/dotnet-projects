@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dag8.oefening1.Shared.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Dag8.oefening1.Models
+namespace Dag8.oefening1.Dal
 {
     public static class ModelBuilderExtensions
     {

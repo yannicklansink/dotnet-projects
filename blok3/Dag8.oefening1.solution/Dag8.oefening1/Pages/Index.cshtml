@@ -24,7 +24,13 @@
                 <td>@todo.Title</td>
                 <td>@todo.UitersteDatum</td>
                 <td>@todo.Description</td>
-                <td><a href="/todoVoltooid/@todo.Id">finished</a></td>
+                <td>
+                    @* asp-page-handler is a 'handler method'. Meaning on form submission, Razor Pages should look for a method named OnPostDelete *@
+                    <form asp-page-handler="Delete" method="post">
+                        <input type="hidden" name="id" value="@todo.Id" />
+                        <input type="submit" value="finished" />
+                    </form>
+                </td>
             </tr>
 
         }
