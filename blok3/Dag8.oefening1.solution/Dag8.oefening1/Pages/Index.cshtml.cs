@@ -2,6 +2,8 @@ using Dag8.oefening1.Shared.Models;
 using Dag8.oefening1.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Hosting;
+using System.Drawing.Drawing2D;
 
 namespace Dag8.oefening1.Pages
 {
@@ -11,32 +13,39 @@ namespace Dag8.oefening1.Pages
         public List<Todo> TodoList { get; set; }
         private readonly ITodoRepository _todoRepository;
 
+        [BindProperty]
+        public Todo NewTodo { get; set; }
+
+        // The SupportsGet property of the[BindProperty] attribute is a boolean
+        // that indicates whether or not the property should also be bound when
+        // the HTTP request is of type GET.By default, [BindProperty] binds properties
+        // only for POST requests, as it is commonly used for form submissions.
+        [BindProperty(SupportsGet = true)]
+        public string SortOrder { get; set; } = "asc";
+        [BindProperty(SupportsGet = true)]
+        public string SortColumn { get; set; } = "Id";
+
         public IndexModel(ITodoRepository todoRepository) // dependency injection again?
         {
             _todoRepository = todoRepository;
         }
 
-        [BindProperty]
-        public Todo NewTodo { get; set; }
-
-        //public void OnGet(string? action, int? id)
-        //{
-        //    TodoList = _todoRepository.GetAll().ToList();
-
-        //    if (id.HasValue)
-        //    {
-        //        var todo = TodoList.SingleOrDefault(x => x.Id == id);
-        //        if (todo != null)
-        //        {
-        //            TodoList.Remove(todo);
-        //        }
-
-        //    }
-        //}
-
         public void OnGet()
         {
-            TodoList = _todoRepository.GetAll().ToList();
+            IEnumerable<Todo> todos = _todoRepository.GetAll();
+
+            // Apply sorting
+            switch (SortColumn)
+            {
+                case "Id":
+                    todos = SortOrder == "asc" ? todos.OrderBy(t => t.Id) : todos.OrderByDescending(t => t.Id);
+                    break;
+                case "Description":
+                    todos = SortOrder == "asc" ? todos.OrderBy(t => t.Description) : todos.OrderByDescending(t => t.Description);
+                    break;
+            }
+
+            TodoList = todos.ToList();
         }
 
         public IActionResult OnPost()

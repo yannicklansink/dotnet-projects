@@ -1,0 +1,57 @@
+﻿@page
+@model SearchModel
+@{
+}
+
+<h2>Search Todo</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+
+            <div class="form-group">
+                <label for="SearchTerm" class="control-label"></label>
+                <input name="SearchTerm" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary"/>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+@if (Model.SearchResults != null)
+{
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Due Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var todo in Model.SearchResults)
+                    {
+                        <tr>
+                            <td>@todo.Id</td>
+                            <td>@todo.Title</td>
+                            <td>@todo.UitersteDatum</td>
+                            <td>@todo.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>

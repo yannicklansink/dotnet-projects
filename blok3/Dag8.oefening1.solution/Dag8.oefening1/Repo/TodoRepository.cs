@@ -60,6 +60,12 @@ namespace Dag8.oefening1.Repo
             return null;
         }
 
+        public IEnumerable<Todo> SearchTodos(string searchTerm)
+        {
+            return _context.Todos
+                .Where(todo => todo.Title.Contains(searchTerm) || todo.Description.Contains(searchTerm))
+                .ToList();
+        }
 
 
     }

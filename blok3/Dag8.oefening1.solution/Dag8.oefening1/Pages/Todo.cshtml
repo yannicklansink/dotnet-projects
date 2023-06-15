@@ -1,0 +1,22 @@
+﻿@page "{id:int}"
+@model TodoModel
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>@Model.NewTodo.Title</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Description:</strong> @Model.NewTodo.Description</p>
+            <p class="card-text">
+                <strong>Due Date:</strong> @Model.NewTodo.UitersteDatum.ToString("yyyy-MM-dd")
+            </p>
+            <p class="card-text">
+                <strong>Status:</strong> @(Model.NewTodo.IsDone ? "Completed" : "Not Completed")
+            </p>
+        </div>
+        <div class="card-footer text-muted">
+            <a class="btn btn-primary" asp-page="/Index" >Back to Todo List</a>
+        </div>
+    </div>
+</div>

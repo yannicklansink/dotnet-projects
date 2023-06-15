@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dag8.oefening1", "Dag8.oefe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dag8.oefening1.Tests", "Dag8.oefening1.Tests\Dag8.oefening1.Tests.csproj", "{817EDEC5-215B-4C8B-A64E-D2E1E1A69001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag8.oefening1.Shared", "Dag8.oefening1.Shared\Dag8.oefening1.Shared.csproj", "{8518E3EA-557D-44EA-AE9D-E3CDFE0296F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dag8.oefening1.Shared", "Dag8.oefening1.Shared\Dag8.oefening1.Shared.csproj", "{8518E3EA-557D-44EA-AE9D-E3CDFE0296F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dag8.oefening1.ApiClient", "Dag8.oefening1.ApiClient\Dag8.oefening1.ApiClient.csproj", "{310E6478-687A-421A-B59C-D60CE8918545}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dag8.oefening1.ApiClient", "Dag8.oefening1.ApiClient\Dag8.oefening1.ApiClient.csproj", "{310E6478-687A-421A-B59C-D60CE8918545}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

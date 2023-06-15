@@ -24,15 +24,11 @@ builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlServer(connectionString);
 
 }); // <- This is a method that registers the DbContext service in the DI container.
-    // 
 
 builder.Services.AddControllers(); 
 
 builder.Services.AddTransient<ITodoRepository, TodoRepository>();  // <-  registers a service in the application's DI container.
-builder.Services.AddSingleton<MyExceptionLoggingMiddleware>(); 
-
-
-
+builder.Services.AddSingleton<MyExceptionLoggingMiddleware>();
 
 var app = builder.Build();
 
@@ -40,8 +36,6 @@ var app = builder.Build();
 using var scope = app.Services.CreateScope();
 using var context = scope.ServiceProvider.GetService<TodoContext>();
 context.Database.EnsureCreated();
-
-
 
 
 // all app commands are middlewares application pipeline.
