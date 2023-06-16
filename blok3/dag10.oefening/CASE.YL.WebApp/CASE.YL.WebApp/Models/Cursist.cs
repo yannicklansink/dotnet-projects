@@ -1,6 +1,6 @@
 ﻿namespace CASE.YL.WebApp.Models
 {
-    public class Cursist
+    public abstract class Cursist
     {
         public int Id { get; set; }
 

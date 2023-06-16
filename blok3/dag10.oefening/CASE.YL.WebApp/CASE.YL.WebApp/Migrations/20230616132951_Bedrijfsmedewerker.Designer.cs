@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CASE.YL.WebApp.Migrations
 {
     [DbContext(typeof(CursusContext))]
-    [Migration("20230616094347_SeedingAdded")]
-    partial class SeedingAdded
+    [Migration("20230616132951_Bedrijfsmedewerker")]
+    partial class Bedrijfsmedewerker
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,10 @@ namespace CASE.YL.WebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Voornaam")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -45,25 +49,9 @@ namespace CASE.YL.WebApp.Migrations
 
                     b.ToTable("Custisten");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Achternaam = "Jan",
-                            Voornaam = "Gert"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Achternaam = "Bogard",
-                            Voornaam = "Pieter"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Achternaam = "Zuid",
-                            Voornaam = "Kelly"
-                        });
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Cursist");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("CASE.YL.WebApp.Models.Cursus", b =>
@@ -87,7 +75,7 @@ namespace CASE.YL.WebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cursusen");
+                    b.ToTable("Cursussen");
 
                     b.HasData(
                         new
@@ -115,16 +103,16 @@ namespace CASE.YL.WebApp.Migrations
 
             modelBuilder.Entity("CASE.YL.WebApp.Models.Cursusinstantie", b =>
                 {
-                    b.Property<int>("CususId")
+                    b.Property<int>("CursusId")
                         .HasColumnType("int");
 
                     b.Property<int>("CursistId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Staartdatum")
+                    b.Property<DateTime>("Startdatum")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CususId", "CursistId");
+                    b.HasKey("CursusId", "CursistId");
 
                     b.HasIndex("CursistId");
 
@@ -133,21 +121,115 @@ namespace CASE.YL.WebApp.Migrations
                     b.HasData(
                         new
                         {
-                            CususId = 1,
+                            CursusId = 1,
                             CursistId = 1,
-                            Staartdatum = new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Startdatum = new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CususId = 2,
+                            CursusId = 2,
                             CursistId = 1,
-                            Staartdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CususId = 3,
+                            CursusId = 3,
                             CursistId = 2,
-                            Staartdatum = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Startdatum = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("CASE.YL.WebApp.Models.Bedrijfsmedewerker", b =>
+                {
+                    b.HasBaseType("CASE.YL.WebApp.Models.Cursist");
+
+                    b.Property<string>("Afdeling")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bedrijfsnaam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Offertenummer")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Bedrijfsmedewerker");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 4,
+                            Achternaam = "Stevens",
+                            Voornaam = "Gerard",
+                            Afdeling = "Inkoop",
+                            Bedrijfsnaam = "Amazon",
+                            Offertenummer = 12345678
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Achternaam = "Kentelier",
+                            Voornaam = "Josoef",
+                            Afdeling = "Goudsmith",
+                            Bedrijfsnaam = "Juwelier Vreriks",
+                            Offertenummer = 48375198
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Achternaam = "Truida",
+                            Voornaam = "Samuel",
+                            Afdeling = "Inkoop",
+                            Bedrijfsnaam = "Apple",
+                            Offertenummer = 47293343
+                        });
+                });
+
+            modelBuilder.Entity("CASE.YL.WebApp.Models.Particulier", b =>
+                {
+                    b.HasBaseType("CASE.YL.WebApp.Models.Cursist");
+
+                    b.Property<int?>("Huisnummer")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Postcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rekeningnummer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Straatnaam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Woonplaats")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Particulier");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Achternaam = "Jan",
+                            Voornaam = "Gert",
+                            Huisnummer = 10,
+                            Postcode = "7573BZ",
+                            Rekeningnummer = "NL04ABNA4938384777",
+                            Straatnaam = "Spoorstraat",
+                            Woonplaats = "Bloemendaal"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Achternaam = "Bogard",
+                            Voornaam = "Pieter"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Achternaam = "Zuid",
+                            Voornaam = "Kelly"
                         });
                 });
 
@@ -161,7 +243,7 @@ namespace CASE.YL.WebApp.Migrations
 
                     b.HasOne("CASE.YL.WebApp.Models.Cursus", "Cursus")
                         .WithMany("Cursusinstanties")
-                        .HasForeignKey("CususId")
+                        .HasForeignKey("CursusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -26,22 +26,31 @@
             </tr>
         </thead>
         <tbody>
+            @{
+                var displayedCursusIds = new HashSet<int>();
+            }
+
             @foreach (var cursus in Model.CursusList)
             {
                 @foreach (var dubbeleCursus in cursus.Cursusinstanties)
                 {
-                    <tr>
-                        <td>@dubbeleCursus.Startdatum.ToString("dd-MM-yyyy")</td>
-                        <td>@cursus.Titel</td>
-                        <td>@cursus.Duur</td>
-                        <td>@cursus.Code</td>
-                        <td>
-                            <a asp-page="/CursusDetail" asp-route-id="@cursus.Id">Cursisten</a>
-                        </td>
+                    if (!displayedCursusIds.Contains(dubbeleCursus.CursusId))
+                    {
+                        displayedCursusIds.Add(dubbeleCursus.CursusId);
 
-                    </tr>
+                        <tr>
+                            <td>@dubbeleCursus.Startdatum.ToString("dd-MM-yyyy")</td>
+                            <td>@cursus.Titel</td>
+                            <td>@cursus.Duur</td>
+                            <td>@cursus.Code</td>
+                            <td>
+                                <a asp-page="/CursusDetail" asp-route-id="@cursus.Id">Cursisten @cursus.Cursusinstanties.Count</a>
+                            </td>
+                        </tr>
+                    }
                 }
             }
+
         </tbody>
     </table>
 </div>

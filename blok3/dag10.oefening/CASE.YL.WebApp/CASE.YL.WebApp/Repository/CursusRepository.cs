@@ -31,7 +31,8 @@ namespace CASE.YL.WebApp.Repository
 
         public IQueryable<Cursus> GetAll()
         {
-            return _context.Cursussen;
+            return _context.Cursussen
+                           .Include(c => c.Cursusinstanties);
         }
 
         public Cursus Update(Cursus cursusToUpdate)

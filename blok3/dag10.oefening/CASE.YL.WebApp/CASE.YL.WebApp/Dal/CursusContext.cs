@@ -14,6 +14,10 @@ namespace CASE.YL.WebApp.Dal
 
         public DbSet<Cursist> Custisten { get; set; }
 
+        public DbSet<Particulier> Particulieren { get; set; }
+
+        public DbSet<Bedrijfsmedewerker> Bedrijfsmedewerkers { get; set; }
+
         public DbSet<Cursusinstantie> Cursusinstanties { get; set; }
 
         public CursusContext(DbContextOptions<CursusContext> options, IConfiguration config) : base(options)
@@ -26,12 +30,12 @@ namespace CASE.YL.WebApp.Dal
             //base.OnModelCreating(modelBuilder); // keys of Identity tables are mapped in OnModelCreating
             
             modelBuilder.Entity<Cursusinstantie>()
-               .HasKey(c => new { c.CususId, c.CursistId });
+               .HasKey(c => new { c.CursusId, c.CursistId });
 
             modelBuilder.Entity<Cursusinstantie>()
                 .HasOne(ci => ci.Cursus)
                 .WithMany(c => c.Cursusinstanties)
-                .HasForeignKey(ci => ci.CususId);
+                .HasForeignKey(ci => ci.CursusId);
 
             modelBuilder.Entity<Cursusinstantie>()
                 .HasOne(ci => ci.Cursist)
