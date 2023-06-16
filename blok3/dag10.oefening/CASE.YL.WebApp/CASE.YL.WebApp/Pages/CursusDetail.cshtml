@@ -1,0 +1,44 @@
+﻿@page
+@model CursusDetailModel
+@{
+    ViewData["Title"] = "Cursus Detail";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="mb-3"> 
+                @*Javascript :)*@
+                <a href="javascript:history.back()" class="btn btn-secondary">Terug naar overzicht</a>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">@Model.Cursus.Titel</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Duur:</strong> @Model.Cursus.Duur dagen</p>
+                    <p><strong>Code:</strong> @Model.Cursus.Code</p>
+
+                    <h3 class="mt-4">Cursisten</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Voornaam</th>
+                                <th>Achternaam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cursist in Model.Cursisten)
+                            {
+                                <tr>
+                                    <td>@cursist.Voornaam</td>
+                                    <td>@cursist.Achternaam</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
