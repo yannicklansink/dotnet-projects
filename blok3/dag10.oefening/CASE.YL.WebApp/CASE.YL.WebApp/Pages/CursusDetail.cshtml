@@ -17,6 +17,16 @@
                     <p><strong>Duur:</strong> @Model.Cursus.Duur dagen</p>
                     <p><strong>Code:</strong> @Model.Cursus.Code</p>
 
+                    @if (Model.Cursus.Cursusinstanties != null && Model.Cursus.Cursusinstanties.Any())
+                    {
+                        <p><strong>Startdatum:</strong> @Model.Cursus.Cursusinstanties.First().Startdatum.ToString("dd-MM-yyyy")</p>
+                    }
+                    else
+                    {
+                        <p><strong>Startdatum:</strong> Not Available</p>
+                    }
+
+
                     <h3 class="card-subtitle mt-4">Cursisten</h3>
                     <table class="table table-striped table-hover">
                         <thead>

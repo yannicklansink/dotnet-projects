@@ -23,6 +23,7 @@
                 <th scope="col">Duur</th>
                 <th scope="col">Code</th>
                 <th scope="col">Aantal</th>
+                <th scope="col">Inschrijven</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,12 @@
                             <td>
                                 <a asp-page="/CursusDetail" asp-route-id="@cursus.Id">Cursisten @cursus.Cursusinstanties.Count</a>
                             </td>
+                            <td>
+                                <a asp-page="/CursistInschrijven" asp-route-CursusId="@cursus.Id" asp-route-startdatum="@dubbeleCursus.Startdatum">Cursist Inschrijven</a>
+                            </td>
+
+
+
                         </tr>
                     }
                 }

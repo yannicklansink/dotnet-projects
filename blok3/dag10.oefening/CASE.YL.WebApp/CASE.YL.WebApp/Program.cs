@@ -20,7 +20,8 @@ namespace CASE.YL.WebApp
 
             });
 
-            builder.Services.AddTransient<ICursusRepository, CursusRepository>(); 
+            builder.Services.AddTransient<ICursusRepository, CursusRepository>();
+            builder.Services.AddTransient<ICursistRepository, CursistRepository>();
 
             var app = builder.Build();
 

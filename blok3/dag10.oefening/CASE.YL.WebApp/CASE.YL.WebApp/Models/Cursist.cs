@@ -10,5 +10,7 @@
 
         // Navigation Property
         public ICollection<Cursusinstantie> Cursusinstanties { get; set; }
+
+        
     }
 }
