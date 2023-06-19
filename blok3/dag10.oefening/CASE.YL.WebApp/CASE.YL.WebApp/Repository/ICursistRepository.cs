@@ -6,5 +6,7 @@ namespace CASE.YL.WebApp.Repository
     {
         Cursist Add(Cursist cursist);
         Cursusinstantie AddCursusinstantie(Cursusinstantie cursusInstantie);
+        IQueryable<Cursist> GetAll();
+        Cursist GetCursistWithCursussen(int id);
     }
 }

@@ -45,10 +45,10 @@
                             <td>@cursus.Duur</td>
                             <td>@cursus.Code</td>
                             <td>
-                                <a asp-page="/CursusDetail" asp-route-id="@cursus.Id">Cursisten @cursus.Cursusinstanties.Count</a>
+                                <a asp-page="/Cursussen/CursusDetail" asp-route-id="@cursus.Id">Cursisten @cursus.Cursusinstanties.Count</a>
                             </td>
                             <td>
-                                <a asp-page="/CursistInschrijven" asp-route-CursusId="@cursus.Id" asp-route-startdatum="@dubbeleCursus.Startdatum">Cursist Inschrijven</a>
+                                <a asp-page="/Cursisten/CursistInschrijven" asp-route-CursusId="@cursus.Id" asp-route-startdatum="@dubbeleCursus.Startdatum">Cursist Inschrijven</a>
                             </td>
 
 

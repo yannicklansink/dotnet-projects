@@ -93,7 +93,7 @@ namespace CASE.YL.WebApp.Pages
 
                 _cursistRepository.AddCursusinstantie(cursusInstantie); // werkt dit nu?
 
-                return RedirectToPage("/Index");
+                return RedirectToPage("/Standard/Index");
             }
 
             return Page();

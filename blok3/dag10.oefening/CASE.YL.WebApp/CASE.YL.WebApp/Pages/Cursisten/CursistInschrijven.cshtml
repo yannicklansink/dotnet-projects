@@ -6,7 +6,8 @@
 
 
 <div class="container mt-4">
-    <form method="post" asp-page="CursistInschrijven">
+    @* of: asp-page="/CursistInschrijven" *@
+    <form method="post" asp-page="/Cursisten/CursistInschrijven">
         <input type="hidden" asp-for="CursusId" />
         <input type="hidden" asp-for="Startdatum" />
         <div class="form-group">

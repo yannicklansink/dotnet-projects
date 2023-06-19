@@ -36,5 +36,18 @@ namespace CASE.YL.WebApp.Repository
             return cursusInstantie;
         }
 
+        public IQueryable<Cursist> GetAll()
+        {
+            return _context.Custisten;
+                           //.Include(c => c.Cursusinstanties);
+        }
+
+        public Cursist? GetCursistWithCursussen(int id)
+        {
+            return _context.Custisten
+                          .Include(c => c.Cursusinstanties)
+                          .ThenInclude(ci => ci.Cursus)
+                          .FirstOrDefault(c => c.Id == id); 
+        }
     }
 }

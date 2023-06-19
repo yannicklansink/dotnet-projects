@@ -1,0 +1,39 @@
+﻿@page
+@model CursistDetailModel
+@{
+    ViewData["Title"] = "Cursist Detail";
+}
+
+<div class="container my-5">
+    <div class="mb-4">
+        <h2 class="display-4">Cursist Detail</h2>
+    </div>
+    <div class="mb-4">
+        <p class="fs-5"><strong>Naam: </strong>@Model.Cursist.Voornaam @Model.Cursist.Achternaam</p>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Start</th>
+                <th scope="col">Duur</th>
+                <th scope="col">Titel</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cursus in Model.CursusList)
+            {
+                @foreach (var cursusInstantie in cursus.Cursusinstanties)
+                {
+                    <tr>
+                        <td>@cursusInstantie.Startdatum.ToString("dd-MM-yyyy")</td>
+                        <td>@cursus.Duur</td>
+                        <td>@cursus.Titel</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="javascript:history.back()" class="btn btn-secondary">Terug naar overzicht</a>
+
+</div>

@@ -9,13 +9,13 @@ namespace CASE.YL.WebApp.Pages
     {
         private readonly ICursusRepository _cursusRepository;
 
+        public Cursus Cursus { get; set; }
+        public List<Cursist> Cursisten { get; set; }
+
         public CursusDetailModel(ICursusRepository cursusRepository)
         {
             _cursusRepository = cursusRepository;
         }
-
-        public Cursus Cursus { get; set; }
-        public List<Cursist> Cursisten { get; set; }
 
         public void OnGet(int id)
         {

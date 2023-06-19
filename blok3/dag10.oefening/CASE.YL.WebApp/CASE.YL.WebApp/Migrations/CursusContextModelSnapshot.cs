@@ -100,56 +100,70 @@ namespace CASE.YL.WebApp.Migrations
 
             modelBuilder.Entity("CASE.YL.WebApp.Models.Cursusinstantie", b =>
                 {
-                    b.Property<int>("CursusId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CursistId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CursistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CursusId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Startdatum")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CursusId", "CursistId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CursistId");
+
+                    b.HasIndex("CursusId");
 
                     b.ToTable("Cursusinstanties");
 
                     b.HasData(
                         new
                         {
-                            CursusId = 1,
+                            Id = 1,
                             CursistId = 1,
+                            CursusId = 1,
                             Startdatum = new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 2,
+                            Id = 2,
                             CursistId = 1,
+                            CursusId = 2,
                             Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 2,
+                            Id = 3,
                             CursistId = 4,
+                            CursusId = 2,
                             Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 2,
+                            Id = 4,
                             CursistId = 5,
-                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
                             CursusId = 2,
-                            CursistId = 6,
                             Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 3,
+                            Id = 5,
+                            CursistId = 6,
+                            CursusId = 2,
+                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
                             CursistId = 2,
+                            CursusId = 3,
                             Startdatum = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -252,9 +266,7 @@ namespace CASE.YL.WebApp.Migrations
                 {
                     b.HasOne("CASE.YL.WebApp.Models.Cursist", "Cursist")
                         .WithMany("Cursusinstanties")
-                        .HasForeignKey("CursistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursistId");
 
                     b.HasOne("CASE.YL.WebApp.Models.Cursus", "Cursus")
                         .WithMany("Cursusinstanties")

@@ -30,7 +30,7 @@ namespace CASE.YL.WebApp.Dal
             //base.OnModelCreating(modelBuilder); // keys of Identity tables are mapped in OnModelCreating
             
             modelBuilder.Entity<Cursusinstantie>()
-               .HasKey(c => new { c.CursusId, c.CursistId });
+               .HasKey(c => c.Id);
 
             modelBuilder.Entity<Cursusinstantie>()
                 .HasOne(ci => ci.Cursus)

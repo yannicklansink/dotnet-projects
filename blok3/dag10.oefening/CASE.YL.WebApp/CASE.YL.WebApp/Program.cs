@@ -1,6 +1,7 @@
 using CASE.YL.WebApp.Dal;
 using CASE.YL.WebApp.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CASE.YL.WebApp
 {
@@ -12,6 +13,11 @@ namespace CASE.YL.WebApp
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Standard/Index", "");
+            });
+
 
             builder.Services.AddDbContext<CursusContext>(options =>
             {

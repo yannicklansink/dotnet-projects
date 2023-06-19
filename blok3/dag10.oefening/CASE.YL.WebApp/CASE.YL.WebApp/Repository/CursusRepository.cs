@@ -47,5 +47,17 @@ namespace CASE.YL.WebApp.Repository
                            .ThenInclude(ci => ci.Cursist) // retrieve Cursist table from CursusInstantie
                            .FirstOrDefault(c => c.Id == id); // retrieve a single Cursus entity that matches the Id, or null if no such entity is found.
         }
+
+        public Cursusinstantie AddInstantie(Cursusinstantie cursusinstantie)
+        {
+            _context.Cursusinstanties.Add(cursusinstantie);
+            _context.SaveChanges();
+            return cursusinstantie;
+        }
+
+        public Cursus GetCursusByTitleAndCode(string titel, string cursuscode)
+        {
+            return _context.Cursussen.FirstOrDefault(c => c.Titel == titel && c.Code == cursuscode);
+        }
     }
 }

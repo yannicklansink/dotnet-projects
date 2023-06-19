@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CASE.YL.WebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class AddedPrimaryKey : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +37,9 @@ namespace CASE.YL.WebApp.Migrations
                     Voornaam = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Achternaam = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Bedrijfsnaam = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Afdeling = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Offertenummer = table.Column<int>(type: "int", nullable: true),
                     Straatnaam = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Huisnummer = table.Column<int>(type: "int", nullable: true),
                     Postcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -52,13 +55,15 @@ namespace CASE.YL.WebApp.Migrations
                 name: "Cursusinstanties",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CursusId = table.Column<int>(type: "int", nullable: false),
-                    CursistId = table.Column<int>(type: "int", nullable: false),
+                    CursistId = table.Column<int>(type: "int", nullable: true),
                     Startdatum = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cursusinstanties", x => new { x.CursusId, x.CursistId });
+                    table.PrimaryKey("PK_Cursusinstanties", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Cursusinstanties_Cursussen_CursusId",
                         column: x => x.CursusId,
@@ -69,8 +74,7 @@ namespace CASE.YL.WebApp.Migrations
                         name: "FK_Cursusinstanties_Custisten_CursistId",
                         column: x => x.CursistId,
                         principalTable: "Custisten",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -94,19 +98,37 @@ namespace CASE.YL.WebApp.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Cursusinstanties",
-                columns: new[] { "CursistId", "CursusId", "Startdatum" },
+                table: "Custisten",
+                columns: new[] { "Id", "Achternaam", "Afdeling", "Bedrijfsnaam", "Discriminator", "Offertenummer", "Voornaam" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 1, 2, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 3, new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 4, "Stevens", "Inkoop", "Amazon", "Bedrijfsmedewerker", 12345678, "Gerard" },
+                    { 5, "Kentelier", "Goudsmith", "Juwelier Vreriks", "Bedrijfsmedewerker", 48375198, "Josoef" },
+                    { 6, "Truida", "Inkoop", "Apple", "Bedrijfsmedewerker", 47293343, "Samuel" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cursusinstanties",
+                columns: new[] { "Id", "CursistId", "CursusId", "Startdatum" },
+                values: new object[,]
+                {
+                    { 1, 1, 1, new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 1, 2, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 4, 2, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 5, 2, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 6, 2, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 2, 3, new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cursusinstanties_CursistId",
                 table: "Cursusinstanties",
                 column: "CursistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cursusinstanties_CursusId",
+                table: "Cursusinstanties",
+                column: "CursusId");
         }
 
         /// <inheritdoc />

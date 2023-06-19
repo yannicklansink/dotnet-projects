@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CASE.YL.WebApp.Migrations
 {
     [DbContext(typeof(CursusContext))]
-    [Migration("20230616124701_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230619092522_AddedPrimaryKey")]
+    partial class AddedPrimaryKey
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,39 +103,118 @@ namespace CASE.YL.WebApp.Migrations
 
             modelBuilder.Entity("CASE.YL.WebApp.Models.Cursusinstantie", b =>
                 {
-                    b.Property<int>("CursusId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("CursistId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CursistId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CursusId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Startdatum")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CursusId", "CursistId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CursistId");
+
+                    b.HasIndex("CursusId");
 
                     b.ToTable("Cursusinstanties");
 
                     b.HasData(
                         new
                         {
-                            CursusId = 1,
+                            Id = 1,
                             CursistId = 1,
+                            CursusId = 1,
                             Startdatum = new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 2,
+                            Id = 2,
                             CursistId = 1,
+                            CursusId = 2,
                             Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CursusId = 3,
+                            Id = 3,
+                            CursistId = 4,
+                            CursusId = 2,
+                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CursistId = 5,
+                            CursusId = 2,
+                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CursistId = 6,
+                            CursusId = 2,
+                            Startdatum = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
                             CursistId = 2,
+                            CursusId = 3,
                             Startdatum = new DateTime(2023, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("CASE.YL.WebApp.Models.Bedrijfsmedewerker", b =>
+                {
+                    b.HasBaseType("CASE.YL.WebApp.Models.Cursist");
+
+                    b.Property<string>("Afdeling")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bedrijfsnaam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Offertenummer")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Bedrijfsmedewerker");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 4,
+                            Achternaam = "Stevens",
+                            Voornaam = "Gerard",
+                            Afdeling = "Inkoop",
+                            Bedrijfsnaam = "Amazon",
+                            Offertenummer = 12345678
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Achternaam = "Kentelier",
+                            Voornaam = "Josoef",
+                            Afdeling = "Goudsmith",
+                            Bedrijfsnaam = "Juwelier Vreriks",
+                            Offertenummer = 48375198
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Achternaam = "Truida",
+                            Voornaam = "Samuel",
+                            Afdeling = "Inkoop",
+                            Bedrijfsnaam = "Apple",
+                            Offertenummer = 47293343
                         });
                 });
 
@@ -190,9 +269,7 @@ namespace CASE.YL.WebApp.Migrations
                 {
                     b.HasOne("CASE.YL.WebApp.Models.Cursist", "Cursist")
                         .WithMany("Cursusinstanties")
-                        .HasForeignKey("CursistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursistId");
 
                     b.HasOne("CASE.YL.WebApp.Models.Cursus", "Cursus")
                         .WithMany("Cursusinstanties")

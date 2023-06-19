@@ -6,7 +6,7 @@ namespace Dag8.oefening1.Dal
 {
     public static class ModelBuilderExtensions
     {
-
+        
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cursus>().HasData(new Cursus
@@ -85,36 +85,42 @@ namespace Dag8.oefening1.Dal
 
             modelBuilder.Entity<Cursusinstantie>().HasData(new Cursusinstantie
             {
+                Id = 1,
                 CursusId = 1,
                 CursistId = 1,
                 Startdatum = new DateTime(2023, 9, 2),
             },
             new Cursusinstantie
             {
+                Id = 2,
                 CursusId = 2,
                 CursistId = 1,
                 Startdatum = new DateTime(2023, 8, 12),
             },
             new Cursusinstantie
             {
+                Id = 3,
                 CursusId = 2,
                 CursistId = 4,
                 Startdatum = new DateTime(2023, 8, 12),
             },
             new Cursusinstantie
             {
+                Id = 4,
                 CursusId = 2,
                 CursistId = 5,
                 Startdatum = new DateTime(2023, 8, 12),
             },
             new Cursusinstantie
             {
+                Id = 5,
                 CursusId = 2,
                 CursistId = 6,
                 Startdatum = new DateTime(2023, 8, 12),
             },
             new Cursusinstantie
             {
+                Id = 6,
                 CursusId = 3,
                 CursistId = 2,
                 Startdatum = new DateTime(2023, 11, 22),
