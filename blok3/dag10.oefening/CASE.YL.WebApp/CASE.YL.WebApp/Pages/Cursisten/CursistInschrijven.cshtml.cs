@@ -11,8 +11,7 @@ namespace CASE.YL.WebApp.Pages
 
         private readonly ICursistRepository _cursistRepository;
 
-        //[BindProperty]
-        //public Cursist AddCursist { get; set; }
+        public bool IsRegistrationSuccessful { get; set; }
 
         [BindProperty]
         public string Voornaam { get; set; }
@@ -93,7 +92,9 @@ namespace CASE.YL.WebApp.Pages
 
                 _cursistRepository.AddCursusinstantie(cursusInstantie); // werkt dit nu?
 
-                return RedirectToPage("/Standard/Index");
+                IsRegistrationSuccessful = true;
+                //return RedirectToPage("/Standard/Index");
+                return Page();
             }
 
             return Page();

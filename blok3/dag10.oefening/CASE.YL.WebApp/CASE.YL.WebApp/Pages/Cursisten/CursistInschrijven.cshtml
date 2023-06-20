@@ -19,16 +19,18 @@
             <label for="achternaam">Achternaam</label>
             <input type="text" class="form-control" id="achternaam" name="Achternaam">
         </div>
+        <div class="mb-3 mt-3">
+            <div class="form-check form-check-inline">
+                <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="particulier" value="particulier" onchange="this.form.submit()">
+                <label class="form-check-label" for="particulier">Particulier</label>
+            </div>
 
-        <div class="form-check form-check-inline">
-            <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="particulier" value="particulier" onchange="this.form.submit()">
-            <label class="form-check-label" for="particulier">Particulier</label>
+            <div class="form-check form-check-inline">
+                <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="medewerkerBedrijf" value="medewerkerBedrijf" onchange="this.form.submit()">
+                <label class="form-check-label" for="medewerkerBedrijf">MedewerkerBedrijf</label>
+            </div>
         </div>
-
-        <div class="form-check form-check-inline">
-            <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="medewerkerBedrijf" value="medewerkerBedrijf" onchange="this.form.submit()">
-            <label class="form-check-label" for="medewerkerBedrijf">MedewerkerBedrijf</label>
-        </div>
+        
 
         @if (Model.Type == "particulier")
         {
@@ -71,10 +73,19 @@
 
         @if (!string.IsNullOrEmpty(Model.Type))
         {
-            <div>
+            <div class="mt-3 mb3">
                 <button type="submit" class="btn btn-primary" name="action" value="add">Add</button>
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/';">Cancel</button>
             </div>
         }
+
+        @if (Model.IsRegistrationSuccessful)
+        {
+            <div class="alert alert-success mt-3" role="alert">
+                <h6>Registratie gelukt</h6>
+            </div>
+        }
     </form>
+    
+
 </div>

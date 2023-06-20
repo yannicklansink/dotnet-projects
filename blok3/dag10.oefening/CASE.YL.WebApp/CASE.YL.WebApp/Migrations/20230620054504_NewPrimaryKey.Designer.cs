@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CASE.YL.WebApp.Migrations
 {
     [DbContext(typeof(CursusContext))]
-    [Migration("20230619092522_AddedPrimaryKey")]
-    partial class AddedPrimaryKey
+    [Migration("20230620054504_NewPrimaryKey")]
+    partial class NewPrimaryKey
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

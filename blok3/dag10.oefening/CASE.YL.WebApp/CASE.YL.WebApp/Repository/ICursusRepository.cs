@@ -13,5 +13,6 @@ namespace CASE.YL.WebApp.Repository
 
         public Cursusinstantie AddInstantie(Cursusinstantie cursusinstantie);
         Cursus GetCursusByTitleAndCode(string titel, string cursuscode);
+        Cursusinstantie GetCursusinstantieByCurusIdAndCursistIdAndStartdatum(Cursus cursus, Cursist cursist, DateTime startDatum);
     }
 }

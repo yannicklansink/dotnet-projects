@@ -59,5 +59,17 @@ namespace CASE.YL.WebApp.Repository
         {
             return _context.Cursussen.FirstOrDefault(c => c.Titel == titel && c.Code == cursuscode);
         }
+
+        public Cursusinstantie? GetCursusinstantieByCurusIdAndCursistIdAndStartdatum(Cursus cursus, Cursist cursist, DateTime startDatum)
+        {
+            if (cursist == null)
+            {
+                return _context.Cursusinstanties.FirstOrDefault(ci => ci.CursusId == cursus.Id && 
+                                                                ci.Startdatum == startDatum);
+            }
+            return _context.Cursusinstanties.FirstOrDefault(ci => ci.CursusId == cursus.Id && 
+                                                            ci.CursistId == cursist.Id && 
+                                                            ci.Startdatum == startDatum);
+        }
     }
 }

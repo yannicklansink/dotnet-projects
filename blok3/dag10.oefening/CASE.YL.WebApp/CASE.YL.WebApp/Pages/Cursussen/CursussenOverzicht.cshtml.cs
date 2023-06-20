@@ -14,25 +14,6 @@ namespace CASE.YL.WebApp.Pages
         public List<Cursus> CursusList { get; set; }
 
         private readonly ICursusRepository _cursusRepository;
-        //public int WeekNumber
-        //{
-        //    get { return WeekNumber; }
-        //    set
-        //    {
-        //        WeekNumber = value;
-        //        if (value > 52)
-        //        {
-        //            WeekNumber = 0;
-        //            Year++;
-        //        }
-        //        else if (value <= 0)
-        //        {
-        //            WeekNumber = 52;
-        //            Year--;
-        //        }
-
-        //    }
-        //}
         public int WeekNumber { get; set; }
         public int Year { get; set; }
 
@@ -56,8 +37,8 @@ namespace CASE.YL.WebApp.Pages
             {
                 WeekNumber = weekNumber;
                 Year = year;
+                CheckWeekAndYearValues();
             }
-            CheckWeekAndYearValues();
 
             var startDate = new DateTime(Year, 1, 1).AddDays((WeekNumber - 1) * 7);
             var endDate = startDate.AddDays(7);

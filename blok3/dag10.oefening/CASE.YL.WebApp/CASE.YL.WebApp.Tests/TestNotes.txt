@@ -1,0 +1,5 @@
+Methode naming convention:
+	- MethodName_StateUnderTest_ExpectedBehavior
+
+
+FluentAssertions: allows you to chain assertions in a way that resembles natural language
