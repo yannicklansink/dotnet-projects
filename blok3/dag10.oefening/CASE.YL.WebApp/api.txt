@@ -1,0 +1,38 @@
+
+### Get all cursisten
+GET https://localhost:7243/api/v1/cursisten HTTP/1.1
+
+
+###
+
+### Get a single cursist by ID
+GET https://localhost:7243/api/v1/cursisten/1 HTTP/1.1
+
+###
+
+### Create a new particulier
+POST https://localhost:7243/api/v1/cursisten HTTP/1.1
+Content-Type: application/json
+
+{
+    "voornaam": "Api",
+    "achternaam": "post"
+}
+
+###
+
+### Update a particulier by ID
+PUT https://localhost:7243/api/v1/cursisten/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "voornaam": "John Updated",
+    "achternaam": "Updated achternaam"
+}
+
+###
+
+### Delete a cursist by ID
+DELETE https://localhost:7243/api/v1/cursisten/1 HTTP/1.1
+

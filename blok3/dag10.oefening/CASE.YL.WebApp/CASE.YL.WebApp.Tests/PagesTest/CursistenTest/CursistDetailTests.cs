@@ -15,10 +15,14 @@ namespace CASE.YL.WebApp.Tests.PagesTest.CursistenTest
     {
 
         [Fact]
-        public void OnGet_ValidId_ShouldPopulateCursistAndCursusList()
+        public void OnGet_ValidId_ShouldCreateCursistAndCursusList()
         {
             // Arrange
             var mockCursistRepository = new Mock<ICursistRepository>();
+
+            //  .Object gives you the instance of the mock that implements
+            //  ICursistRepository which can be passed around as if it
+            //  were a real object
             var cursistDetailModel = new CursistDetailModel(mockCursistRepository.Object);
             var cursist = new Particulier
             {
@@ -60,5 +64,6 @@ namespace CASE.YL.WebApp.Tests.PagesTest.CursistenTest
             cursistDetailModel.Cursist.Should().BeNull();
             cursistDetailModel.CursusList.Should().BeNull();
         }
+
     }
 }

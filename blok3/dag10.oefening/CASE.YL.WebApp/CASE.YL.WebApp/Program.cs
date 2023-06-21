@@ -2,6 +2,7 @@ using CASE.YL.WebApp.Dal;
 using CASE.YL.WebApp.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
 
 namespace CASE.YL.WebApp
 {
@@ -26,6 +27,15 @@ namespace CASE.YL.WebApp
 
             });
 
+            //builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                // important for handling scenarios where you have circular references in your object graphs.
+                // Dit is NIET de manier om dit op te lossen. 
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
+
             builder.Services.AddTransient<ICursusRepository, CursusRepository>();
             builder.Services.AddTransient<ICursistRepository, CursistRepository>();
 
@@ -47,6 +57,8 @@ namespace CASE.YL.WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.MapControllers();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -55,5 +67,7 @@ namespace CASE.YL.WebApp
 
             app.Run();
         }
+
+
     }
 }

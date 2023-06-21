@@ -1,5 +1,18 @@
 Methode naming convention:
-	- MethodName_StateUnderTest_ExpectedBehavior
+	MethodName_StateUnderTest_ExpectedBehavior
 
 
-FluentAssertions: allows you to chain assertions in a way that resembles natural language
+
+FluentAssertions: 
+	Allows you to chain assertions in a way that resembles natural language.
+	Better error messages
+
+Moq:
+	Is a library that allows you to create mock objects of interfaces or classes. 
+	This is useful in unit testing when you want to isolate the code you are 
+	testing and not deal with the actual implementations of dependencies.
+
+
+
+
+

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CASE.YL.WebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class NewPrimaryKey : Migration
+    public partial class UpdateCursusInstantieForeignKey : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

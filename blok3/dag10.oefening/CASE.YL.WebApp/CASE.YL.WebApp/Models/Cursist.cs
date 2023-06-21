@@ -9,7 +9,7 @@
         public string Achternaam { get; set; }
 
         // Navigation Property
-        public ICollection<Cursusinstantie> Cursusinstanties { get; set; }
+        public ICollection<Cursusinstantie>? Cursusinstanties { get; set; }
 
         
     }
