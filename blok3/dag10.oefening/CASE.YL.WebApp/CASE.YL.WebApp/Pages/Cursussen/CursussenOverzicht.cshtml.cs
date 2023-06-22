@@ -25,9 +25,11 @@ namespace CASE.YL.WebApp.Pages
 
         public void OnGet(int weekNumber, int year)
         {
+            Console.WriteLine("test1");
             // If weekNumber and year are not provided, use the current week and year.
             if (weekNumber <= 0 && year <= 0)
             {
+                Console.WriteLine("test2");
                 var currentDate = DateTime.Now;
                 var dayOfWeek = (int)currentDate.DayOfWeek;
                 var startOfWeek = currentDate.AddDays(-dayOfWeek).Date;

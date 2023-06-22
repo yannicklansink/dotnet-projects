@@ -14,20 +14,6 @@ namespace CASE.YL.WebApp.Repository
             _context = context;
         }
 
-        public Cursus Add(Cursus cursus)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Cursus? Get(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IQueryable<Cursus> GetAll()
         {
@@ -35,9 +21,27 @@ namespace CASE.YL.WebApp.Repository
                            .Include(c => c.Cursusinstanties);
         }
 
-        public Cursus Update(Cursus cursusToUpdate)
+        public bool Update(int id, Cursus cursusToUpdate)
         {
-            throw new NotImplementedException();
+            if (id != cursusToUpdate.Id)
+            {
+                return false;
+            }
+
+            // Hierdoor weet de dbcontext dat het cursusToUpdate object moet
+            // onthouden en opslaan als modified. Zodat later met savechanges 
+            // het kan worden opgeslaan in de dbcontext.
+            _context.Entry(cursusToUpdate).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Something went wrong with saving changes");
+            }
         }
 
         public Cursus? GetCursusWithCursisten(int id)
@@ -70,6 +74,32 @@ namespace CASE.YL.WebApp.Repository
             return _context.Cursusinstanties.FirstOrDefault(ci => ci.CursusId == cursus.Id && 
                                                             ci.CursistId == cursist.Id && 
                                                             ci.Startdatum == startDatum);
+        }
+
+        public Cursus GetCursusById(int id)
+        {
+            return _context.Cursussen.FirstOrDefault(c => c.Id == id);
+        }
+
+        public Cursus Add(Cursus cursus)
+        {
+            _context.Cursussen.Add(cursus);
+            _context.SaveChanges();
+            return cursus;
+        }
+
+        public bool DeleteCursus(int id)
+        {
+            Cursus cursusToDelete = GetCursusById(id);
+
+            if (cursusToDelete == null)
+            {
+                return false;
+            }
+
+            _context.Cursussen.Remove(cursusToDelete);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

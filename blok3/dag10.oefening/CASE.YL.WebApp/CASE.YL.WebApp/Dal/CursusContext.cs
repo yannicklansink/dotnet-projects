@@ -41,6 +41,12 @@ namespace CASE.YL.WebApp.Dal
                 .HasOne(ci => ci.Cursist)
                 .WithMany(c => c.Cursusinstanties)
                 .HasForeignKey(ci => ci.CursistId);
+                //.OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Cursus>()
+                .HasMany<Cursusinstantie>(ci => ci.Cursusinstanties)
+                .WithOne(c => c.Cursus)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Seed();
         }

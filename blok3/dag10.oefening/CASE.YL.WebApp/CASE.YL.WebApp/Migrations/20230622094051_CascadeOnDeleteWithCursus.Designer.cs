@@ -4,6 +4,7 @@ using CASE.YL.WebApp.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CASE.YL.WebApp.Migrations
 {
     [DbContext(typeof(CursusContext))]
-    partial class CursusContextModelSnapshot : ModelSnapshot
+    [Migration("20230622094051_CascadeOnDeleteWithCursus")]
+    partial class CascadeOnDeleteWithCursus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -44,15 +44,16 @@ namespace CASE.YL.WebApp.Pages.Cursussen
                 return Page();
             }
 
-            // StreamReader object is disposed of once it goes out of the using block's scope.
-            // This ensures that any file handles associated with the StreamReader object are released properly.
+            // Create an instance of StreamReader to read from a file.
+            // The using statement also closes the StreamReader.
             using (var reader = new StreamReader(FileUpload.OpenReadStream()))
             {
                 string fileContent = await reader.ReadToEndAsync();
-                // \r\n == new line character
-                string[] entries = fileContent.Split(new string[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                foreach (var record in entries)
+                // \r\n == new line character
+                string[] records = fileContent.Split(new string[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var record in records)
                 {
                     
                     string[] fields = record.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);

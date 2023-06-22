@@ -47,14 +47,13 @@ namespace CASE.YL.WebApp.Pages
             if (action == "add" && ModelState.IsValid)
             {
                 Cursist cursist; // abstract class
-                //var cursistType = Request.Form["userType"]; // can only be particulier or medewerkerbedrijf
-                //Console.WriteLine("cusisttype: " + cursistType);
+                
                 if (Type == "particulier")
                 {
                     cursist = new Particulier
                     {
-                        Voornaam = Request.Form["voornaam"],
-                        Achternaam = Request.Form["achternaam"],
+                        Voornaam = this.Voornaam,
+                        Achternaam = this.Achternaam,
                         Straatnaam = Request.Form["straatnaam"],
                         Huisnummer = int.Parse(Request.Form["huisnummer"]),
                         Postcode = Request.Form["postcode"],
@@ -66,8 +65,8 @@ namespace CASE.YL.WebApp.Pages
                 {
                     cursist = new Bedrijfsmedewerker
                     {
-                        Voornaam = Request.Form["voornaam"],
-                        Achternaam = Request.Form["achternaam"],
+                        Voornaam = this.Voornaam,
+                        Achternaam = this.Achternaam,
                         Bedrijfsnaam = Request.Form["bedrijfsnaam"],
                         Afdeling = Request.Form["afdeling"],
                         Offertenummer = int.Parse(Request.Form["offertenummer"]),
@@ -75,7 +74,6 @@ namespace CASE.YL.WebApp.Pages
                 }
                 else
                 {
-                    Console.WriteLine("else ....");
                     return Page();
                 }
 
@@ -90,11 +88,10 @@ namespace CASE.YL.WebApp.Pages
                     Startdatum = this.Startdatum, 
                 };
 
-                _cursistRepository.AddCursusinstantie(cursusInstantie); // werkt dit nu?
+                _cursistRepository.AddCursusinstantie(cursusInstantie); // werkt dit nu? 
 
                 IsRegistrationSuccessful = true;
-                //return RedirectToPage("/Standard/Index");
-                return Page();
+                return Page(); 
             }
 
             return Page();

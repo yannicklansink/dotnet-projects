@@ -1,4 +1,6 @@
-﻿namespace CASE.YL.WebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CASE.YL.WebApp.Models
 {
     public class Cursus
     {
@@ -10,7 +12,7 @@
 
         public string Code { get; set; }
 
-        public ICollection<Cursusinstantie> Cursusinstanties { get; set; }
+        public ICollection<Cursusinstantie>? Cursusinstanties { get; set; }
 
 
     }

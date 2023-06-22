@@ -57,7 +57,7 @@ namespace CASE.YL.WebApp.ApiController
         {
             if (id != particulier.Id)
             {
-                return BadRequest();
+                return BadRequest("id and particulier are not the same");
             }
 
             bool result = _cursistRepository.UpdateCursist(id, particulier);

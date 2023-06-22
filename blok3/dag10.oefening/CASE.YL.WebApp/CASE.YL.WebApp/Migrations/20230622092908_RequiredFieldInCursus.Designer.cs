@@ -4,6 +4,7 @@ using CASE.YL.WebApp.Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CASE.YL.WebApp.Migrations
 {
     [DbContext(typeof(CursusContext))]
-    partial class CursusContextModelSnapshot : ModelSnapshot
+    [Migration("20230622092908_RequiredFieldInCursus")]
+    partial class RequiredFieldInCursus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,8 +269,7 @@ namespace CASE.YL.WebApp.Migrations
                 {
                     b.HasOne("CASE.YL.WebApp.Models.Cursist", "Cursist")
                         .WithMany("Cursusinstanties")
-                        .HasForeignKey("CursistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CursistId");
 
                     b.HasOne("CASE.YL.WebApp.Models.Cursus", "Cursus")
                         .WithMany("Cursusinstanties")
