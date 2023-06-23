@@ -18,13 +18,6 @@ namespace CASE.YL.WebApp
             builder.Services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Standard/Index", "");
-
-                //var currentDate = DateTime.Now;
-                //var dayOfWeek = (int)currentDate.DayOfWeek;
-                //var startOfWeek = currentDate.AddDays(-dayOfWeek).Date;
-                //var WeekNumber = CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(currentDate, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
-                //var Year = currentDate.Year;
-                //options.Conventions.AddPageRoute($"/Cursussen/CursussenOverzicht", "/Cursussen/CursussenOverzicht/{WeekNumber}/{Year}");
             });
 
 
@@ -35,11 +28,8 @@ namespace CASE.YL.WebApp
 
             });
 
-            //builder.Services.AddControllers();
             builder.Services.AddControllers()
                 // important for handling scenarios where you have circular references in your object graphs.
-                // Dit is NIET de manier om dit op te lossen.
-                // zorgt voor ieder uniek object krijgt een dollar ID
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
