@@ -1,0 +1,9 @@
+services:
+  webapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    image: coolapp2:latest
+
