@@ -1,0 +1,17 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- '*'
+
+pool:
+  vmImage: ubuntu-latest
+steps:
+- script: dotnet restore
+  workingDirectory: 'CASE.YL.WEBAPP'
+- script: dotnet build
+  workingDirectory: 'CASE.YL.WEBAPP'
+- script: dotnet test
+  workingDirectory: 'CASE.YL.WEBAPP'
