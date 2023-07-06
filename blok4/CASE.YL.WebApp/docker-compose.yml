@@ -9,7 +9,8 @@ services:
       - 3000:80
     image: kcbdregistry.azurecr.io/yannick/cursus:latest
     environment:
-      ConnectionStrings__TodoContext: 'Server=db; Database=dotnet7cursus; User=sa; Password=${DB_PASSWORD}; TrustServerCertificate=true;'
+      ConnectionStrings__CursusContext: 'Server=db; Database=dotnet7cursus; User=sa; Password=${DB_PASSWORD}; TrustServerCertificate=true;'
+      Kestrel__Endpoints__Http__Url: 'http://+:80'
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:

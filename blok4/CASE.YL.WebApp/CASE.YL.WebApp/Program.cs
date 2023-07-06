@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using Microsoft.Data.SqlClient;
 
 namespace CASE.YL.WebApp
 {
@@ -44,7 +45,31 @@ namespace CASE.YL.WebApp
             // setup localdb 
             using var scope = app.Services.CreateScope();
             using var context = scope.ServiceProvider.GetService<CursusContext>();
-            context.Database.EnsureCreated();
+
+
+            var attempts = 5;
+            while (attempts > 0)
+            {
+                try
+                {
+                    context.Database.Migrate();
+                    attempts = 0;
+                }
+                catch (SqlException sql)
+                {
+                    attempts--;
+                    if (attempts > 0)
+                    {
+                        Console.WriteLine($"Unsure created failed, retrying {attempts} time(s) in 5s.");
+                        Thread.Sleep(5000);
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
