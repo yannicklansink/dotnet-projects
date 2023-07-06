@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      context: ./CASE.YL.WebApp
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    image: todo-app:latest
+    environment:
+      ConnectionStrings__TodoContext: 'Server=db; Database=dotnet7cursus; User=sa; Password=${DB_PASSWORD}; TrustServerCertificate=true;'
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: Y

@@ -23,8 +23,9 @@ namespace CASE.YL.WebApp
 
             builder.Services.AddDbContext<CursusContext>(options =>
             {
-                var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=dotnet7cursus;TrustServerCertificate=True; Integrated Security=true";
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(builder.Configuration.GetConnectionString("CursusContext"));
+                //var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=dotnet7cursus;TrustServerCertificate=True; Integrated Security=true";
+                //options.UseSqlServer(connectionString);
 
             });
 

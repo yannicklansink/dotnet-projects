@@ -27,3 +27,4 @@ stages:
     - script: dotnet test
       workingDirectory: $(workingDir)
       displayName: 'Test'
+
