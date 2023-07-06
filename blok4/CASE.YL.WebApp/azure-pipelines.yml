@@ -10,11 +10,11 @@ pool:
   vmImage: ubuntu-latest
 steps:
 - script: dotnet restore
-  workingDirectory: 'C:\WORK\YannickLansink\blok4\CASE.YL.WebApp'
+  workingDirectory: 'blok4/CASE.YL.WebApp'
   displayName: 'Restore'
 - script: dotnet build
-  workingDirectory: 'C:\WORK\YannickLansink\blok4\CASE.YL.WebApp'
+  workingDirectory: 'blok4/CASE.YL.WebApp'
   displayName: 'Build'
 - script: dotnet test
-  workingDirectory: 'C:\WORK\YannickLansink\blok4\CASE.YL.WebApp'
+  workingDirectory: 'blok4/CASE.YL.WebApp'
   displayName: 'Test'
