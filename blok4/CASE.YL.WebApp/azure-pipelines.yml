@@ -6,6 +6,10 @@
 trigger:
 - '*'
 
+variables:
+- name: 'workingDir'
+  value: 'blok4/CASE.YL.WebApp'
+
 pool: 
   vmImage: ubuntu-latest
 
@@ -15,11 +19,11 @@ stages:
   - job: Build
     steps:
     - script: dotnet restore
-      workingDirectory: 'blok4/CASE.YL.WebApp'
+      workingDirectory: $(workingDir)
       displayName: 'Restore'
     - script: dotnet build
-      workingDirectory: 'blok4/CASE.YL.WebApp'
+      workingDirectory: $(workingDir)
       displayName: 'Build'
     - script: dotnet test
-      workingDirectory: 'blok4/CASE.YL.WebApp'
+      workingDirectory: $(workingDir)
       displayName: 'Test'
