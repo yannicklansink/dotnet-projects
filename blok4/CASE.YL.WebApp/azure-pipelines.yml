@@ -6,7 +6,7 @@
 trigger:
 - '*'
 
-pool:
+pool: # Pool where jobs in this pipeline will run unless otherwise specified.	
   vmImage: ubuntu-latest
 steps:
 - script: dotnet restore
