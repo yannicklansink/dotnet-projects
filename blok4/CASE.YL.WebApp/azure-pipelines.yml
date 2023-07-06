@@ -37,7 +37,9 @@ stages:
     - script: echo $(DOCKER_PASSWORD) | docker login kcbdregistry.azurecr.io --username $(DOCKER_USERNAME) --password-stdin
       displayName: '🔑 Docker login'
       workingDirectory: $(workingDir)
+      condition: in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master')
     - script: docker compose push
       displayName: '🚀 Docker push'
       workingDirectory: $(workingDir)    
+      condition: in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master')
 
