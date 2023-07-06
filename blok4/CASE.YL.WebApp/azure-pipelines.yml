@@ -9,13 +9,13 @@ trigger:
 pool: # Pool where jobs in this pipeline will run unless otherwise specified.	
   vmImage: ubuntu-latest
 stages:
-steps:
-- script: dotnet restore
-	workingDirectory: 'blok4/CASE.YL.WebApp'
-	displayName: 'Restore'
-- script: dotnet build
-	workingDirectory: 'blok4/CASE.YL.WebApp'
-	displayName: 'Build'
-- script: dotnet test
-	workingDirectory: 'blok4/CASE.YL.WebApp'
-	displayName: 'Test'
+  steps:
+  - script: dotnet restore
+	  workingDirectory: 'blok4/CASE.YL.WebApp'
+	  displayName: 'Restore'
+  - script: dotnet build
+	  workingDirectory: 'blok4/CASE.YL.WebApp'
+	  displayName: 'Build'
+  - script: dotnet test
+	  workingDirectory: 'blok4/CASE.YL.WebApp'
+	  displayName: 'Test'
