@@ -37,7 +37,7 @@ stages:
     - script: echo $(DOCKER_PASSWORD) | docker login kcbdregistry.azurecr.io --username $(DOCKER_USERNAME) --password-stdin
       displayName: '🔑 Docker login'
       workingDirectory: $(workingDir)
-      condition: in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master')
+      condition: in(variables['Build.SourceBranch'], 'refs/heads/main', 'refs/heads/master') #zodat dit script niet wordt uitgevoerd wanneer er een pull request plaatsvind.
     - script: docker compose push
       displayName: '🚀 Docker push'
       workingDirectory: $(workingDir)    
