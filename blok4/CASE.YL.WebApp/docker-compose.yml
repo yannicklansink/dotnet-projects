@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:80
-    image: todo-app:latest
+    image: kcbdregistry.azurecr.io/yannick/cursus:latest
     environment:
       ConnectionStrings__TodoContext: 'Server=db; Database=dotnet7cursus; User=sa; Password=${DB_PASSWORD}; TrustServerCertificate=true;'
   db:
