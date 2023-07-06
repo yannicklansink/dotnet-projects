@@ -1,4 +1,4 @@
-# Starter pipeline
+﻿# Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -27,4 +27,17 @@ stages:
     - script: dotnet test
       workingDirectory: $(workingDir)
       displayName: 'Test'
+      # added:
+    - script: dotnet publish --configuration Release
+      displayName: '📢 publish'
+      workingDirectory: $(workingDir)
+    - script: docker compose build
+      displayName: '📦 Docker build'
+      workingDirectory: $(workingDir)
+    - script: echo $(DOCKER_PASSWORD) | docker login kcbdregistry.azurecr.io --username $(DOCKER_USERNAME) --password-stdin
+      displayName: '🔑 Docker login'
+      workingDirectory: $(workingDir)
+    - script: docker compose push
+      displayName: '🚀 Docker push'
+      workingDirectory: $(workingDir)    
 
