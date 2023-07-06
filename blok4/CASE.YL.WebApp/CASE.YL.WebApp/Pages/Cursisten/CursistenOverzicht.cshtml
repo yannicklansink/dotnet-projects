@@ -1,0 +1,43 @@
+﻿@page
+@model CursistenOverzichtModel
+@{
+    ViewData["Title"] = "Cursisten Overzicht";
+}
+
+
+<div class="container mt-5">
+    <h4 class="mb-3">Cursisten Overzicht Bekijken</h4>
+
+
+
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Voornaam</th>
+                <th scope="col">Achternaam</th>
+                <th scope="col">Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var cursist in Model.CursistList)
+            {
+             
+                <tr>
+                    <td>@cursist.Voornaam</td>
+                    <td>@cursist.Achternaam</td>
+                    <td>
+                        @* Maak Cursist Detail Pagina *@
+                        <a asp-page="/Cursisten/CursistDetail" asp-route-id="@cursist.Id">Cursist Info</a>
+                    </td>
+
+
+
+                </tr>
+               
+            }
+
+        </tbody>
+    </table>
+</div>

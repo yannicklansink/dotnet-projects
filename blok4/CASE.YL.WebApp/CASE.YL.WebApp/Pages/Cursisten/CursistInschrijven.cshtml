@@ -1,0 +1,90 @@
+﻿@page 
+@model CASE.YL.WebApp.Pages.CursistInschrijvenModel
+@{
+    ViewData["Title"] = "Cursist Inschrijven";
+}
+
+
+<div class="container mt-4">
+    <form method="post" asp-page="/Cursisten/CursistInschrijven">
+        <input type="hidden" asp-for="CursusId" />
+        <input type="hidden" asp-for="Startdatum" />
+        <div class="form-group">
+            <label for="voornaam">Voornaam</label>
+            <input type="text" class="form-control" id="voornaam" name="Voornaam">
+        </div>
+
+        <div class="form-group">
+            <label for="achternaam">Achternaam</label>
+            <input type="text" class="form-control" id="achternaam" name="Achternaam">
+        </div>
+        <div class="mb-3 mt-3">
+            <div class="form-check form-check-inline">
+                <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="particulier" value="particulier" onchange="this.form.submit()">
+                <label class="form-check-label" for="particulier">Particulier</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input asp-for="Type" class="form-check-input" type="radio" name="Type" id="medewerkerBedrijf" value="medewerkerBedrijf" onchange="this.form.submit()">
+                <label class="form-check-label" for="medewerkerBedrijf">MedewerkerBedrijf</label>
+            </div>
+        </div>
+        
+
+        @if (Model.Type == "particulier")
+        {
+            <div class="form-group">
+                <label for="straatnaam">Straatnaam</label>
+                <input type="text" class="form-control" id="straatnaam" name="straatnaam">
+            </div>
+            <div class="form-group">
+                <label for="huisnummer">Huisnummer</label>
+                <input type="number" class="form-control" id="huisnummer" name="huisnummer">
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" class="form-control" id="postcode" name="postcode">
+            </div>
+            <div class="form-group">
+                <label for="woonplaats">Woonplaats</label>
+                <input type="text" class="form-control" id="woonplaats" name="woonplaats">
+            </div>
+            <div class="form-group">
+                <label for="rekeningnummer">Rekeningnummer</label>
+                <input type="text" class="form-control" id="rekeningnummer" name="rekeningnummer">
+            </div>
+        }
+        else if (Model.Type == "medewerkerBedrijf")
+        {
+            <div class="form-group">
+                <label for="bedrijfsnaam">Bedrijfsnaam</label>
+                <input type="text" class="form-control" id="bedrijfsnaam" name="bedrijfsnaam">
+            </div>
+            <div class="form-group">
+                <label for="afdeling">Afdeling</label>
+                <input type="text" class="form-control" id="afdeling" name="afdeling">
+            </div>
+            <div class="form-group">
+                <label for="offertenummer">Offertenummer</label>
+                <input type="text" class="form-control" id="offertenummer" name="offertenummer">
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Type))
+        {
+            <div class="mt-3 mb3">
+                <button type="submit" class="btn btn-primary" name="action" value="add">Add</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/';">Cancel</button>
+            </div>
+        }
+
+        @if (Model.IsRegistrationSuccessful)
+        {
+            <div class="alert alert-success mt-3" role="alert">
+                <h6>Registratie gelukt</h6>
+            </div>
+        }
+    </form>
+    
+
+</div>

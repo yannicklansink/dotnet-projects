@@ -1,0 +1,65 @@
+﻿@page "{weekNumber?}/{year?}"
+@model CursussenOverzichtModel
+@{
+    ViewData["Title"] = "Cursussen Overzicht";
+}
+
+<div class="container mt-5">
+    <h4 class="mb-3">Cursus Overzicht Bekijken</h4>
+
+    
+    <div class="mb-2">
+        <a asp-route-weekNumber="@(Model.WeekNumber-1)" asp-route-year="@(Model.Year)" class="btn btn-primary">Previous Week</a>
+        Week: @Model.WeekNumber, Year: @Model.Year
+        <a asp-route-weekNumber="@(Model.WeekNumber+1)" asp-route-year="@(Model.Year)" class="btn btn-primary">Next Week</a>
+    </div>
+
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Start</th>
+                <th scope="col">Titel</th>
+                <th scope="col">Duur</th>
+                <th scope="col">Code</th>
+                <th scope="col">Aantal</th>
+                <th scope="col">Inschrijven</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var displayedCursusIds = new HashSet<int>();
+            }
+
+            @foreach (var cursus in Model.CursusList)
+            {
+                @foreach (var dubbeleCursus in cursus.Cursusinstanties)
+                {
+                    if (!displayedCursusIds.Contains(dubbeleCursus.CursusId))
+                    {
+                        displayedCursusIds.Add(dubbeleCursus.CursusId);
+
+                        <tr>
+                            <td>@dubbeleCursus.Startdatum.ToString("dd-MM-yyyy")</td>
+                            <td>@cursus.Titel</td>
+                            <td>@cursus.Duur</td>
+                            <td>@cursus.Code</td>
+                            <td>
+                                <a asp-page="/Cursussen/CursusDetail" asp-route-id="@cursus.Id">Cursisten @cursus.Cursusinstanties.Count</a>
+                            </td>
+                            <td>
+                                <a asp-page="/Cursisten/CursistInschrijven" asp-route-CursusId="@cursus.Id" asp-route-startdatum="@dubbeleCursus.Startdatum">Cursist Inschrijven</a>
+                            </td>
+
+
+
+                        </tr>
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
