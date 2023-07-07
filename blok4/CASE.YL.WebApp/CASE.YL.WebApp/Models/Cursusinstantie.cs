@@ -12,7 +12,6 @@ namespace CASE.YL.WebApp.Models
 
         public Cursus Cursus { get; set; }
 
-        [ForeignKey("CursistId")]
         public Cursist? Cursist { get; set; }
 
         public DateTime Startdatum { get; set; }
