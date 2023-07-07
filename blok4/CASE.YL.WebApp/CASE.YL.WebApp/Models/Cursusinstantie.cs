@@ -10,7 +10,6 @@ namespace CASE.YL.WebApp.Models
 
         public int? CursistId { get; set; }
 
-        [ForeignKey("CursusId")]
         public Cursus Cursus { get; set; }
 
         [ForeignKey("CursistId")]
