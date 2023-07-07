@@ -41,7 +41,7 @@ namespace CASE.YL.WebApp.Repository
 
             if (cursist != null)
             {
-                _context.Custisten.Remove(cursist);
+                _context.Cursisten.Remove(cursist);
                 _context.SaveChanges();
                 return true;
             }
@@ -51,13 +51,13 @@ namespace CASE.YL.WebApp.Repository
 
         public IQueryable<Cursist> GetAll()
         {
-            return _context.Custisten;
+            return _context.Cursisten;
                            //.Include(c => c.Cursusinstanties);
         }
 
         public Cursist? GetCursistWithCursussen(int id)
         {
-            return _context.Custisten
+            return _context.Cursisten
                           .Include(c => c.Cursusinstanties)
                           .ThenInclude(ci => ci.Cursus)
                           .FirstOrDefault(c => c.Id == id); 
