@@ -19,6 +19,7 @@ namespace CASE.YL.WebApp
             builder.Services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Standard/Index", "");
+                options.Conventions.AddPageRoute("/Standard/Index", "");
             });
 
 
