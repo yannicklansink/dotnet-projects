@@ -12,7 +12,7 @@ namespace CASE.YL.WebApp.Dal
 
         public DbSet<Cursus> Cursussen { get; set; }
 
-        public DbSet<Cursist> Custisten { get; set; }
+        public DbSet<Cursist> Cursisten { get; set; }
 
         public DbSet<Particulier> Particulieren { get; set; }
 
