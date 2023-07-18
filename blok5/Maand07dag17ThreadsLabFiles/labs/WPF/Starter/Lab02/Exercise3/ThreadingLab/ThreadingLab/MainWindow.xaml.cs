@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Threading;
 
 namespace ThreadingLab
 {
@@ -20,6 +21,9 @@ namespace ThreadingLab
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private TextBox[] textboxes;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,9 +34,29 @@ namespace ThreadingLab
         {
             CalculateButton.IsEnabled = false;
 
-            // ...
+            var values = textboxes.Select(textbox => int.Parse(textbox.Text)).ToArray();
 
-            CalculateButton.IsEnabled = true;
+
+            var task = Task.Run(() =>
+            {
+                return values.AsParallel()
+                                .Select(textbox => int.Parse(textbox.Dispatcher.Invoke(() => textbox.Text)))
+                                .Select(value => new SlowMath().Square(value))
+                                .Sum();
+            });
+
+            //Console.WriteLine(task.GetType());
+            task.ContinueWith(t =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    ResultTextBox.Text = task.Result.ToString();
+                    CalculateButton.IsEnabled = true;
+                });
+            });
+
+
+
 
         }
 
