@@ -6,6 +6,12 @@
         {
             List<int> numbersList = new List<int> { 1, 22, 3, 4, 2, 18, 9, 12, 15, 5};
 
+            if (numbersList.Count == 0)
+            {
+                Console.WriteLine("Empty list, returning -1");
+                return;
+            }
+
             int middleOfList = numbersList.Count / 2;
 
             MaxNumber findHighestNumber1 = new MaxNumber(numbersList, 0, middleOfList);

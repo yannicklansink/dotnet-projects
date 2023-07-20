@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.highview.com/registration" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		   xmlns:tns="http://www.highview.com/registration"
+		   elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="registrations">
+		<xs:complexType>
+			
+				<xs:sequence>
+			
+			
+				</xs:sequence>
+				<xs:attribute name="airline-code" type="xs:string" use="required"></xs:attribute>
+
+		</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>

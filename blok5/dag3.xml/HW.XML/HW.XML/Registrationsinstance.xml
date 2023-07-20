@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<hv:registrations airline-code="HV123"
+    xmlns:hv="urn:www.highview.com/registration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:www.highview.com/registration Registration.xsd">
+	
+	
+</hv:registrations>
