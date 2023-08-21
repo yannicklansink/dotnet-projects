@@ -1,0 +1,33 @@
+<!-- data binding -->
+
+
+<h1>Contacten informatie</h1>
+
+<!-- <form [formGroup]="tableForm">
+
+</form> -->
+
+<table>
+  <thead>
+    <tr>
+      <th>Naam</th>
+      <th>Email</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <ng-container *ngIf="contacten.length">
+    <tbody *ngFor="let contact of contacten; let i = index">
+      <tr>
+        <td>{{ contact.voornaam | customNameFormatter:contact.achternaam }}</td>
+        <td>{{contact.email}}</td>
+        <td>
+          <button (click)="editContact(contact)"> edit</button>
+        </td>
+        <td>
+          <button (click)="deleteContact(contact.id)">delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </ng-container>
+</table>
