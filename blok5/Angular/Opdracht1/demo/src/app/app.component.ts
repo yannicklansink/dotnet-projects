@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
-import { Contacten } from 'src/models/contacten';
+import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormControl } from '@angular/forms';
+import { Contacten } from './models/contacten';
+import { AddContactForm } from './models/add-contact-form';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,11 @@ import { Contacten } from 'src/models/contacten';
   styles: ['h1 {color: red}']
 })
 export class AppComponent {
-  // tableForm: FormGroup;
+  addContactForm = new FormGroup<AddContactForm>({
+    voornaam: new FormControl<string | null>('', Validators.required),
+    email: new FormControl<string | null>('', Validators.email),
+  });
+
   contacten: Contacten[] = 
     [ 
       { id: 1, voornaam: "Sjoerd", achternaam: "Miep", email: "sjoerd.miep@gmail.com" },
@@ -17,11 +22,6 @@ export class AppComponent {
       { id: 3, voornaam: "Gijsje", achternaam: "Miep", email: "sjoerd.miep@gmail.com" }, 
     ];
 
-  // constructor(private fb: FormBuilder) {}
-
-  // get QuestionsAndAnswers() {
-  //   return this.tableForm.get('QuestionsAndAnswers') as FormArray;
-  // }
 
   deleteContact(id: number) {
     const index: number = this.contacten.map(x => {return x.id}).indexOf(id);
@@ -30,6 +30,18 @@ export class AppComponent {
 
   editContact(contact: Contacten) {
 
+  }
+
+  addContact() {
+
+    let newContact: Contacten = {
+      id: 1,
+      voornaam: this.addContactForm.value.voornaam!,
+      achternaam: "",
+      email: this.addContactForm.value.email!
+    }
+
+    this.contacten.push(newContact)
   }
 
 }

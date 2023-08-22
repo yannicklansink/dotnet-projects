@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component'; 
-import { CustomPipe } from 'src/pipes/name-formatter';
+import { CustomPipe } from './pipes/name-formatter';
 
 describe('AppComponent', () => {
     let component: AppComponent;
