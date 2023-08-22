@@ -11,12 +11,12 @@ import { nameValidator } from 'src/app/validators/name-validator';
 export class ContactFormComponent {
   @Output() add = new EventEmitter<AddContactForm>();
 
-  addContactForm = new FormGroup<AddContactForm>({
+  addContactForm = new FormGroup({
     voornaam: new FormControl<string | null>('', [Validators.required, nameValidator()]),
     email: new FormControl<string | null>('', Validators.email),
   });
 
   addContact() {
-    this.add.emit(this.addContactForm.value);
+    this.add.emit(this.addContactForm.value as AddContactForm);
   }
 }

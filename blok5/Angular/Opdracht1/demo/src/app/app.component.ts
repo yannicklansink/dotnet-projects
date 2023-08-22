@@ -11,7 +11,7 @@ import { nameValidator } from './validators/name-validator';
   styles: ['h1 {color: green}']
 })
 export class AppComponent {
-  addContactForm = new FormGroup<AddContactForm>({
+  addContactForm = new FormGroup({
     voornaam: new FormControl<string | null>('', [Validators.required, nameValidator()]),
     email: new FormControl<string | null>('', Validators.email),
   });
