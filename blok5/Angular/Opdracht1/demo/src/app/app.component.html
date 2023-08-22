@@ -3,53 +3,9 @@
 
 <h1>Contacten informatie</h1>
 
-<!-- The FormGroup can group multiple FormControls together, 
-  allowing you to represent complex forms with nested controls. -->
-<form (submit)="addContact()" [formGroup]="addContactForm">
-  <ul>
-    <li>
-      <label for="input-name">Naam:</label>
-      <input type="text" id="input-name" formControlName="voornaam">
-      <span *ngIf="addContactForm.controls.voornaam.invalid && addContactForm.controls.voornaam.touched">Invullen!</span>
-    </li>
-    <li>
-      <label for="input-email">Email:</label>
-      <input type="email" id="input-email" formControlName="email">
-      <span *ngIf="addContactForm.controls.email.invalid">Nog niet juist ingevuld!</span>
-      
-    </li>
-    <li>
-      <button>Contact toevoegen</button>
-    </li>
-    <li>
-      <pre>
-        {{ addContactForm.value | json }}
-      </pre>
-    </li>
-  </ul>
-</form>
+<app-contact-form (add)="handleAdd($event)"></app-contact-form>
 
-<table>
-  <thead>
-    <tr>
-      <th>Naam</th>
-      <th>Email</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <ng-container *ngIf="contacten.length">
-    <tbody *ngFor="let contact of contacten; let i = index">
-      <tr>
-        <td>{{ contact.voornaam | customNameFormatter:contact.achternaam }}</td>
-        <td>{{contact.email}}</td>
-        <td>
-          <button (click)="editContact(contact)"> edit</button>
-        </td>
-        <td>
-          <button (click)="deleteContact(contact.id)">delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </ng-container>
-</table>
+<!-- binds the contacten array between components.
+     Also listens to delete events from the child component. -->
+<app-contacts-table [contacten]="contacten" (delete)="handleDelete($event)"></app-contacts-table>
+

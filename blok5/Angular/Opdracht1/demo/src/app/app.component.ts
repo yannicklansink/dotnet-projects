@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormControl } from '@angular/forms';
 import { Contacten } from './models/contacten';
 import { AddContactForm } from './models/add-contact-form';
+import { nameValidator } from './validators/name-validator';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  styles: ['h1 {color: red}']
+  styles: ['h1 {color: green}']
 })
 export class AppComponent {
   addContactForm = new FormGroup<AddContactForm>({
-    voornaam: new FormControl<string | null>('', Validators.required),
+    voornaam: new FormControl<string | null>('', [Validators.required, nameValidator()]),
     email: new FormControl<string | null>('', Validators.email),
   });
 
@@ -23,22 +24,18 @@ export class AppComponent {
     ];
 
 
-  deleteContact(id: number) {
+  handleDelete(id: number) {
     const index: number = this.contacten.map(x => {return x.id}).indexOf(id);
     this.contacten.splice(index, 1); // params: start and delete count
   }
 
-  editContact(contact: Contacten) {
-
-  }
-
-  addContact() {
+  handleAdd(contactToAdd: AddContactForm) {
 
     let newContact: Contacten = {
       id: 1,
-      voornaam: this.addContactForm.value.voornaam!,
+      voornaam: contactToAdd.voornaam!,
       achternaam: "",
-      email: this.addContactForm.value.email!
+      email: contactToAdd.email!
     }
 
     this.contacten.push(newContact)
