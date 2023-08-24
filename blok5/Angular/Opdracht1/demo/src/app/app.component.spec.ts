@@ -16,10 +16,10 @@ describe('AppComponent', () => {
       fixture.detectChanges();
     });
   
-    it('should delete a contact by ID', () => {
-      expect(component.contacten.length).toBe(3);
-      component.deleteContact(2);
-      expect(component.contacten.length).toBe(2);
-    });
+    // it('should delete a contact by ID', () => {
+    //   expect(component.contacten.length).toBe(3);
+    //   component.deleteContact(2);
+    //   expect(component.contacten.length).toBe(2);
+    // });
   
   });

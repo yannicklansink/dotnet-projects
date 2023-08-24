@@ -7,6 +7,8 @@ import { CustomPipe } from './pipes/name-formatter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContactsTableComponent } from './components/contacts-table/contacts-table.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { ContactsServiceService } from './services/contacts-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
   imports: [ // modules
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

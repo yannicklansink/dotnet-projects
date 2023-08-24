@@ -14,13 +14,14 @@
     <ng-container *ngIf="contacten.length">
       <tbody *ngFor="let contact of contacten; let i = index">
         <tr>
+          <td>{{contact.id}}</td>
           <td>{{ contact.voornaam | customNameFormatter:contact.achternaam }}</td>
           <td>{{contact.email}}</td>
           <td>
             <button>edit</button>
           </td>
           <td>
-            <button (click)="deleteContact(contact.id)">delete</button>
+            <button (click)="handleDelete(contact.id!)">delete</button>
           </td>
         </tr>
       </tbody>

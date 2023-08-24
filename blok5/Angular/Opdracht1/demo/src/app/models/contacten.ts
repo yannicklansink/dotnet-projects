@@ -1,5 +1,5 @@
 export interface Contacten {
-    id: number | null;
+    id: string | null;
     voornaam: string | null;
     achternaam: string | null;
     email: string | null;
