@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Contacten } from 'src/app/models/contacten';
 import { ContactsServiceService } from 'src/app/services/contacts-service.service';
 
@@ -8,13 +9,19 @@ import { ContactsServiceService } from 'src/app/services/contacts-service.servic
   styleUrls: ['./contacts-table.component.css'],
 })
 export class ContactsTableComponent {
+  // $ is a suffix for properties that are observables.
+  contacten$: Observable<Contacten[]> = this.service.contactenObservable;
   // @Input() contacten: any[] = [];
   // @Output() delete = new EventEmitter<number>();
 
   constructor(private service: ContactsServiceService) {}
 
-  get contacten(): Contacten[] {
-    return this.service.contacten;
+  ngOnInit() {
+    this.service.getAll().subscribe();
+  }
+
+  get contacten(): Observable<Contacten[]> {
+    return this.service.contactenObservable;
   }
 
   handleDelete(id: string) {

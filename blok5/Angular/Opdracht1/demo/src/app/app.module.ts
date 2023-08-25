@@ -9,6 +9,7 @@ import { ContactsTableComponent } from './components/contacts-table/contacts-tab
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { ContactsServiceService } from './services/contacts-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EvenementPageComponent } from './pages/evenement-page/evenement-page.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +17,16 @@ import { HttpClientModule } from '@angular/common/http';
     CustomPipe,
     ContactsTableComponent,
     ContactFormComponent,
+    EvenementPageComponent,
   ],
-  imports: [ // modules
+  imports: [
+    // modules
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

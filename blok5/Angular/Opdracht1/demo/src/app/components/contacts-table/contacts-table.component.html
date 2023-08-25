@@ -1,29 +1,36 @@
 <p>contacts-table works!</p>
 
-
-
 <table>
-    <thead>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Naam</th>
+      <th>Email</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <!-- <ng-container *ngIf="contacten.length"> -->
+  <!-- async pipe: The async pipe subscribes to an Observable and 
+    returns the latest value it has emitted. When a new value is emitted, 
+    the async pipe marks the component to be checked for changes. 
+    It will also automatically unsubscribe from the observable when 
+    the component gets destroyed, preventing memory leaks. -->
+  <ng-container *ngIf="contacten$ | async as contacten">
+    <tbody *ngFor="let contact of contacten">
       <tr>
-        <th>Naam</th>
-        <th>Email</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <td>{{ contact.id }}</td>
+        <td>
+          {{ contact.voornaam | customNameFormatter : contact.achternaam }}
+        </td>
+        <td>{{ contact.email }}</td>
+        <td>
+          <button>edit</button>
+        </td>
+        <td>
+          <button (click)="handleDelete(contact.id!)">delete</button>
+        </td>
       </tr>
-    </thead>
-    <ng-container *ngIf="contacten.length">
-      <tbody *ngFor="let contact of contacten; let i = index">
-        <tr>
-          <td>{{contact.id}}</td>
-          <td>{{ contact.voornaam | customNameFormatter:contact.achternaam }}</td>
-          <td>{{contact.email}}</td>
-          <td>
-            <button>edit</button>
-          </td>
-          <td>
-            <button (click)="handleDelete(contact.id!)">delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </ng-container>
-  </table>
+    </tbody>
+  </ng-container>
+</table>

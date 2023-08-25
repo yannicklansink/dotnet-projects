@@ -5,7 +5,6 @@ import { Contacten } from 'src/app/models/contacten';
 import { ContactsServiceService } from 'src/app/services/contacts-service.service';
 import { nameValidator } from 'src/app/validators/name-validator';
 import { v4 as uuidv4 } from 'uuid';
-// import { isUuid } from 'uuidv4';
 
 @Component({
   selector: 'app-contact-form',
