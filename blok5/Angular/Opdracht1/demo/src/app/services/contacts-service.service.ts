@@ -10,8 +10,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactsServiceService {
-  private contactenMutableSubject: BehaviorSubject<Contacten[]> =
-    new BehaviorSubject<Contacten[]>([]);
+  private contactenMutableSubject: BehaviorSubject<Contacten[]> = new BehaviorSubject<Contacten[]>([]);
   contactenObservable = this.contactenMutableSubject.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -21,7 +20,7 @@ export class ContactsServiceService {
       this.http
         .get<Contacten[]>('http://localhost:3000/contacts')
         // tap => doe iets met de data zonder dat de stream beinvloed.
-        .pipe(tap((contacten) => this.contactenMutableSubject.next(contacten)))
+        .pipe(tap(contacten => this.contactenMutableSubject.next(contacten)))
     );
   }
 
@@ -36,18 +35,16 @@ export class ContactsServiceService {
 
   addContact(contact: Contacten) {
     // this.contacten?.push(contact);
-    this.http
-      .post<Contacten>('http://localhost:3000/contacts', contact)
-      .subscribe((newContact) => {
-        // get the current contacts[] from behaviorsubject
-        const currentContacts = this.contactenMutableSubject.value;
+    this.http.post<Contacten>('http://localhost:3000/contacts', contact).subscribe(newContact => {
+      // get the current contacts[] from behaviorsubject
+      const currentContacts = this.contactenMutableSubject.value;
 
-        // add newContact to the other array.
-        const updatedContacts = [...currentContacts, newContact];
+      // add newContact to the other array.
+      const updatedContacts = [...currentContacts, newContact];
 
-        // notify subscribers of the updated data
-        this.contactenMutableSubject.next(updatedContacts);
-      });
+      // notify subscribers of the updated data
+      this.contactenMutableSubject.next(updatedContacts);
+    });
   }
 
   deleteContact(id: string) {
@@ -59,9 +56,7 @@ export class ContactsServiceService {
     // if (index > -1) {
     //   this.contacten.splice(index, 1); // params: start and delete count
     // }
-    const updatedContact = this.contactenMutableSubject.value.filter(
-      (contact) => contact.id !== id
-    );
+    const updatedContact = this.contactenMutableSubject.value.filter(contact => contact.id !== id);
     this.contactenMutableSubject.next(updatedContact);
   }
 }
