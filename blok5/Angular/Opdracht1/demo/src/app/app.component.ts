@@ -25,7 +25,7 @@ export class AppComponent {
 
 
   handleDelete(id: number) {
-    const index: number = this.contacten.map(x => {return x.id}).indexOf(id);
+    const index: number = this.contacten.map(x => {return x.id}).indexOf(id);``
     this.contacten.splice(index, 1); // params: start and delete count
   }
 
