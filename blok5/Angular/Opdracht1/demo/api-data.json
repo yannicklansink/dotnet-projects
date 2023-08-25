@@ -1,0 +1,58 @@
+{
+  "contacts": [
+    {
+      "id": "id-1",
+      "voornaam": "Sjoerd",
+      "achternaam": "Miep",
+      "email": "sjoerd.miep@gmail.com"
+    },
+    {
+      "id": "id-2",
+      "voornaam": "Vincent",
+      "achternaam": "Miep",
+      "email": "sjoerd.miep@gmail.com"
+    },
+    {
+      "id": "id-3",
+      "voornaam": "Gijsje",
+      "achternaam": "Miep",
+      "email": "sjoerd.miep@gmail.com"
+    },
+    {
+      "id": "38c4a55b-5b06-4c25-8ea8-cef078c2617c",
+      "voornaam": "asdfa",
+      "achternaam": "",
+      "email": "sadfasdf@asdf"
+    },
+    {
+      "id": "4ed77c37-24b8-4a64-b432-02210efc31f1",
+      "voornaam": "asdf",
+      "achternaam": "",
+      "email": "asdfasdf@asdfasdf2"
+    },
+    {
+      "id": "fae9c1c9-eb52-446a-a6cc-6bb5fd9775ef",
+      "voornaam": "asdf",
+      "achternaam": "",
+      "email": "asdfasdf@asdfasdf2"
+    },
+    {
+      "id": "c8a1b1da-e548-4ff2-8b8a-27ef3fec3ef3",
+      "voornaam": "asdf",
+      "achternaam": "",
+      "email": "asdfasdf@asdfasdf2"
+    },
+    {
+      "id": "123139c4-0cb4-4da8-9a52-e878d1a95152",
+      "voornaam": "yannick",
+      "achternaam": "",
+      "email": "lansink@live.nl"
+    },
+    {
+      "id": "0e03a5f9-318c-4b8f-b4de-fae44dcd6e81",
+      "voornaam": "yannick",
+      "achternaam": "",
+      "email": "lansink@live.nl"
+    }
+  ]
+}

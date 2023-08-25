@@ -3,9 +3,12 @@
 
 <h1>Contacten informatie</h1>
 
-<app-contact-form (add)="handleAdd($event)"></app-contact-form>
+<!-- <app-contact-form (add)="handleAdd($event)"></app-contact-form> -->
 
 <!-- binds the contacten array between components.
      Also listens to delete events from the child component. -->
-<app-contacts-table [contacten]="contacten" (delete)="handleDelete($event)"></app-contacts-table>
+<!-- <app-contacts-table [contacten]="contacten" (delete)="handleDelete($event)"></app-contacts-table> -->
 
+
+<app-contact-form></app-contact-form>
+<app-contacts-table></app-contacts-table>
