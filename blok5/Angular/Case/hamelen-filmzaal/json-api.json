@@ -1,0 +1,95 @@
+{
+  "films": [
+    {
+      "id": "1",
+      "titel": "Inception",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Inception",
+      "beschrijving": "A thief who enters the dreams of others to steal secrets tries one last job to alter the fabric of reality.",
+      "releaseDatum": "2010-07-16",
+      "regiseur": "Christopher Nolan",
+      "tijdUitzending": ["01-01-2021 12:05:22 GMT+1", "01-01-2021 18:05:22 GMT+1"],
+      "lengte": 110
+    },
+    {
+      "id": "2",
+      "titel": "The Shawshank Redemption",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Shawshank",
+      "beschrijving": "A man wrongly convicted of murder forms an extraordinary friendship and plans his escape.",
+      "releaseDatum": "1994-09-22",
+      "regiseur": "Frank Darabont",
+      "lengte": 110
+    },
+    {
+      "id": "3",
+      "titel": "The Dark Knight",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Dark+Knight",
+      "beschrijving": "A vigilante known as Batman faces off against the Joker, a criminal mastermind who wants to plunge Gotham into anarchy.",
+      "releaseDatum": "2008-07-18",
+      "regiseur": "Christopher Nolan",
+      "lengte": 110
+    },
+    {
+      "id": "4",
+      "titel": "The Godfather",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Godfather",
+      "beschrijving": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son.",
+      "releaseDatum": "1972-03-24",
+      "regiseur": "Francis Ford Coppola",
+      "lengte": 110
+    },
+    {
+      "id": "5",
+      "titel": "Pulp Fiction",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Pulp+Fiction",
+      "beschrijving": "Interwoven stories showcase a range of characters, including a hitman, his partner, a boxer, and criminals in Los Angeles.",
+      "releaseDatum": "1994-10-14",
+      "regiseur": "Quentin Tarantino",
+      "lengte": 110
+    },
+    {
+      "id": "6",
+      "titel": "Schindler's List",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Schindler's+List",
+      "beschrijving": "A German businessman saves over a thousand Polish Jewish refugees during the Holocaust.",
+      "releaseDatum": "1994-02-04",
+      "regiseur": "Steven Spielberg",
+      "lengte": 110
+    },
+    {
+      "id": "7",
+      "titel": "Forrest Gump",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Forrest+Gump",
+      "beschrijving": "A man with a low IQ inadvertently influences many historical events in the 20th century through his simple and straightforward outlook on life.",
+      "releaseDatum": "1994-07-06",
+      "regiseur": "Robert Zemeckis",
+      "lengte": 110
+    },
+    {
+      "id": "8",
+      "titel": "Avatar",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Avatar",
+      "beschrijving": "A paraplegic marine is sent to the planet Pandora, where he becomes part of a mission to save the native Na'vi from human exploitation.",
+      "releaseDatum": "2009-12-18",
+      "regiseur": "James Cameron",
+      "lengte": 110
+    },
+    {
+      "id": "9",
+      "titel": "Fight Club",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Fight+Club",
+      "beschrijving": "A man suffering from insomnia forms an underground fight club as a form of male bonding and existential exploration.",
+      "releaseDatum": "1999-10-15",
+      "regiseur": "David Fincher",
+      "lengte": 85
+    },
+    {
+      "id": "10",
+      "titel": "Gladiator",
+      "afbeeldingUrl": "https://via.placeholder.com/150?text=Gladiator",
+      "beschrijving": "A former Roman general seeks justice after he is betrayed by a corrupt prince and sent into slavery.",
+      "releaseDatum": "2000-05-05",
+      "regiseur": "Ridley Scott",
+      "lengte": 110
+    }
+  ]
+}
