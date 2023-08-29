@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 })
 export class ContactsServiceService {
   private contactenMutableSubject: BehaviorSubject<Contacten[]> = new BehaviorSubject<Contacten[]>([]);
-  contactenObservable = this.contactenMutableSubject.asObservable();
+  contacten$ = this.contactenMutableSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 

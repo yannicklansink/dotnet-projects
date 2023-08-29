@@ -12,6 +12,7 @@ import { Location } from '@angular/common'
 })
 export class MovieDetailsComponent implements OnInit {
   film$!: Observable<Film>;
+  groupedTijden: { [key: string]: string[] } = {}; // object where each key is a string with a string array as value
 
   constructor(
     private filmService: FilmService,
@@ -24,7 +25,20 @@ export class MovieDetailsComponent implements OnInit {
     if (id) {
       this.film$ = this.filmService.getById(id);
     }
-    console.log(id);
+    this.film$.subscribe(film => {
+      this.groupTijden(film.tijdUitzending!);
+    })
+  }
+
+  private groupTijden(tijden: string[]): void {
+    for (const tijd of tijden) {
+      const [date, time] = tijd.split(' ');
+      if (!this.groupedTijden[date]) {
+        this.groupedTijden[date] = [];
+      }
+
+      this.groupedTijden[date].push(time);
+    }
   }
 
   goBack(): void {

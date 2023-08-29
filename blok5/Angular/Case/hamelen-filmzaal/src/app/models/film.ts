@@ -8,5 +8,4 @@ export interface Film {
 
     releaseDatum: Date | null; // YYYY-MM-DD
     tijdUitzending: string[] | null;
-    datumUitzending: Date | null;
 }

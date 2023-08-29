@@ -10,7 +10,7 @@ import { ContactsServiceService } from 'src/app/services/contacts-service.servic
 })
 export class ContactsTableComponent {
   // $ is a suffix for properties that are observables.
-  contacten$: Observable<Contacten[]> = this.service.contactenObservable;
+  contacten$: Observable<Contacten[]> = this.service.contacten$;
   // @Input() contacten: any[] = [];
   // @Output() delete = new EventEmitter<number>();
 
@@ -21,7 +21,7 @@ export class ContactsTableComponent {
   }
 
   get contacten(): Observable<Contacten[]> {
-    return this.service.contactenObservable;
+    return this.service.contacten$;
   }
 
   handleDelete(id: string) {
