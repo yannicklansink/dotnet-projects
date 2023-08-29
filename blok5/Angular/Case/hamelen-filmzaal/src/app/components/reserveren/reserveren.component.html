@@ -1,0 +1,50 @@
+<p>reserveren works!</p>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- async pipe subscribes to a observable.
+               as film creates a template variable -->
+      <ng-container *ngIf="film$ | async as film">
+        <h1 class="display-4 mb-4">{{ film.titel }}</h1>
+        <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid mb-4" style="max-width: 100%" />
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text"><strong>Duur:</strong> {{ film.lengte }} min</p>
+            <p class="card-text">
+              <strong>{{ film.titel }} begint om:</strong> {{ tijd }} min
+            </p>
+            <p><strong>Datum:</strong> {{ datum | dateFormatter }}</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <form (submit)="addReservation()" [formGroup]="addReservationForm">
+        <ul>
+          <li>
+            <label for="input-name">Naam:</label>
+            <input type="text" id="input-name" formControlName="voornaam" />
+            <span
+              *ngIf="
+                addReservationForm.get('voornaam')?.hasError('invalidName') &&
+                addReservationForm.controls.voornaam.touched
+              "
+              >Naam is ongeldig</span
+            >
+            <!-- <span *ngIf="addContactForm.controls.voornaam.invalid && addContactForm.controls.voornaam.touched">Invullen!</span> -->
+          </li>
+          <li>
+            <label for="input-email">Email:</label>
+            <input type="email" id="input-email" formControlName="email" />
+            <span *ngIf="addReservationForm.controls.email.invalid">Nog niet juist ingevuld!</span>
+          </li>
+          <li>
+            <button [disabled]="addReservationForm.invalid">Reservering maken</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a href="javascript:void(0);" class="btn btn-primary mt-3" (click)="goBack()">terug</a>

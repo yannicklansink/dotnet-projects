@@ -22,7 +22,8 @@
           <div>
             <strong>Time:</strong>
             <ng-container *ngFor="let tijd of group.value; let last = last">
-              <a (click)="onTimeClick(tijd)">{{ tijd }}</a>
+              <!-- <a (click)="onTimeClick(tijd)">{{ tijd }}</a> -->
+              <a [routerLink]="['/film', film.id, 'reserveren', tijd, group.key]">{{ tijd }}</a>
               <ng-container *ngIf="!last">
                 <span class="me-4"></span>
               </ng-container>

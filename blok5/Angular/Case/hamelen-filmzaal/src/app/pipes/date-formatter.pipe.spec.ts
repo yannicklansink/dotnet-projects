@@ -22,9 +22,8 @@ describe('DateFormatterPipe', () => {
     // Using a fixed date for testing
     const date = new Date('2021-09-01T00:00:00');
     const formattedDate = pipe.transform(date);
-    
-    // For locale 'nl' and format 'dd MMMM yyyy', the date should be formatted as '01 september 2021'
-    expect(formattedDate).toBe('01 september 2021');
-  });
 
+    // For locale 'nl' and format 'd MMMM yyyy', the date should be formatted as '01 september 2021'
+    expect(formattedDate).toBe('1 september 2021');
+  });
 });

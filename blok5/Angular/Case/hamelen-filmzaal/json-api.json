@@ -8,7 +8,14 @@
       "releaseDatum": "2010-07-16",
       "regiseur": "Christopher Nolan",
       "tijdUitzending": ["01-01-2021 12:05:22 GMT+1", "01-01-2021 18:05:22 GMT+1"],
-      "lengte": 110
+      "lengte": 110,
+      "plaatsenBeschikbaar": [
+        [true, false, true, false, true],
+        [false, true, false, true, false],
+        [true, false, true, false, true],
+        [false, true, false, true, false],
+        [true, false, true, false, true]
+      ]
     },
     {
       "id": "2",

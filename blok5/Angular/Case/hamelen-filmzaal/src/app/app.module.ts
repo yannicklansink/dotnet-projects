@@ -10,11 +10,11 @@ import { MenuBalkComponent } from './components/menu-balk/menu-balk.component';
 import { DienstenComponent } from './components/diensten/diensten.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DateFormatterPipe } from './pipes/date-formatter.pipe'
+import { DateFormatterPipe } from './pipes/date-formatter.pipe';
 import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
-import { MovieTimeFormatterPipe } from './pipes/movie-time-formatter.pipe';
+import { ReserverenComponent } from './components/reserveren/reserveren.component';
 
 // registerLocaleData(localeNl, 'nl');
 
@@ -27,17 +27,10 @@ import { MovieTimeFormatterPipe } from './pipes/movie-time-formatter.pipe';
     MovieDetailsComponent,
     PageNotFoundComponent,
     DateFormatterPipe,
-    MovieTimeFormatterPipe
+    ReserverenComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
-  providers: [
-    DatePipe,
-    {provide: LOCALE_ID, useValue: 'nl'}
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [DatePipe, { provide: LOCALE_ID, useValue: 'nl' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

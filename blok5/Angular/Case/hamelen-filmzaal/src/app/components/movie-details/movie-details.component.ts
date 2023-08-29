@@ -35,9 +35,7 @@ export class MovieDetailsComponent implements OnInit {
   private groupTijden(tijden: string[]): void {
     for (const tijd of tijden) {
       const [date, time] = tijd.split(' ');
-      console.log(date);
       if (!this.groupedTijden[date]) {
-        console.log('date is ' + date);
         this.groupedTijden[date] = [];
       }
 

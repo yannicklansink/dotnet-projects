@@ -23,4 +23,16 @@ export class FilmService {
     const idNumber = Number(id);
     return this.http.get<Film>('http://localhost:3000/films/' + idNumber);
   }
+
+  // gives back the number of seats that are available
+  getAvailableSeats(film: Film): number {
+    if (!film.plaatsenBeschikbaar) return 0;
+    let availableSeats = 0;
+    for (let row of film.plaatsenBeschikbaar) {
+      for (let seat of row) {
+        if (seat) availableSeats++;
+      }
+    }
+    return availableSeats;
+  }
 }
