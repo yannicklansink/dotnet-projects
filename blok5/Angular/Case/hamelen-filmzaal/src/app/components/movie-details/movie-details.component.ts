@@ -3,22 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Film } from 'src/app/models/film';
 import { FilmService } from 'src/app/services/film.service';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.css']
+  styleUrls: ['./movie-details.component.css'],
 })
 export class MovieDetailsComponent implements OnInit {
   film$!: Observable<Film>;
   groupedTijden: { [key: string]: string[] } = {}; // object where each key is a string with a string array as value
 
-  constructor(
-    private filmService: FilmService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) {}
+  constructor(private filmService: FilmService, private route: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id'); // gets ID from url
@@ -26,14 +22,22 @@ export class MovieDetailsComponent implements OnInit {
       this.film$ = this.filmService.getById(id);
     }
     this.film$.subscribe(film => {
-      this.groupTijden(film.tijdUitzending!);
-    })
+      if (film.tijdUitzending) {
+        this.groupTijden(film.tijdUitzending);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    // clean up the observable?
   }
 
   private groupTijden(tijden: string[]): void {
     for (const tijd of tijden) {
       const [date, time] = tijd.split(' ');
+      console.log(date);
       if (!this.groupedTijden[date]) {
+        console.log('date is ' + date);
         this.groupedTijden[date] = [];
       }
 
@@ -48,5 +52,4 @@ export class MovieDetailsComponent implements OnInit {
   onTimeClick(tijd: string): void {
     console.log(tijd);
   }
-  
 }

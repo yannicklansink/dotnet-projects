@@ -1,25 +1,25 @@
 <div class="container mt-5">
-    <h1>film-overzicht works!</h1>
+  <h1>film-overzicht works!</h1>
 
-    <table class="table table-hover table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>Titel</th>
-                <th>Afbeelding</th>
-                <th>Beschrijving</th>
-            </tr>
-        </thead>
-        <ng-container *ngIf="films$ | async as films">
-            <tbody *ngFor="let film of films">
-                <tr>
-                    <td>{{ film.titel }}</td>
-                    <td>
-                        <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid" style="max-width: 100px;">
-                    </td>
-                    <td>{{ film.beschrijving }}</td>
-                    <td><a [routerLink]="['/film', film.id]">Details</a></td> <!--Film details component nog bouwen-->
-                </tr>
-            </tbody>
-        </ng-container>
-    </table>
+  <table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Titel</th>
+        <th>Afbeelding</th>
+        <th>Beschrijving</th>
+      </tr>
+    </thead>
+    <ng-container *ngIf="films$ | async as films">
+      <tbody *ngFor="let film of films">
+        <tr>
+          <td>{{ film.titel }}</td>
+          <td>
+            <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid" style="max-width: 100px" />
+          </td>
+          <td>{{ film.beschrijving }}</td>
+          <td><a [routerLink]="['/film', film.id]">Details</a></td>
+        </tr>
+      </tbody>
+    </ng-container>
+  </table>
 </div>

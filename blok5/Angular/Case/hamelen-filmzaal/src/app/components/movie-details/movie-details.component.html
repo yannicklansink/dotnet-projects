@@ -1,33 +1,37 @@
 <div class="container my-5">
-    <div class="row">
-      <div class="col-md-6">
-        <ng-container *ngIf="film$ | async as film">
-          <h1 class="display-4 mb-4">{{ film.titel }}</h1>
-          <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid mb-4" style="max-width: 100%;">
-          <div class="card">
-            <div class="card-body">
-              <p class="card-text"><strong>Beschrijving:</strong> {{ film.beschrijving }}</p>
-              <p class="card-text"><strong>Regisseur:</strong> {{ film.regisseur }}</p>
-              <p class="card-text"><strong>Uitgebracht op:</strong> {{ film.releaseDatum | dateFormatter }}</p>
-              <p class="card-text"><strong>Duur:</strong> {{ film.lengte }} min</p>
-            </div>
-            </div>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- async pipe subscribes to a observable.
+             as film creates a variable -->
+      <ng-container *ngIf="film$ | async as film">
+        <h1 class="display-4 mb-4">{{ film.titel }}</h1>
+        <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid mb-4" style="max-width: 100%" />
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text"><strong>Beschrijving:</strong> {{ film.beschrijving }}</p>
+            <p class="card-text"><strong>Regisseur:</strong> {{ film.regisseur }}</p>
+            <p class="card-text"><strong>Uitgebracht op:</strong> {{ film.releaseDatum | dateFormatter }}</p>
+            <p class="card-text"><strong>Duur:</strong> {{ film.lengte }} min</p>
+          </div>
+        </div>
 
-            <div *ngFor="let group of groupedTijden | keyvalue">
-              <div>
-                <strong>Date: {{ group.key }}</strong>
-              </div>
-              <div>
-                <strong>Time:</strong>
-                <ng-container *ngFor="let tijd of group.value; let last = last">
-                  <a (click)="onTimeClick(tijd)">{{ tijd }}</a><ng-container *ngIf="!last"> &nbsp;&nbsp; </ng-container>
-                </ng-container>
-              </div>
-            </div>
+        <div *ngFor="let group of groupedTijden | keyvalue">
+          <div>
+            <strong>Date: {{ group.key }}</strong>
+          </div>
+          <div>
+            <strong>Time:</strong>
+            <ng-container *ngFor="let tijd of group.value; let last = last">
+              <a (click)="onTimeClick(tijd)">{{ tijd }}</a>
+              <ng-container *ngIf="!last">
+                <span class="me-4"></span>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
 
-            <a href="javascript:void(0);" class="btn btn-primary mt-3" (click)="goBack()">terug</a>
-
-        </ng-container>
-      </div>
+        <a href="javascript:void(0);" class="btn btn-primary mt-3" (click)="goBack()">terug</a>
+      </ng-container>
     </div>
+  </div>
 </div>

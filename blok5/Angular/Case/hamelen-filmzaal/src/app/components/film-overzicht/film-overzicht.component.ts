@@ -6,10 +6,9 @@ import { FilmService } from 'src/app/services/film.service';
 @Component({
   selector: 'app-film-overzicht',
   templateUrl: './film-overzicht.component.html',
-  styleUrls: ['./film-overzicht.component.css']
+  styleUrls: ['./film-overzicht.component.css'],
 })
 export class FilmOverzichtComponent {
-
   films$: Observable<Film[]> = this.filmService.films$;
 
   constructor(private filmService: FilmService) {}
@@ -17,10 +16,4 @@ export class FilmOverzichtComponent {
   ngOnInit() {
     this.filmService.getAll().subscribe();
   }
-
-  get films(): Observable<Film[]> {
-    return this.filmService.films$;
-  }
-
-
 }
