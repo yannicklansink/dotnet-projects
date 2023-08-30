@@ -25,14 +25,15 @@ export class FilmService {
   }
 
   // gives back the number of seats that are available
-  getAvailableSeats(film: Film): number {
-    if (!film.plaatsenBeschikbaar) return 0;
-    let availableSeats = 0;
-    for (let row of film.plaatsenBeschikbaar) {
-      for (let seat of row) {
-        if (seat) availableSeats++;
-      }
-    }
-    return availableSeats;
-  }
+  // reduce.
+  // getAvailableSeats(film: Film): number {
+  //   if (!film.plaatsenBeschikbaar) return 0;
+  //   let availableSeats = 0;
+  //   for (let row of film.plaatsenBeschikbaar) {
+  //     for (let seat of row) {
+  //       if (seat) availableSeats++;
+  //     }
+  //   }
+  //   return availableSeats;
+  // }
 }

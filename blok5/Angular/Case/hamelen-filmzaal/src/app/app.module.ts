@@ -1,6 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilmOverzichtComponent } from './components/film-overzicht/film-overzicht.component';
@@ -15,8 +14,7 @@ import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { ReserverenComponent } from './components/reserveren/reserveren.component';
-
-// registerLocaleData(localeNl, 'nl');
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +27,7 @@ import { ReserverenComponent } from './components/reserveren/reserveren.componen
     DateFormatterPipe,
     ReserverenComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [DatePipe, { provide: LOCALE_ID, useValue: 'nl' }],
   bootstrap: [AppComponent],
 })
