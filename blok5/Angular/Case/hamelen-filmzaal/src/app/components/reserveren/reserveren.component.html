@@ -3,65 +3,56 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-md-6">
-      <!-- async pipe subscribes to a observable.
-               as film creates a template variable -->
+      <!-- Using Bootstrap classes for styling -->
       <ng-container *ngIf="film$ | async as film">
         <h1 class="display-4 mb-4">{{ film.titel }}</h1>
-        <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid mb-4" style="max-width: 100%" />
+        <img [src]="film.afbeeldingUrl" alt="Film image" class="img-fluid mb-4" />
         <div class="card">
           <div class="card-body">
             <p class="card-text"><strong>Duur:</strong> {{ film.lengte }} min</p>
-            <p class="card-text">
-              <strong>{{ film.titel }} begint om:</strong> {{ tijd }} min
-            </p>
-            <p><strong>Datum:</strong> {{ datum | dateFormatter }}</p>
+            <p class="card-text"><strong>{{ film.titel }} begint om:</strong> {{ time }}</p>
+            <p class="card-text"><strong>Datum:</strong> {{ date | dateFormatter }}</p>
           </div>
         </div>
       </ng-container>
 
-      <form (submit)="addReservation()" [formGroup]="addReservationForm">
-        <ul>
-          <li>
-            <label for="input-name">Naam:</label>
-            <input type="text" id="input-name" formControlName="voornaam" />
-            <span
-              *ngIf="
-                addReservationForm.get('voornaam')?.hasError('invalidName') &&
-                addReservationForm.controls.voornaam.touched
-              "
-              >Naam is ongeldig</span
-            >
-          </li>
-          <li>
-            <label for="input-email">Email:</label>
-            <input type="email" id="input-email" formControlName="email" />
-            <span *ngIf="addReservationForm.controls.email.invalid">Nog niet juist ingevuld!</span>
-          </li>
-          <li>
-            <label for="input-straatnaam">Straatnaam en huisnummer:</label>
-            <input type="text" id="input-straatnaam" formControlName="straatnaam" />
-          </li>
-          <li>
-            <label for="input-woonplaats">Woonplaats:</label>
-            <input type="text" id="input-woonplaats" formControlName="woonplaats" />
-          </li>
-          <p *ngIf="availableSeats != undefined">Currently available seats: {{ availableSeats }}</p>
-          <!-- 5x5 grid for available seats -->
-          <div>
-            <div *ngFor="let row of mapOfAvailableSeats; let rowIndex = index">
-              <button *ngFor="let seat of row; let seatIndex = index">
-                {{ selectedSeats[rowIndex][seatIndex] ? "Selected" : "Available" }}
-              </button>
-            </div>
-          </div>
+      <ng-container *ngIf="playtimeData">
+        <p class="my-3">Plaatsen beschikbaar: {{ playtimeData.plaatsenBeschikbaar }}</p>
+      </ng-container>
 
-          <li>
-            <button [disabled]="addReservationForm.invalid">Reservering maken</button>
-          </li>
-        </ul>
+      <form (submit)="addReservation()" [formGroup]="addReservationForm" class="mt-4">
+        <div class="form-group">
+          <label for="input-name">Naam:</label>
+          <input type="text" id="input-name" formControlName="voornaam" class="form-control" />
+          <small class="text-danger" *ngIf="addReservationForm.get('voornaam')?.hasError('invalidName') && addReservationForm.controls.voornaam.touched">Naam is ongeldig</small>
+        </div>
+        <div class="form-group">
+          <label for="input-email">Email:</label>
+          <input type="email" id="input-email" formControlName="email" class="form-control" />
+          <small class="text-danger" *ngIf="addReservationForm.controls.email.invalid">Nog niet juist ingevuld!</small>
+        </div>
+        <div class="form-group">
+          <label for="input-straatnaam">Straatnaam en huisnummer:</label>
+          <input type="text" id="input-straatnaam" formControlName="straatnaam" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="input-woonplaats">Woonplaats:</label>
+          <input type="text" id="input-woonplaats" formControlName="woonplaats" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="amount">Kies hoeveelheid reserveringen:</label>
+          <select name="amounts" id="amount" class="form-control">
+            <option value="1" *ngIf="availableSeats >= 1">1</option>
+            <option value="2" *ngIf="availableSeats >= 2">2</option>
+            <option value="3" *ngIf="availableSeats >= 3">3</option>
+            <option value="4" *ngIf="availableSeats >= 4">4</option>
+          </select>
+        </div>
+        <button [disabled]="addReservationForm.invalid" class="btn btn-primary">Reservering maken</button>
       </form>
     </div>
   </div>
 </div>
 
+<!-- Using Bootstrap classes for the button -->
 <a href="javascript:void(0);" class="btn btn-primary mt-3" (click)="goBack()">terug</a>

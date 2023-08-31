@@ -76,4 +76,8 @@ export class MovieDetailsComponent implements OnInit {
   onTimeClick(tijd: string): void {
     console.log(tijd);
   }
+
+  getIdFromPlaytime(): number {
+    return 1;
+  }
 }
