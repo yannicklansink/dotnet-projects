@@ -41,8 +41,9 @@
         </div>
         <div class="form-group">
           <label for="amount">Kies hoeveelheid reserveringen:</label>
-          <select name="amounts" id="amount" class="form-control">
-            <option value="1" *ngIf="availableSeats >= 1">1</option>
+          <select name="amounts" id="amount" class="form-control" formControlName="hoeveelheid">
+            <option value="" selected disabled hidden>Kies hier</option>
+            <option value="1" selected="selected" *ngIf="availableSeats >= 1">1</option>
             <option value="2" *ngIf="availableSeats >= 2">2</option>
             <option value="3" *ngIf="availableSeats >= 3">3</option>
             <option value="4" *ngIf="availableSeats >= 4">4</option>

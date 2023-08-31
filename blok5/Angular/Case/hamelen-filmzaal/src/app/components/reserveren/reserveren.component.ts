@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { nameValidator } from 'src/app/validators/name-validator';
 import { Playtime } from 'src/app/models/playtime';
 import { PlaytimeService } from 'src/app/services/playtime.service';
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 import { Reservatie } from 'src/app/models/reservatie';
 
 @Component({
@@ -18,8 +18,9 @@ import { Reservatie } from 'src/app/models/reservatie';
 })
 export class ReserverenComponent {
   film$!: Observable<Film>;
-  playtime$!: Observable<Playtime | null>;
+  // playtime$!: Observable<Playtime | null>;
   playtimeData: Playtime | null = null;
+  playtimeId!: string;
   availableSeats: number = 0;
   time!: string | null;
   date!: Date;
@@ -30,6 +31,7 @@ export class ReserverenComponent {
     email: new FormControl<string | null>('', Validators.email),
     straatnaam: new FormControl<string | null>('', Validators.required),
     woonplaats: new FormControl<string | null>('', Validators.required),
+    hoeveelheid: new FormControl<string | null>('', Validators.required),
   });
 
   constructor(private filmService: FilmService, private playtimeService: PlaytimeService, private route: ActivatedRoute, private location: Location) {}
@@ -48,29 +50,48 @@ export class ReserverenComponent {
     }
 
 
-    this.playtimeService.findPlaytimeByTime(this.time!).subscribe(playtime => {
-      this.playtimeData = playtime;
-      if (playtime) {
-        this.availableSeats = playtime.plaatsenBeschikbaar!;
-      } else {
-        console.warn("playtime object is undefined?: " +playtime );
-      }
-    });
+    // this.playtimeService.findPlaytimeByTime(this.time!).subscribe(playtime => {
+    //   this.playtimeData = playtime;
+    //   if (playtime) {
+    //     this.availableSeats = playtime.plaatsenBeschikbaar!;
+    //     this.playtimeId = playtime.id!;
+    //   } else {
+    //     console.warn("playtime object is undefined?: " + playtime);
+    //   }
+    // });
+
+    // this.playtimeService.getAll().subscribe();
+
+    this.playtimeService.getAll().subscribe(playtimes => {
+      this.playtimeService.findPlaytimeByTime(this.time!).subscribe(playtime => {
+        if (playtime) {
+          this.playtimeData = playtime;
+          this.availableSeats = playtime.plaatsenBeschikbaar!;
+          this.playtimeId = playtime.id!;          
+        }
+      })
+    })
     
   }
 
   addReservation() {
-    console.log('add reservation');
-    const reservatieToAdd = this.addReservationForm.value as AddReservationForm;
+    const formValue = this.addReservationForm.value;
+    const newId = uuidv4();
 
-    const newId = uuid();
     let newReservatie: Reservatie = {
       id: newId,
-      voornaam: contactToAdd.voornaam!,
-      email: contactToAdd.email!,
+      voornaam: formValue.voornaam!,
+      email: formValue.email!,
+      straatnaam: formValue.straatnaam!,
+      woonplaats: formValue.woonplaats!,
+      hoeveelheid: Number(formValue.hoeveelheid),
+      playtimeId: this.playtimeId
     };
 
-    this.service.addContact(newContact);
+    this.playtimeData!.plaatsenBeschikbaar = this.playtimeData?.plaatsenBeschikbaar! - Number(formValue.hoeveelheid);
+
+    this.playtimeService.addReservation(newReservatie);
+    this.playtimeService.updatePlaytime(this.playtimeData!);
   }
 
   goBack(): void {

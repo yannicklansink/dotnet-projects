@@ -95,14 +95,253 @@
     {
       "id": "1",
       "tijdUitzending": "01-01-2021 12:05:22 GMT+1",
-      "plaatsenBeschikbaar": 2,
+      "plaatsenBeschikbaar": 11,
       "filmId": "1"
     },
     {
       "id": "2",
       "tijdUitzending": "01-01-2021 18:05:22 GMT+1",
-      "plaatsenBeschikbaar": 23,
+      "plaatsenBeschikbaar": 7,
       "filmId": "1"
+    },
+    {
+      "id": "3",
+      "tijdUitzending": "01-01-2021 18:05:22 GMT+1",
+      "plaatsenBeschikbaar": 22,
+      "filmId": "2"
+    }
+  ],
+  "reservatie": [
+    {
+      "id": "1",
+      "voornaam": "Peter",
+      "email": "Peter@Limonade.nl",
+      "straatnaam": "flodderstraat",
+      "woonplaats": "Maaskantje",
+      "playtimeId": "1"
+    },
+    {
+      "id": "acba4682-21e4-44b6-933c-01efb9dcf080",
+      "voornaam": "piet",
+      "email": "piet@piet",
+      "straatnaam": "pietstraat",
+      "woonplaats": "pietplaats",
+      "playtimeId": "1"
+    },
+    {
+      "id": "7bcbf752-81b6-4c59-af73-66254dcb1e31",
+      "voornaam": "yannc",
+      "email": "yann@ASDF",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "playtimeId": "2"
+    },
+    {
+      "id": "71825c32-ed6e-485d-914a-ef8de64e580a",
+      "voornaam": "Yannick",
+      "email": "yan@yan",
+      "straatnaam": "yan",
+      "woonplaats": "yan",
+      "hoeveelheid": 2,
+      "playtimeId": "2"
+    },
+    {
+      "id": "3ea26184-5a00-46b3-875e-4f99ec61b440",
+      "voornaam": "test",
+      "email": "test@test",
+      "straatnaam": "test",
+      "woonplaats": "test",
+      "hoeveelheid": 3,
+      "playtimeId": "2"
+    },
+    {
+      "id": "65adf9f2-da97-4143-a9ba-194335a5534f",
+      "voornaam": "asdfadf",
+      "email": "asdf#@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 2,
+      "playtimeId": "2"
+    },
+    {
+      "id": "d92e3507-c7d0-4af9-aaaa-079d67e56724",
+      "voornaam": "yannick",
+      "email": "yanncik@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 4,
+      "playtimeId": "2"
+    },
+    {
+      "id": "babebb2c-12e0-4e08-b766-3b18b0027f4e",
+      "voornaam": "yannick",
+      "email": "yanncik@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 4,
+      "playtimeId": "2"
+    },
+    {
+      "id": "4f412ebb-d0a4-4812-b1bd-344c4e420e4a",
+      "voornaam": "yannick",
+      "email": "yanncik@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 2,
+      "playtimeId": "2"
+    },
+    {
+      "id": "b4781213-c42c-4e2d-a4f4-922f96951efd",
+      "voornaam": "yes",
+      "email": "yes@yes",
+      "straatnaam": "yasf",
+      "woonplaats": "yse",
+      "hoeveelheid": 2,
+      "playtimeId": "2"
+    },
+    {
+      "id": "10af14ee-c2a8-49eb-a58f-c339bfabe6c5",
+      "voornaam": "asdf",
+      "email": "asdf2asdf@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "2"
+    },
+    {
+      "id": "09107321-57f7-480d-b3fa-8869d8f22c72",
+      "voornaam": "yannick",
+      "email": "yannick@wdf",
+      "straatnaam": "yannick",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "2"
+    },
+    {
+      "id": "0cf3543e-07a1-4971-8770-59064c758d6a",
+      "voornaam": "asdf",
+      "email": "asdf@asdf",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "2"
+    },
+    {
+      "id": "68bbf1de-54b8-4adb-9fa3-8f39e94cca80",
+      "voornaam": "yan",
+      "email": "yan@yan",
+      "straatnaam": "yan",
+      "woonplaats": "yan",
+      "hoeveelheid": 1,
+      "playtimeId": "2"
+    },
+    {
+      "id": "7b362287-7c6e-4546-a710-b569c879850b",
+      "voornaam": "yannick",
+      "email": "yan@yan",
+      "straatnaam": "yan",
+      "woonplaats": "yan",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "65d90271-c0a7-4d1c-9914-edd1a807e86f",
+      "voornaam": "yan",
+      "email": "yaniiiii@iii",
+      "straatnaam": "yan",
+      "woonplaats": "yan",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "c0610e43-69aa-4a8c-ac07-346ca954f62a",
+      "voornaam": "yan",
+      "email": "yaniiiii@iii",
+      "straatnaam": "yan",
+      "woonplaats": "yan",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "65cf72a6-dcf0-4229-996a-5c7dcc1e4681",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "dfe7caf8-13a4-4072-860f-df429e05a9b3",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "d9b89b3d-d140-4b54-98fa-cd0d4634104b",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "21f4c39a-5c44-49b7-b2ca-7b97601e97a8",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "a6e4007f-6cd5-4c55-8189-34591671b7e6",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "adc05b89-f94b-4156-bc79-6d0c3b6098e2",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "70988843-ed4e-4283-86c8-c6ed9d0bbd27",
+      "voornaam": "test",
+      "email": "test@testtstt",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "1795b562-d8b4-4334-b08f-4e5665293e2b",
+      "voornaam": "yan",
+      "email": "yan@yan",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
+    },
+    {
+      "id": "d0de8f95-1a52-4e5d-af08-375352610b57",
+      "voornaam": "yan",
+      "email": "yan@yan",
+      "straatnaam": "asdf",
+      "woonplaats": "asdf",
+      "hoeveelheid": 1,
+      "playtimeId": "1"
     }
   ]
 }
