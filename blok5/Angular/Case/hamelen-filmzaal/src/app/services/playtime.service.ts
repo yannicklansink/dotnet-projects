@@ -7,7 +7,7 @@ import { Reservatie } from '../models/reservatie';
 
 @Injectable({
   providedIn: 'root',
-}) 
+})
 export class PlaytimeService {
   private playtimesMutableSubject: BehaviorSubject<Playtime[]> = new BehaviorSubject<Playtime[]>([]);
   playtime$ = this.playtimesMutableSubject.asObservable();
@@ -30,27 +30,30 @@ export class PlaytimeService {
   }
 
   findPlaytimeByTime(time: string): Observable<Playtime | null> {
-    return this.http.get<Playtime[]>(`http://localhost:3000/playtime?time=${time}`)
-      .pipe(
-        map(playtimes => {
-          const foundPlaytime = playtimes.find(playtime => {
-            const timePart = playtime.tijdUitzending!.split(' ')[1];
-            return timePart.startsWith(time); // Comparing just the time part
-          });
-          return foundPlaytime || null;
-        }),
-        catchError(error => {
-          // Handle errors here
-          console.error('An error occurred:', error);
-          return of(null); // Return an Observable of null if there's an error
-        })
-      );
+    return this.http.get<Playtime[]>(`http://localhost:3000/playtime?time=${time}`).pipe(
+      map(playtimes => {
+        const foundPlaytime = playtimes.find(playtime => {
+          const timePart = playtime.tijdUitzending!.split(' ')[1];
+          return timePart.startsWith(time); // Comparing just the time part
+        });
+        return foundPlaytime || null;
+      }),
+      catchError(error => {
+        // Handle errors here
+        console.error('An error occurred:', error);
+        return of(null); // Return an Observable of null if there's an error
+      })
+    );
   }
 
-  addReservation(reservatie: Reservatie): void {
-    this.http.post<Reservatie>('http://localhost:3000/reservatie', reservatie).subscribe(addedReservatie => {
-      console.log("Reservatie gemaakt met hoeveelheid: " + reservatie.hoeveelheid);
-    })
+  addReservation(reservatie: Reservatie): Observable<boolean> {
+    return this.http.post<Reservatie>('http://localhost:3000/reservatie', reservatie).pipe(
+      map(addedReservatie => true),
+      catchError(error => {
+        console.error('Error adding reservation:', error);
+        return of(false);
+      })
+    );
   }
 
   updatePlaytime(playtimeToUpdate: Playtime): void {
@@ -60,23 +63,22 @@ export class PlaytimeService {
         this.updateLocalPlaytimeData(updatedPlaytime);
       },
       error => {
-        console.error('An error :():', error);
+        console.warn('An error :():', error);
       }
     );
   }
 
   private updateLocalPlaytimeData(updatedPlaytime: Playtime): void {
     const currentPlaytimes = this.playtimesMutableSubject.value;
-    const indexToUpdate = currentPlaytimes.findIndex(playtime => Number(playtime.id) === Number(updatedPlaytime.id));
+    const indexToUpdate = currentPlaytimes.findIndex(
+      playtime => Number(playtime.id) === Number(updatedPlaytime.id)
+    );
     console.log(indexToUpdate);
     if (indexToUpdate !== -1) {
       currentPlaytimes[indexToUpdate] = updatedPlaytime;
       this.playtimesMutableSubject.next([...currentPlaytimes]);
-    } else  {
-      console.warn("error in finding the right index");
+    } else {
+      console.warn('error in finding the right index');
     }
   }
-  
-  
-
 }

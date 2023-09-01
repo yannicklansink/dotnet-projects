@@ -15,6 +15,8 @@ import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { ReserverenComponent } from './components/reserveren/reserveren.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     DateFormatterPipe,
     ReserverenComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [DatePipe, { provide: LOCALE_ID, useValue: 'nl' }],
   bootstrap: [AppComponent],
 })

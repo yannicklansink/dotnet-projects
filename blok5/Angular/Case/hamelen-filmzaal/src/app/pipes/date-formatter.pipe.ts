@@ -12,7 +12,7 @@ export class DateFormatterPipe implements PipeTransform {
 
   transform(date: Date | null): string {
     if (!date) return ''; // for when date is null
-    const datestring =  this.datePipe.transform(date, 'd MMMM yyyy', undefined, 'nl')!;
+    const datestring = this.datePipe.transform(date, 'd MMMM yyyy', undefined, 'nl')!;
     return datestring;
   }
 }

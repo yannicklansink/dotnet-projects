@@ -49,7 +49,7 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // clean up the observable? yes, or subscribe inside the service?
+    // clean up the observable? yes, or subscribe inside the service? Or with async pipe?
   }
 
   private groupTijden(playtimes: Playtime[]): void {

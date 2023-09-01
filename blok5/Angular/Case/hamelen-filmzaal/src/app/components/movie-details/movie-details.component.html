@@ -1,7 +1,7 @@
-<h1>hello</h1>
+<!-- <h1>hello</h1>
 <ng-container *ngIf="playtimes$ | async as playtimes">
   <p>het werkt</p>
-</ng-container>
+</ng-container> -->
 
 <div class="container my-5">
   <div class="row">
@@ -28,7 +28,7 @@
             <strong>Time:</strong>
             <ng-container *ngFor="let tijd of group.value; let last = last">
               <!-- <a (click)="onTimeClick(tijd)">{{ tijd }}</a> -->
-              <a [routerLink]="['/film', film.id, 'reserveren', tijd, group.key]" >{{ tijd }}</a>
+              <a [routerLink]="['/film', film.id, 'reserveren', tijd, group.key]">{{ tijd }}</a>
               <ng-container *ngIf="!last">
                 <span class="me-4"></span>
               </ng-container>

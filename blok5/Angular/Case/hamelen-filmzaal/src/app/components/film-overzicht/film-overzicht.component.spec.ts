@@ -4,7 +4,6 @@ import { FilmService } from 'src/app/services/film.service';
 import { of } from 'rxjs';
 import { Film } from 'src/app/models/film';
 
-
 describe('FilmOverzichtComponent', () => {
   let component: FilmOverzichtComponent;
   let fixture: ComponentFixture<FilmOverzichtComponent>;
@@ -15,9 +14,7 @@ describe('FilmOverzichtComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [FilmOverzichtComponent],
-      providers: [
-        { provide: FilmService, useValue: mockFilmService }
-      ]
+      providers: [{ provide: FilmService, useValue: mockFilmService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FilmOverzichtComponent);
@@ -26,8 +23,24 @@ describe('FilmOverzichtComponent', () => {
 
   it('should fetch all films on ngOnInit', () => {
     const mockFilms: Film[] = [
-      { id: '1', titel: 'Film 1', afbeeldingUrl: 'url1', beschrijving: 'Desc 1', releaseDatum: null, regisseur: null, lengte: null, tijdUitzending: null },
-      { id: '2', titel: 'Film 2', afbeeldingUrl: 'url2', beschrijving: 'Desc 2', releaseDatum: null, regisseur: null, lengte: null, tijdUitzending: null }
+      {
+        id: '1',
+        titel: 'Film 1',
+        afbeeldingUrl: 'url1',
+        beschrijving: 'Desc 1',
+        releaseDatum: null,
+        regisseur: null,
+        lengte: null,
+      },
+      {
+        id: '2',
+        titel: 'Film 2',
+        afbeeldingUrl: 'url2',
+        beschrijving: 'Desc 2',
+        releaseDatum: null,
+        regisseur: null,
+        lengte: null,
+      },
     ];
 
     mockFilmService.getAll.and.returnValue(of(mockFilms));

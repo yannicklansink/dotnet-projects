@@ -6,13 +6,8 @@ import { MenuBalkComponent } from './components/menu-balk/menu-balk.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent,
-        MenuBalkComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent, MenuBalkComponent],
     }).compileComponents();
   });
 
@@ -22,4 +17,3 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 });
-

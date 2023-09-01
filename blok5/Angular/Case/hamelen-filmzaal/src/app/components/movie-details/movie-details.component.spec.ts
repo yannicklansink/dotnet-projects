@@ -11,7 +11,7 @@ describe('MovieDetailsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [MovieDetailsComponent]
+      declarations: [MovieDetailsComponent],
     });
     fixture = TestBed.createComponent(MovieDetailsComponent);
     component = fixture.componentInstance;

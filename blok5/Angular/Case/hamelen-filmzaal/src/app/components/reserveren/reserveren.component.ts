@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Film } from 'src/app/models/film';
 import { FilmService } from 'src/app/services/film.service';
@@ -10,6 +10,7 @@ import { Playtime } from 'src/app/models/playtime';
 import { PlaytimeService } from 'src/app/services/playtime.service';
 import { v4 as uuidv4 } from 'uuid';
 import { Reservatie } from 'src/app/models/reservatie';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reserveren',
@@ -24,7 +25,6 @@ export class ReserverenComponent {
   availableSeats: number = 0;
   time!: string | null;
   date!: Date;
-  
 
   addReservationForm = new FormGroup({
     voornaam: new FormControl<string | null>('', [Validators.required, nameValidator()]),
@@ -34,7 +34,14 @@ export class ReserverenComponent {
     hoeveelheid: new FormControl<string | null>('', Validators.required),
   });
 
-  constructor(private filmService: FilmService, private playtimeService: PlaytimeService, private route: ActivatedRoute, private location: Location) {}
+  constructor(
+    private filmService: FilmService,
+    private playtimeService: PlaytimeService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id'); // gets ID from url
@@ -45,33 +52,19 @@ export class ReserverenComponent {
     this.time = this.route.snapshot.paramMap.get('tijd');
     const dateString = this.route.snapshot.paramMap.get('group');
     if (dateString) {
-      const switched = dateString.split("-").reverse().join("-");
+      const switched = dateString.split('-').reverse().join('-');
       this.date = new Date(switched);
     }
-
-
-    // this.playtimeService.findPlaytimeByTime(this.time!).subscribe(playtime => {
-    //   this.playtimeData = playtime;
-    //   if (playtime) {
-    //     this.availableSeats = playtime.plaatsenBeschikbaar!;
-    //     this.playtimeId = playtime.id!;
-    //   } else {
-    //     console.warn("playtime object is undefined?: " + playtime);
-    //   }
-    // });
-
-    // this.playtimeService.getAll().subscribe();
 
     this.playtimeService.getAll().subscribe(playtimes => {
       this.playtimeService.findPlaytimeByTime(this.time!).subscribe(playtime => {
         if (playtime) {
           this.playtimeData = playtime;
           this.availableSeats = playtime.plaatsenBeschikbaar!;
-          this.playtimeId = playtime.id!;          
+          this.playtimeId = playtime.id!;
         }
-      })
-    })
-    
+      });
+    });
   }
 
   addReservation() {
@@ -85,13 +78,29 @@ export class ReserverenComponent {
       straatnaam: formValue.straatnaam!,
       woonplaats: formValue.woonplaats!,
       hoeveelheid: Number(formValue.hoeveelheid),
-      playtimeId: this.playtimeId
+      playtimeId: this.playtimeId,
     };
 
-    this.playtimeData!.plaatsenBeschikbaar = this.playtimeData?.plaatsenBeschikbaar! - Number(formValue.hoeveelheid);
+    this.playtimeData!.plaatsenBeschikbaar =
+      this.playtimeData?.plaatsenBeschikbaar! - Number(formValue.hoeveelheid);
 
-    this.playtimeService.addReservation(newReservatie);
-    this.playtimeService.updatePlaytime(this.playtimeData!);
+    this.playtimeService.addReservation(newReservatie).subscribe(success => {
+      if (success) {
+        this.playtimeService.updatePlaytime(this.playtimeData!);
+        this.toastr.success('Jouw reservering is verwerkt ' + formValue.voornaam, 'Succes', {
+          timeOut: 5000,
+          progressBar: true,
+          positionClass: 'toast-top-full-width',
+        });
+        this.router.navigate(['/']);
+      } else {
+        this.toastr.error('Jouw reservering is niet voltooid', 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   goBack(): void {
